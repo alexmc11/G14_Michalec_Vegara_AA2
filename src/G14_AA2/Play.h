@@ -1,15 +1,13 @@
 #pragma once
 #include "Scene.h"
-#include "Character.h"
-#include "PowerUp.h"
-#include "HUD.h"
-#include "Brick.h"
-#include "Renderer.h"
 
 class Play : public Scene
 {
 public:
 	Play();
 	~Play();
+	void Update() override;
+	void Draw() override;
+	void HandleEvents() override;
 };
 

@@ -1,11 +1,12 @@
 #include <SDL.h>
-#include <exception>
-#include <iostream>
-#include <string>
+#include "Game.h"
 
+
+Game *game = nullptr;
 
 int main(int argc, char *argv[]) 
 {
-
+	game = new Game();
+	
 	return 0;
 }

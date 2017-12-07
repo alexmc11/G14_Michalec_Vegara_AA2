@@ -10,3 +10,15 @@ Ranking::Ranking()
 Ranking::~Ranking()
 {
 }
+
+void Ranking::Update()
+{
+}
+
+void Ranking::Draw()
+{
+}
+
+void Ranking::HandleEvents()
+{
+}
