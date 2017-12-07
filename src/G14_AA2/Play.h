@@ -4,6 +4,7 @@
 #include "PowerUp.h"
 #include "HUD.h"
 #include "Brick.h"
+#include "Renderer.h"
 
 class Play : public Scene
 {
