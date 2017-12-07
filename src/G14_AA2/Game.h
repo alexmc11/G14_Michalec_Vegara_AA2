@@ -1,6 +1,6 @@
 #pragma once
 #include "Menu.h"
-
+#include "Play.h"
 
 
 class Game

@@ -24,45 +24,46 @@ Game::~Game()
 
 void Game::GameLoop()
 {
-	while (scene->state != GameState::EXIT:) 
-	{/*
+	scene->state = GameState::MENU;
+	while (scene->state != GameState::EXIT) 
+	{
 			switch (scene->state)
 			{
-			case GameState
-				m_currentScene->EventHandle();
-				m_currentScene->Update();
-				m_currentScene->Draw();
+			case GameState::MENU:
+				scene->HandleEvents();
+				scene->Update();
+				scene->Draw();
 				break;
 
-			case SceneState::EXIT:
-				switch (m_gameState)
+			case GameState::EXIT:
+				switch (scene->state)
 				{
 				case GameState::MENU:
-					delete m_currentScene;
-					m_currentScene = nullptr;
-					m_gameState = GameState::EXIT;
+					delete scene;
+					scene = nullptr;
+					scene->state = GameState::EXIT;
 					break;
 				case GameState::PLAY:
-					delete m_currentScene;
-					m_currentScene = new Menu();
+					delete scene;
+					scene = new Menu();
 					break;
 				default:
 					break;
 				}
 				break;
 
-			case SceneState::GOTO:
-				switch (m_gameState)
+			case GameState::GOTO:
+				switch (scene->state)
 				{
 				case GameState::MENU:
-					delete m_currentScene;
-					m_currentScene = new Play();
-					m_gameState = GameState::PLAY;
+					delete scene;
+					scene = new Play();
+					scene->state = GameState::PLAY;
 					break;
 				case GameState::PLAY:
-					delete m_currentScene;
-					m_currentScene = new Menu();
-					m_gameState = GameState::MENU;
+					delete scene;
+					scene = new Menu();
+					scene->state = GameState::MENU;
 					break;
 				default:
 					break;
@@ -70,7 +71,7 @@ void Game::GameLoop()
 				break;
 			default:
 				break;
-			}*/
+			}
 
 
 	}

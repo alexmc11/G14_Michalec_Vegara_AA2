@@ -1,9 +1,11 @@
 #pragma once
 #include "Renderer.h"
 
+enum GameState { PLAY, MENU, RANKING, EXIT, GOTO };
+
 class Scene
 {
-	enum GameState { PLAY, MENU, RANKING, EXIT, GOTO };
+	
 
 public:
 	Scene();
