@@ -5,11 +5,11 @@ Character::Character()
 {
 	SDL_Event event;
 
-	posicion1.x == 0;
-	posicion2.y == 0;
+	posicion1.x == 48;
+	posicion2.y == 176;
 
-	posicion2.x == 500;
-	posicion2.y == 500;
+	posicion2.x == SCREEN_WIDTH-96;
+	posicion2.y == SCREEN_HEIGHT-96;
 
 	//Player1
 
