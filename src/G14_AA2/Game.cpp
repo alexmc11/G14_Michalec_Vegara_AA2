@@ -15,6 +15,8 @@ Game::Game()
 	//CREATE TEXTURES
 	Renderer::Instance()->LoadTexture(MENU_BG, PATH_BGMENU);
 	Renderer::Instance()->LoadTexture(PLAY_BG, PATH_PLAY);
+	Renderer::Instance()->LoadTexture(VIDAS1_SPRITE, PATH_VIDAS1);
+	Renderer::Instance()->LoadTexture(VIDAS2_SPRITE, PATH_VIDAS2);
 	Renderer::Instance()->LoadTexture(PLAYER1_SPRITE, PATH_PLAYER1);
 	Renderer::Instance()->LoadTexture(PLAYER2_SPRITE, PATH_PLAYER2);
 	

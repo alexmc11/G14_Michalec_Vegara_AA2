@@ -24,10 +24,13 @@ public:
 
 	int frameTime = 0;
 
-	Position playerPosition;
+	int vidas = 3;
+
+	Position posicion1;
+	Position posicion2;
 	SDL_Event event;
-	Character(playerTag player);
+	Character();
 	~Character();
-	void movement(playerTag player);
+	void movement();
 };
 
