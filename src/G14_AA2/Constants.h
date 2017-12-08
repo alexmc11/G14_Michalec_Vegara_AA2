@@ -21,6 +21,7 @@ const std::string EXPLOSION_SPRITE = "EXPLOSION";
 const std::string ITEMS_SPRITE = "ITEMS_SPRITE";
 const std::string VIDAS1_SPRITE = "VIDAS1_SPRITE";
 const std::string VIDAS2_SPRITE = "VIDAS2_SPRITE";
+const std::string RECTANGULO_SPRITE = "PUNTOSBG_SPRITE";
 
 const std::string PATH_BGMENU = "../../res/img/bgMenu.jpg";
 const std::string PATH_PLAY = "../../res/img/bgGame.jpg";
@@ -32,6 +33,7 @@ const std::string PATH_PLAYER1 = "../../res/img/player1.png";
 const std::string PATH_PLAYER2 = "../../res/img/player2.png";
 const std::string PATH_VIDAS1 = "../../res/img/Vidas1.png";
 const std::string PATH_VIDAS2 = "../../res/img/vidas2.png";
+const std::string PATH_RECTANGULO = "../../res/img/puntosBG.png";
 const std::string PATH_FONT = "../../res/ttf/game_over.ttf";
 const std::string PATH_AUDIOGAME = "../../res/au/game_theme.mp3";
 const std::string PATH_AUDIOMENU = "../../res/au/menu.mp3";

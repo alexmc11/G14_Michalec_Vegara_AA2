@@ -19,9 +19,11 @@ Character::Character()
 
 	player1Rect.x = player1Rect.y = 0;
 
-	player1Position.h = player1Rect.h = 48;
+	player1Position.x = player1Position.y = 0;
 
-	player1Position.w = player1Rect.w = 48;
+	player1Rect.h = 48;
+
+	player1Rect.w = 48;
 
 	//Player2
 
@@ -31,9 +33,11 @@ Character::Character()
 
 	player2Rect.x = player2Rect.y = 0;
 
-	player2Position.h = player2Rect.h = 48;
+	player2Position.x = player2Position.y = 0;
 
-	player2Position.w = player2Rect.w = 48;
+	player2Rect.h = 48;
+	
+	player2Rect.w = 48;
 
 }
 

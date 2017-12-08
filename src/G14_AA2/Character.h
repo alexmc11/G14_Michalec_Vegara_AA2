@@ -26,6 +26,8 @@ public:
 
 	int vidas = 3;
 
+	int puntos = 0;
+
 	Position posicion1;
 	Position posicion2;
 	SDL_Event event;
