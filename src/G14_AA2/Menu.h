@@ -16,7 +16,7 @@ public:
 	SDL_Rect textRect{ 100, 50, tmpSurf->w, tmpSurf->h };*/
 
 	void Update() override;
-	void Draw() override;
+	void Draw() override; 
 	void HandleEvents() override;
 };
 
