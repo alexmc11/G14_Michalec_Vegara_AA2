@@ -5,13 +5,12 @@ class Bomb
 {
 public:
 
-	SDL_Rect bombRect, bombPosition;
+	Bomb(int posX, int posY);
 
-	int frameWidth, frameHeight;
+	SDL_Rect bombRect, bombTarget;
 
 	Vector2 imageSize = Renderer::Instance()->GetTextureSize(PATH_ITEMS);
 
-	Bomb();
 	~Bomb();
 };
 

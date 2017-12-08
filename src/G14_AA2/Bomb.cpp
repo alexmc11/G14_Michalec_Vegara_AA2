@@ -2,13 +2,12 @@
 
 
 
-Bomb::Bomb()
+Bomb::Bomb(int posX, int posY)
 {
-	frameWidth = imageSize.x / 3;
-	frameHeight = imageSize.y / 2;
-	bombRect.x = 0;
-	bombRect.y = frameHeight * 2;
-	bombRect.w = bombRect.h = 48;
+	bombRect = { posX, posY, 48, 48 };
+	bombTarget = { 0, 48, 48, 48 };
+	Renderer::Instance()->PushSprite(ITEMS_SPRITE, bombTarget, bombRect);
+	Renderer::Instance()->Render();
 }
 
 
