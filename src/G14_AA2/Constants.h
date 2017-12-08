@@ -18,6 +18,7 @@ const std::string TEXT_RANKING = "TEXT_RANKING";
 const std::string AUDIOEN_BUTTON = "AUDIOEN_BUTTON";
 const std::string AUDIOMUTE_BUTTON = "AUDIOMUTE_BUTTON";
 const std::string EXPLOSION_SPRITE = "EXPLOSION";
+const std::string ITEMS_SPRITE = "ITEMS_SPRITE";
 
 const std::string PATH_BGMENU = "../../res/img/bgMenu.jpg";
 const std::string PATH_PLAY = "../../res/img/bgGame.jpg";
