@@ -10,9 +10,11 @@ public:
 
 	SDL_Surface *tmpSurf;
 
-	//SDL_Texture *textTexture{ SDL_CreateTextureFromSurface(m_renderer, tmpSurf) };
+	SDL_Rect PlaytextRect, ExitTextRect, RankingTextRect;
 
-	SDL_Rect textRect;
+	Vector2 medidaTextoPlay = Renderer::Instance()->GetTextureSize(TEXT_PLAY);
+	Vector2 medidaTextoRanking = Renderer::Instance()->GetTextureSize(TEXT_RANKING);
+	Vector2 medidaTextoExit = Renderer::Instance()->GetTextureSize(TEXT_EXIT);
 
 	void Update() override;
 	void Draw() override; 
