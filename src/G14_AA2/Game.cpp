@@ -14,8 +14,9 @@ Game::Game()
 
 	//CREATE TEXTURES
 	Renderer::Instance()->LoadTexture(MENU_BG, PATH_BGMENU);
+	Renderer::Instance()->LoadTexture(PLAY_BG, PATH_PLAY);
 	
-	scene = new Menu();
+	scene = new Play();
 }
 
 Game::~Game()
@@ -24,12 +25,12 @@ Game::~Game()
 
 void Game::GameLoop()
 {
-	scene->state = GameState::MENU;
+	scene->state = GameState::PLAY;
 	while (scene->state != GameState::EXIT) 
 	{
 			switch (scene->state)
 			{
-			case GameState::MENU:
+			case GameState::PLAY:
 				scene->HandleEvents();
 				scene->Update();
 				scene->Draw();
