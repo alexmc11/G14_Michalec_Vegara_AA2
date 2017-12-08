@@ -8,7 +8,7 @@ public:
 	~Brick();
 
 
-	SDL_Rect destructibleBrick, nondestructibleBrick;
+	SDL_Rect wallRect, wallTarget;
 
 	int frameWidth, frameHeight;
 
