@@ -8,9 +8,9 @@ Game::Game()
 	Renderer::Instance()->LoadTexture(PLAY_BG, PATH_PLAY);
 
 	//CREATE TEXTS
-	Text play{ TEXT_PLAY, "PLAY",{ 0, 255, 0, 255 }, 0, 0 };
-	Text ranking{ TEXT_RANKING, "RANKING",{ 0, 255, 0, 255 }, 0, 0 };
-	Text exit{ TEXT_EXIT, "EXIT",{ 0, 255, 0, 255 }, 0, 0 };
+	Text play{ TEXT_PLAY, "PLAY",{ 255, 255, 255, 255 }, 0, 0 };
+	Text ranking{ TEXT_RANKING, "RANKING",{ 255, 255, 255, 255 }, 0, 0 };
+	Text exit{ TEXT_EXIT, "EXIT",{ 255, 255, 255, 255 }, 0, 0 };
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, play);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, exit);
