@@ -24,8 +24,8 @@ void Play::Update()
 
 void Play::Draw()
 {
-	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1.player1Rect, jugador1.player1Position);
-	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2.player2Rect, jugador2.player2Position);
+	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1.player1Target, jugador1.player1Rect);
+	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2.player2Target, jugador2.player2Rect);
 	Renderer::Instance()->Render();
 }
 

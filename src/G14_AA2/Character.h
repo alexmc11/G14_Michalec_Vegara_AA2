@@ -5,14 +5,15 @@
 enum playerTag {player1, player2};
 
 struct Position {
-	float x;
-	float y;
+	int x;
+	int y;
 };
 class Character
 {
 public:
 	playerTag player;
 	SDL_Rect player1Rect, player2Rect, player1Position, player2Position;
+	SDL_Rect player1Target, player2Target;
 
 	int textWidth, textHeight, frameWidth, frameHeight;
 

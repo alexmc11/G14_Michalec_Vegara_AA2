@@ -5,15 +5,16 @@ Character::Character()
 {
 	SDL_Event event;
 
-	posicion1.x == 48;
-	posicion2.y == 176;
 
-	posicion2.x == SCREEN_WIDTH-96;
-	posicion2.y == SCREEN_HEIGHT-96;
+	player1Rect = { 48, 128, 48, 48 };
+	player1Target = { 48, 96, 48, 48 };
+
+	player2Rect = { 624, 608, 48, 48 };
+	player2Target = { 0, 0, 48, 48 };
 
 	//Player1
 
-	frameWidth = image1Size.x / 2;
+	/*frameWidth = image1Size.x / 2;
 
 	frameHeight = image1Size.y / 4;
 
@@ -37,7 +38,7 @@ Character::Character()
 
 	player2Rect.h = 48;
 	
-	player2Rect.w = 48;
+	player2Rect.w = 48;*/
 
 }
 
