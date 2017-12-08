@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Character.h"
 #include "HUD.h"
+#include "Map.h"
 
 class Play : public Scene
 {
@@ -15,6 +16,8 @@ public:
 	Character jugador2;
 
 	HUD interfaz;
+
+	Map mapa;
 
 	void Update() override;
 	void Draw() override;

@@ -9,5 +9,9 @@ public:
 
 
 	SDL_Rect destructibleBrick, nondestructibleBrick;
+
+	int frameWidth, frameHeight;
+
+	Vector2 imageSize = Renderer::Instance()->GetTextureSize(PATH_WALL);
 };
 

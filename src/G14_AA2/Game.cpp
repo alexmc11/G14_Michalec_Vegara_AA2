@@ -22,7 +22,8 @@ Game::Game()
 	Renderer::Instance()->LoadTexture(RECTANGULO_SPRITE, PATH_RECTANGULO);
 	Renderer::Instance()->LoadTexture(PLAYER1_SPRITE, PATH_PLAYER1);
 	Renderer::Instance()->LoadTexture(PLAYER2_SPRITE, PATH_PLAYER2);
-	
+	Renderer::Instance()->LoadTexture(ITEMS_SPRITE, PATH_ITEMS);
+	Renderer::Instance()->LoadTexture(WALL_SPRITE, PATH_WALL);
 	scene = new Menu();
 }
 

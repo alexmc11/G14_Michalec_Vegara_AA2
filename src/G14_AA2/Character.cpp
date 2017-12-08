@@ -48,7 +48,7 @@ Character::~Character()
 void Character::movement()
 {
 	#pragma region "Player 1 Movement"
-		if (event.key.keysym.sym == SDLK_w && posicion1.y >= 170)
+		if (event.key.keysym.sym == SDLK_w && posicion1.y >= 128)
 		{
 			posicion1.y -= 2;
 			player1Rect.y = frameHeight;
@@ -64,7 +64,7 @@ void Character::movement()
 				}
 			}
 		}
-		if (event.key.keysym.sym == SDLK_a && posicion1.x >= 0)
+		if (event.key.keysym.sym == SDLK_a && posicion1.x >= 48)
 		{
 			posicion1.x -= 2;
 			player1Rect.y = frameHeight * 2;
@@ -80,7 +80,7 @@ void Character::movement()
 				}
 			}
 		}
-		if (event.key.keysym.sym == SDLK_s && posicion1.y <= (SCREEN_HEIGHT - frameHeight))
+		if (event.key.keysym.sym == SDLK_s && posicion1.y <= (SCREEN_HEIGHT - 48))
 		{
 			posicion1.y += 2;
 			player1Rect.y = frameHeight * 3;
@@ -96,7 +96,7 @@ void Character::movement()
 				}
 			}
 		}
-		if (event.key.keysym.sym == SDLK_d && posicion1.x <= (SCREEN_WIDTH - frameWidth))
+		if (event.key.keysym.sym == SDLK_d && posicion1.x <= (SCREEN_WIDTH - 48))
 		{
 			posicion1.x += 2;
 			player1Rect.y = frameHeight * 4;
@@ -115,7 +115,7 @@ void Character::movement()
 	#pragma endregion
 
 	#pragma region "Player 2 Movement"
-		if (event.key.keysym.sym == SDLK_UP && posicion2.y >= 170)
+		if (event.key.keysym.sym == SDLK_UP && posicion2.y >= 128)
 		{
 			posicion2.y -= 2;
 			player2Rect.y = frame2Height;
@@ -131,7 +131,7 @@ void Character::movement()
 				}
 			}
 		}
-		if (event.key.keysym.sym == SDLK_LEFT && posicion2.x >= 0)
+		if (event.key.keysym.sym == SDLK_LEFT && posicion2.x >= 48)
 		{
 			posicion2.x -= 2;
 			player2Rect.y = frame2Height * 2;
@@ -147,7 +147,7 @@ void Character::movement()
 				}
 			}
 		}
-		if (event.key.keysym.sym == SDLK_DOWN && posicion2.y <= (SCREEN_HEIGHT - frameHeight))
+		if (event.key.keysym.sym == SDLK_DOWN && posicion2.y <= (SCREEN_HEIGHT - 48))
 		{
 			posicion2.y += 2;
 			player2Rect.y = frame2Height * 3;
@@ -163,7 +163,7 @@ void Character::movement()
 				}
 			}
 		}
-		if (event.key.keysym.sym == SDLK_RIGHT && posicion2.x <= (SCREEN_WIDTH - frameWidth))
+		if (event.key.keysym.sym == SDLK_RIGHT && posicion2.x <= (SCREEN_WIDTH - 48))
 		{
 			posicion2.x += 2;
 			player2Rect.y = frame2Height * 4;
