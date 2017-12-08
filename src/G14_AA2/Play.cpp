@@ -20,6 +20,7 @@ void Play::Draw()
 {
 	Renderer::Instance()->Clear();
 	Renderer::Instance()->PushImage(PLAY_BG, bgPlay);
+	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, )
 	Renderer::Instance()->Render();
 }
 
