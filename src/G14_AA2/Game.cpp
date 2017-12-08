@@ -33,11 +33,20 @@ Game::~Game()
 void Game::GameLoop()
 {
 	scene->state = GameState::MENU;
+	scene->escenActual = CurrentScene::MENIU;
 	while (scene->state != GameState::EXIT) 
 	{
 			switch (scene->state)
 			{
 			case GameState::MENU:
+				scene->escenActual = CurrentScene::MENIU;
+				scene->HandleEvents();
+				scene->Update();
+				scene->Draw();
+				break;
+
+			case GameState::PLAY:
+				scene->escenActual = CurrentScene::PLEI;
 				scene->HandleEvents();
 				scene->Update();
 				scene->Draw();
@@ -61,14 +70,14 @@ void Game::GameLoop()
 				break;
 
 			case GameState::GOTO:
-				switch (scene->state)
+				switch (scene->escenActual)
 				{
-				case GameState::MENU:
+				case CurrentScene::MENIU:
 					delete scene;
 					scene = new Play();
 					scene->state = GameState::PLAY;
 					break;
-				case GameState::PLAY:
+				case CurrentScene::PLEI:
 					delete scene;
 					scene = new Menu();
 					scene->state = GameState::MENU;

@@ -4,6 +4,7 @@
 
 Play::Play()
 {
+
 	bgPlay = { 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
 }
 
