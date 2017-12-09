@@ -113,6 +113,10 @@ void Character::movement()
 				}
 			}
 		}
+		if (event.key.keysym.sym == SDLK_SPACE)
+		{
+			new Bomb(posicion1.x, posicion1.y);
+		}
 	#pragma endregion
 
 	#pragma region "Player 2 Movement"
@@ -179,6 +183,10 @@ void Character::movement()
 					player2Rect.x = 0;
 				}
 			}
+		}
+		if (event.key.keysym.sym == SDLK_RCTRL)
+		{
+			new Bomb(posicion2.x, posicion2.y);
 		}
 	#pragma endregion
 }
