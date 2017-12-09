@@ -1,6 +1,7 @@
 #pragma once
 
 #define SCREEN_FPS 60.0f
+#define FPS 60
 #define SCREEN_TICKS_PER_FRAME (1.0f / SCREEN_FPS)
 
 #define SCREEN_WIDTH 720

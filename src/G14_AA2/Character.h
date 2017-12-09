@@ -10,6 +10,12 @@ struct Position {
 	int x;
 	int y;
 };
+
+struct target
+{
+	int x;
+	int y;
+};
 class Character
 {
 public:
@@ -33,12 +39,12 @@ public:
 
 	Position posicion;
 
+	target objetivo;
+
 	SDL_Event event;
 	SDL_Event event2;
 
 	Bomb *bomba;
-
-	std::vector<Bomb*> cantidadBombas;
 
 	Character(playerTag jugador);
 	~Character();

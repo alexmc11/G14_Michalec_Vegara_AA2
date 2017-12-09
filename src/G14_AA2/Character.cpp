@@ -9,15 +9,19 @@ Character::Character(playerTag jugador)
 	{
 		posicion.x = 48;
 		posicion.y = 128;
+		objetivo.x = 48;
+		objetivo.y = 96;
 		playerRect = { posicion.x, posicion.y, 48, 48 };
-		playerTarget = { 48, 96, 48, 48 };
+		playerTarget = { objetivo.x, objetivo.y, 48, 48 };
 	}
 	else
 	{
 		posicion.x = 624;
 		posicion.y = 608;
+		objetivo.x = 0;
+		objetivo.y = 0;
 		playerRect = { posicion.x, posicion.y, 48, 48 };
-		playerTarget = { 0, 0, 48, 48 };
+		playerTarget = { objetivo.x, objetivo.y, 48, 48 };
 	}
 	player = jugador;
 }
@@ -37,78 +41,75 @@ void Character::movement()
 				if (event.key.keysym.sym == SDLK_w && posicion.y > 128)
 				{
 					posicion.y -= 2;
-					std::cout << posicion.y << std::endl;
-					playerRect.y = frameHeight;
-					playerRect.x = frameWidth;
+					objetivo.y = 0;
+					//objetivo.x = 0;
 					frameTime++;
-					if (SCREEN_FPS / frameTime <= 9)
+					if (FPS / frameTime <= 9)
 					{
 						frameTime = 0;
-						playerRect.x += frameWidth;
-						if (playerRect.x >= image1Size.x)
+						objetivo.x += 48;
+						if (objetivo.x >= 144)
 						{
-							playerRect.x = 0;
+							objetivo.x = 0;
 						}
 					}
 				}
 				if (event.key.keysym.sym == SDLK_a && posicion.x > 48)
 				{
 					posicion.x -= 2;
-					std::cout << posicion.x << std::endl;
-					playerRect.y = frameHeight * 2;
-					playerRect.x = frameWidth;
+					//objetivo.x = 0;
+					objetivo.y = 48;
 					frameTime++;
-					if (SCREEN_FPS / frameTime <= 9)
+					if (FPS / frameTime <= 9)
 					{
 						frameTime = 0;
-						playerRect.x += frameWidth;
-						if (playerRect.x >= image1Size.x)
+						objetivo.x += 48;
+						if (objetivo.x >= 144)
 						{
-							playerRect.x = 0;
+							objetivo.x = 0;
 						}
 					}
 				}
 				if (event.key.keysym.sym == SDLK_s && posicion.y < 608)
 				{
 					posicion.y += 2;
-					std::cout << posicion.y << std::endl;
-					playerRect.y = frameHeight * 3;
-					playerRect.x = frameWidth;
+					//objetivo.x = 0;
+					objetivo.y = 96;
 					frameTime++;
-					if (SCREEN_FPS / frameTime <= 9)
+					std::cout << frameTime;
+					if (FPS / frameTime <= 9)
 					{
 						frameTime = 0;
-						playerRect.x += frameWidth;
-						if (playerRect.x >= image1Size.x)
+						objetivo.x += 48;
+						if (objetivo.x >= 144)
 						{
-							playerRect.x = 0;
+							objetivo.x = 0;
 						}
 					}
 				}
 				if (event.key.keysym.sym == SDLK_d && posicion.x < 624)
 				{
 					posicion.x += 2;
-					std::cout << posicion.x << std::endl;
-					playerRect.y = frameHeight * 4;
-					playerRect.x = frameWidth;
+					//objetivo.x = 0;
+					objetivo.y = 144;
 					frameTime++;
-					if (SCREEN_FPS / frameTime <= 9)
+					if (FPS / frameTime <= 9)
 					{
 						frameTime = 0;
-						playerRect.x += frameWidth;
-						if (playerRect.x >= textWidth)
+						objetivo.x += 48;
+						if (objetivo.x >= 144)
 						{
-							playerRect.x = 0;
+							objetivo.x = 0;
 						}
 					}
 				}
 				if (event.key.keysym.sym == SDLK_SPACE)
 				{
 					bomba = new Bomb(posicion.x, posicion.y);
-					cantidadBombas.push_back(bomba);
 				}
 
 				playerRect = { posicion.x, posicion.y, 48, 48 };
+				playerTarget = { objetivo.x, objetivo.y, 48, 48 };
 			}
 		}
 	}
@@ -188,7 +189,7 @@ void Character::movement()
 				}
 				if (event.key.keysym.sym == SDLK_RCTRL)
 				{
-					new Bomb(posicion.x, posicion.y);
+					bomba = new Bomb(posicion.x, posicion.y);
 				}
 
 				playerRect = { posicion.x, posicion.y, 48, 48 };

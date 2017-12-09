@@ -19,7 +19,6 @@ void Play::Update()
 {
 	jugador1->movement();
 	jugador2->movement();
-	std::cout << jugador1->cantidadBombas.size();
 
 	/*deltaTime = (clock() - lastTime);
 
