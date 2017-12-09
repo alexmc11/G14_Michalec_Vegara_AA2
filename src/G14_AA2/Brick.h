@@ -4,9 +4,9 @@
 class Brick
 {
 public:
-	Brick(int posX, int posY);
+	Brick();
 	~Brick();
-
+	void printBrick(int posX, int posY);
 
 	SDL_Rect wallRect, wallTarget;
 

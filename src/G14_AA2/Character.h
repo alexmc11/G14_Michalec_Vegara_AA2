@@ -14,12 +14,12 @@ class Character
 {
 public:
 	playerTag player;
-	SDL_Rect player1Rect, player2Rect, player1Position, player2Position;
-	SDL_Rect player1Target, player2Target;
+	SDL_Rect playerRect, playerPosition;
+	SDL_Rect playerTarget;
 
 	int textWidth, textHeight, frameWidth, frameHeight;
 
-	int text2Width, text2Height, frame2Width, frame2Height;
+	//int text2Width, text2Height, frame2Width, frame2Height;
 
 	Vector2 image1Size = Renderer::Instance()->GetTextureSize(PATH_PLAYER1);
 
@@ -31,10 +31,9 @@ public:
 
 	int puntos = 0;
 
-	Position posicion1;
-	Position posicion2;
+	Position posicion;
 	SDL_Event event;
-	Character();
+	Character(playerTag jugador);
 	~Character();
 	void movement();
 };

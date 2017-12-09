@@ -12,9 +12,12 @@ public:
 
 	SDL_Rect bgPlay;
 
-	Character *jugadores;
+	Character *jugador1;
+	Character *jugador2;
 
 	HUD interfaz;
+
+	Brick ladrillo;
 
 	Map mapa;
 
