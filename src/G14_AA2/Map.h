@@ -17,6 +17,8 @@ public:
 
 	void DrawMap();
 
+	void DrawBricks();
+
 	~Map();
 
 	posicionLadrillo ladrillos[5][6];
@@ -24,6 +26,7 @@ public:
 	int **md;
 
 	Brick ladrillu;
+	Brick ladrilluDestructible;
 
 	int posiciones[29][2];
 
