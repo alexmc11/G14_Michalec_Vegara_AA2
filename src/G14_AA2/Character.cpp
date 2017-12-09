@@ -122,68 +122,60 @@ void Character::movement()
 				if (event.key.keysym.sym == SDLK_UP && posicion.y > 128)
 				{
 					posicion.y -= 2;
-					std::cout << posicion.y << std::endl;
-					playerRect.y = frameHeight;
-					playerRect.x = frameWidth;
+					objetivo.y = 0;
 					frameTime++;
 					if (SCREEN_FPS / frameTime <= 9)
 					{
 						frameTime = 0;
-						playerRect.x += frameWidth;
-						if (playerRect.x >= image1Size.x)
+						objetivo.x += 48;
+						if (objetivo.x >= 144)
 						{
-							playerRect.x = 0;
+							objetivo.x = 0;
 						}
 					}
 				}
 				if (event.key.keysym.sym == SDLK_LEFT && posicion.x > 48)
 				{
 					posicion.x -= 2;
-					std::cout << posicion.x << std::endl;
-					playerRect.y = frameHeight * 2;
-					playerRect.x = frameWidth;
+					objetivo.y = 48;
 					frameTime++;
 					if (SCREEN_FPS / frameTime <= 9)
 					{
 						frameTime = 0;
-						playerRect.x += frameWidth;
-						if (playerRect.x >= image1Size.x)
+						objetivo.x += 48;
+						if (objetivo.x >= 144)
 						{
-							playerRect.x = 0;
+							objetivo.x = 0;
 						}
 					}
 				}
 				if (event.key.keysym.sym == SDLK_DOWN && posicion.y < 608)
 				{
 					posicion.y += 2;
-					std::cout << posicion.y << std::endl;
-					playerRect.y = frameHeight * 3;
-					playerRect.x = frameWidth;
+					objetivo.y = 96;
 					frameTime++;
 					if (SCREEN_FPS / frameTime <= 9)
 					{
 						frameTime = 0;
-						playerRect.x += frameWidth;
-						if (playerRect.x >= image1Size.x)
+						objetivo.x += 48;
+						if (objetivo.x >= 144)
 						{
-							playerRect.x = 0;
+							objetivo.x = 0;
 						}
 					}
 				}
 				if (event.key.keysym.sym == SDLK_RIGHT && posicion.x < 624)
 				{
 					posicion.x += 2;
-					std::cout << posicion.x << std::endl;
-					playerRect.y = frameHeight * 4;
-					playerRect.x = frameWidth;
+					objetivo.y = 144;
 					frameTime++;
 					if (SCREEN_FPS / frameTime <= 9)
 					{
 						frameTime = 0;
-						playerRect.x += frameWidth;
-						if (playerRect.x >= textWidth)
+						objetivo.x += 48;
+						if (objetivo.x >= 144)
 						{
-							playerRect.x = 0;
+							objetivo.x = 0;
 						}
 					}
 				}
