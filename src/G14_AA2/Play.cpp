@@ -8,6 +8,7 @@ Play::Play()
 	jugador1 = new Character(player1);
 	jugador2 = new Character(player2);
 	lastTime = clock();
+	audioStarted = false;
 }
 
 
@@ -17,7 +18,7 @@ Play::~Play()
 
 void Play::Update()
 {
-	
+
 	deltaTime = (clock() - lastTime);
 
 	lastTime = clock();
@@ -28,6 +29,14 @@ void Play::Update()
 
 	std::cout << timeDown << std::endl;
 
+	if (audioStarted == false)
+	{
+		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
+		Mix_Music *soundtrack{ Mix_LoadMUS("../../res/au/game_theme.mp3") };
+		Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
+		Mix_PlayMusic(soundtrack, -1);
+		audioStarted = true;
+	}
 	
 }
 
@@ -56,6 +65,7 @@ void Play::HandleEvents()
 	jugador2->movement();
 	if (timeDown < timeUp || jugador1->vidas == 0 || jugador2->vidas == 0)
 	{
+		Mix_CloseAudio();
 		state = GameState::GOTO;
 	}
 }

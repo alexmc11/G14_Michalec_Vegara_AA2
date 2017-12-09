@@ -19,10 +19,14 @@ Menu::~Menu()
 
 void Menu::Update()
 {
-	/*if (audioStarted == false)
+	if (audioStarted == false)
 	{
-		Mix_OpenAudio(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
-	}*/
+		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
+		Mix_Music *soundtrack{ Mix_LoadMUS("../../res/au/menu.mp3") };
+		Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
+		Mix_PlayMusic(soundtrack, -1);
+		audioStarted = true;
+	}
 }
 
 void Menu::Draw()
@@ -70,6 +74,7 @@ void Menu::HandleEvents()
 		case SDL_MOUSEBUTTONDOWN:
 			if (jugar == true)
 			{
+				Mix_CloseAudio();
 				state = GameState::GOTO;
 			}
 			if (salir == true)

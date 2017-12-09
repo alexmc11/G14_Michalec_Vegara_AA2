@@ -13,7 +13,7 @@ public:
 	~Play();
 
 	SDL_Rect bgPlay;
-
+	bool audioStarted;
 	Character *jugador1;
 	Character *jugador2;
 
