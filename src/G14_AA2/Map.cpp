@@ -32,9 +32,9 @@ void Map::DrawMap()
 
 void Map::DrawBricks()
 {
-	int posX = 0;
+	int posX = 96;
 	int posY = 80;
-	for (int i = 0; i < 143; i++)
+	for (int i = 0; i < 155; i++)
 	{
 		if (craps[i] == 1)
 		{
@@ -45,10 +45,10 @@ void Map::DrawBricks()
 		{
 			posX += 48;
 		}
-		if (i % 13 == 0)
+		if (i % 14 == 0)
 		{
 			posY += 48;
-			posX = 48;
+			posX = 0;
 		}
 		
 	}
