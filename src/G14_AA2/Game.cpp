@@ -6,11 +6,11 @@ Game::Game()
 	//Backgrounds
 	Renderer::Instance()->LoadTexture(PLAY_BG, PATH_PLAY);
 	//CREATE TEXTS
-
 	Text play{ TEXT_PLAY, "PLAY",{ 255, 255, 255, 255 }, 0, 0 };
 	Text ranking{ TEXT_RANKING, "RANKING",{ 255, 255, 255, 255 }, 0, 0 };
 	Text exit{ TEXT_EXIT, "EXIT",{ 255, 255, 255, 255 }, 0, 0 };
 	Text bomberman{ TEXT_TITLE, "BOMBERMAN", {255, 255, 255, 255}, 0, 0 };
+	Text hola{ TEXT_TITLE, };
 
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
 	Renderer::Instance()->LoadFont({ GAME_OVERTITLE, PATH_FONT, 200 });
@@ -23,7 +23,6 @@ Game::Game()
 	Renderer::Instance()->LoadTexture(PLAYER1_SPRITE, PATH_PLAYER1);
 	Renderer::Instance()->LoadTexture(PLAYER2_SPRITE, PATH_PLAYER2);
 	Renderer::Instance()->LoadTexture(ITEMS_SPRITE, PATH_ITEMS);
-	Renderer::Instance()->LoadTexture(WALL_SPRITE, PATH_WALL);
 	scene = new Menu();
 }
 

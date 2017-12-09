@@ -35,7 +35,7 @@ public:
 					   0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0};
 
 
-	std::vector<Brick*> TodosLosMuros;
+	std::vector<SDL_Rect> TodosLosMuros;
 
 	
 

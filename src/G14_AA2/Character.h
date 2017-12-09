@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "Renderer.h"
 #include "Bomb.h"
+#include "Map.h"
 #include <iostream>
 
 enum playerTag {player1, player2};
@@ -19,9 +20,12 @@ struct target
 class Character
 {
 public:
+	Map mapa;
 	playerTag player;
 	SDL_Rect playerRect, playerPosition;
 	SDL_Rect playerTarget;
+	int points;
+	int vidas;
 
 	int textWidth, textHeight, frameWidth, frameHeight;
 
@@ -32,10 +36,6 @@ public:
 	Vector2 image2Size = Renderer::Instance()->GetTextureSize(PATH_PLAYER2);
 
 	int frameTime = 0;
-
-	int vidas = 3;
-
-	int puntos = 0;
 
 	Position posicion;
 

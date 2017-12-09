@@ -24,7 +24,7 @@ public:
 
 	clock_t lastTime;
 
-	float timeDown = 10;
+	float timeDown = 81;
 
 	float deltaTime = 0;
 

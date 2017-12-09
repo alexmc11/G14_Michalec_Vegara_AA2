@@ -20,9 +20,11 @@ public:
 
 	int frameWidth, frameHeight;
 
-	Vector2 imageSize = Renderer::Instance()->GetTextureSize(PATH_WALL);
-
 	brickType tipoLadrillo;
+
+	std::vector<SDL_Rect> colisionesNoDestructible;
+
+	std::vector<SDL_Rect> colisionesDestructible;
 
 };
 

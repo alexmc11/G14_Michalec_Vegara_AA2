@@ -17,7 +17,6 @@ void Brick::printBrick(int posX, int posY)
 	wallTarget = { 0, 0, 48, 48 };
 	tipoLadrillo = nonDestructible;
 	Renderer::Instance()->PushSprite(ITEMS_SPRITE, wallTarget, wallRect);
-	
 }
 
 void Brick::printDestructible(int posX, int posY)

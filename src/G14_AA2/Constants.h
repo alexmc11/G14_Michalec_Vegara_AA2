@@ -18,7 +18,6 @@ const std::string TEXT_RANKING = "TEXT_RANKING";
 const std::string TEXT_TITLE = "TEXT_TITLE";
 const std::string EXPLOSION_SPRITE = "EXPLOSION";
 const std::string ITEMS_SPRITE = "ITEMS_SPRITE";
-const std::string WALL_SPRITE = "WALL_SPRITE";
 
 
 const std::string PATH_PLAY = "../../res/img/bgGame.jpg";
@@ -26,7 +25,6 @@ const std::string PATH_EXPLOSION = "../../res/img/explosion.png";
 const std::string PATH_ITEMS = "../../res/img/items.png";
 const std::string PATH_PLAYER1 = "../../res/img/player1.png";
 const std::string PATH_PLAYER2 = "../../res/img/player2.png";
-const std::string PATH_WALL = "../../res/img/brick.png";
 const std::string PATH_FONT = "../../res/ttf/game_over.ttf";
 const std::string PATH_AUDIOGAME = "../../res/au/game_theme.mp3";
 const std::string PATH_AUDIOMENU = "../../res/au/menu.mp3";

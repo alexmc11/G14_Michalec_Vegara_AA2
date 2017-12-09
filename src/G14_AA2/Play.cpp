@@ -43,13 +43,14 @@ void Play::Draw()
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
 	Renderer::Instance()->Render();
+	
 }
 
 void Play::HandleEvents()
 {
 	jugador1->movement();
 	jugador2->movement();
-	if (timeDown < timeUp)
+	if (timeDown < timeUp || jugador1->vidas == 0 || jugador2->vidas == 0)
 	{
 		state = GameState::GOTO;
 	}

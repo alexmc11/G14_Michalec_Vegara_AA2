@@ -3,8 +3,9 @@
 
 Character::Character(playerTag jugador)
 {
+	points = 0;
+	vidas = 3;
 	SDL_Event event;
-
 	if (jugador == player1)
 	{
 		posicion.x = 48;
@@ -21,7 +22,7 @@ Character::Character(playerTag jugador)
 		objetivo.x = 0;
 		objetivo.y = 0;
 		playerRect = { posicion.x, posicion.y, 48, 48 };
-		playerTarget = { objetivo.x, objetivo.y, 48, 48 };
+		playerTarget = { objetivo.x, objetivo.y, 48, 48 };		
 	}
 	player = jugador;
 }
