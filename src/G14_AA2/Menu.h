@@ -11,6 +11,8 @@ public:
 	SDL_Rect bgMenu;
 	bool audioStarted;
 	SDL_Surface *tmpSurf;
+	bool jugar;
+	bool salir;
 	bool mute, muted, done;
 	SDL_Rect PlaytextRect, ExitTextRect, RankingTextRect, TitleTextRect, AudioTextRect;
 

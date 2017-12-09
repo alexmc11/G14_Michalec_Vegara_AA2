@@ -12,6 +12,8 @@ Menu::Menu()
 	AudioTextRect = { 500, 650, medidaTextoAudio.x, medidaTextoAudio.y };
 	audioStarted = false;
 	mute = false;
+	bool jugar = false;
+	bool salir = false;
 }
 
 
@@ -48,8 +50,7 @@ void Menu::Draw()
 void Menu::HandleEvents()
 {
 	done = false;
-	bool jugar = false;
-	bool salir = false;
+
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
