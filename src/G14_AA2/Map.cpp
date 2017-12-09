@@ -12,6 +12,7 @@ Map::Map()
 		{
 			ladrillos[i][j].posX = posicionX;
 			ladrillos[i][j].posY = posicionY;
+			TodosLosMuros.push_back(new Brick(posicionX, posicionY));
 			posicionX += 96;
 		}
 		posicionX = 96;
@@ -26,7 +27,6 @@ void Map::DrawMap()
 		for (int j = 0; j < 6; j++)
 		{
 			ladrillu.printBrick(ladrillos[i][j].posX, ladrillos[i][j].posY);
-			//TodosLosMuros.push_back();
 		}
 	}
 }

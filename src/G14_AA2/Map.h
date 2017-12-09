@@ -35,7 +35,7 @@ public:
 					   0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0};
 
 
-	std::vector<Brick> TodosLosMuros;
+	std::vector<Brick*> TodosLosMuros;
 
 	
 
@@ -47,8 +47,5 @@ public:
 	Brick ladrilluDestructible;
 
 	int posiciones[29][2];
-
-	/*Brick ladrillu;
-	Brick ladrilluDestructible;*/
 };
 
