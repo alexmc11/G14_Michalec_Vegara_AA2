@@ -12,8 +12,7 @@ public:
 
 	SDL_Rect bgPlay;
 
-	Character jugador1;
-	Character jugador2;
+	Character *jugadores;
 
 	HUD interfaz;
 

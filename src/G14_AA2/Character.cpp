@@ -5,11 +5,16 @@ Character::Character()
 {
 	SDL_Event event;
 
+	posicion1.x = 48;
+	posicion1.y = 128;
 
-	player1Rect = { 48, 128, 48, 48 };
+	posicion2.x = 624;
+	posicion2.y = 608;
+
+	player1Rect = { posicion1.x, posicion1.y, 48, 48 };
 	player1Target = { 48, 96, 48, 48 };
 
-	player2Rect = { 624, 608, 48, 48 };
+	player2Rect = { posicion2.x, posicion2.y, 48, 48 };
 	player2Target = { 0, 0, 48, 48 };
 
 	//Player1
@@ -52,6 +57,7 @@ void Character::movement()
 		if (event.key.keysym.sym == SDLK_w && posicion1.y >= 128)
 		{
 			posicion1.y -= 2;
+			std::cout << posicion1.y << std::endl;
 			player1Rect.y = frameHeight;
 			player1Rect.x = frameWidth;
 			frameTime++;
@@ -68,6 +74,7 @@ void Character::movement()
 		if (event.key.keysym.sym == SDLK_a && posicion1.x >= 48)
 		{
 			posicion1.x -= 2;
+			std::cout << posicion1.x << std::endl;
 			player1Rect.y = frameHeight * 2;
 			player1Rect.x = frameWidth;
 			frameTime++;
@@ -84,6 +91,7 @@ void Character::movement()
 		if (event.key.keysym.sym == SDLK_s && posicion1.y <= (SCREEN_HEIGHT - 48))
 		{
 			posicion1.y += 2;
+			std::cout << posicion1.y << std::endl;
 			player1Rect.y = frameHeight * 3;
 			player1Rect.x = frameWidth;
 			frameTime++;
@@ -100,6 +108,7 @@ void Character::movement()
 		if (event.key.keysym.sym == SDLK_d && posicion1.x <= (SCREEN_WIDTH - 48))
 		{
 			posicion1.x += 2;
+			std::cout << posicion1.x << std::endl;
 			player1Rect.y = frameHeight * 4;
 			player1Rect.x = frameWidth;
 			frameTime++;

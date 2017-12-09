@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "Renderer.h"
 #include "Bomb.h"
+#include <iostream>
 #define FPS 60
 enum playerTag {player1, player2};
 
