@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "HUD.h"
 #include "Map.h"
+#include <time.h>
 
 class Play : public Scene
 {
@@ -20,6 +21,12 @@ public:
 	Brick ladrillo;
 
 	Map mapa;
+
+	clock_t lastTime;
+
+	float timeDown = 81;
+
+	float deltaTime = 0;
 
 	void Update() override;
 	void Draw() override;

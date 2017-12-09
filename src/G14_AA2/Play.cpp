@@ -7,6 +7,7 @@ Play::Play()
 	bgPlay = { 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
 	jugador1 = new Character(player1);
 	jugador2 = new Character(player2);
+	lastTime = clock();
 }
 
 
@@ -18,6 +19,17 @@ void Play::Update()
 {
 	jugador1->movement();
 	jugador2->movement();
+	
+
+	deltaTime = (clock() - lastTime);
+
+	lastTime = clock();
+
+	deltaTime /= CLOCKS_PER_SEC;
+
+	timeDown -= deltaTime;
+
+	std::cout << timeDown << std::endl;
 }
 
 void Play::Draw()

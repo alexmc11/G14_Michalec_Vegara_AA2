@@ -38,7 +38,7 @@ void Character::movement()
 			playerRect.y = frameHeight;
 			playerRect.x = frameWidth;
 			frameTime++;
-			if (FPS / frameTime <= 9)
+			if (SCREEN_FPS / frameTime <= 9)
 			{
 				frameTime = 0;
 				playerRect.x += frameWidth;
@@ -55,7 +55,7 @@ void Character::movement()
 			playerRect.y = frameHeight * 2;
 			playerRect.x = frameWidth;
 			frameTime++;
-			if (FPS / frameTime <= 9)
+			if (SCREEN_FPS / frameTime <= 9)
 			{
 				frameTime = 0;
 				playerRect.x += frameWidth;
@@ -72,7 +72,7 @@ void Character::movement()
 			playerRect.y = frameHeight * 3;
 			playerRect.x = frameWidth;
 			frameTime++;
-			if (FPS / frameTime <= 9)
+			if (SCREEN_FPS / frameTime <= 9)
 			{
 				frameTime = 0;
 				playerRect.x += frameWidth;
@@ -89,7 +89,7 @@ void Character::movement()
 			playerRect.y = frameHeight * 4;
 			playerRect.x = frameWidth;
 			frameTime++;
-			if (FPS / frameTime <= 9)
+			if (SCREEN_FPS / frameTime <= 9)
 			{
 				frameTime = 0;
 				playerRect.x += frameWidth;
@@ -107,14 +107,14 @@ void Character::movement()
 	}
 	else
 	{
-	#pragma region "Player 2 Movement"
+		#pragma region "Player 2 Movement"
 		if (event.key.keysym.sym == SDLK_UP && posicion.y > 128)
 		{
 			posicion.y -= 2;
 			playerRect.y = frameHeight;
 			playerRect.x = frameWidth;
 			frameTime++;
-			if (FPS / frameTime <= 9)
+			if (SCREEN_FPS / frameTime <= 9)
 			{
 				frameTime = 0;
 				playerRect.x += frameWidth;
@@ -130,7 +130,7 @@ void Character::movement()
 			playerRect.y = frameHeight * 2;
 			playerRect.x = frameWidth;
 			frameTime++;
-			if (FPS / frameTime <= 9)
+			if (SCREEN_FPS / frameTime <= 9)
 			{
 				frameTime = 0;
 				playerRect.x += frameWidth;
@@ -146,7 +146,7 @@ void Character::movement()
 			playerRect.y = frameHeight * 3;
 			playerRect.x = frameWidth;
 			frameTime++;
-			if (FPS / frameTime <= 9)
+			if (SCREEN_FPS / frameTime <= 9)
 			{
 				frameTime = 0;
 				playerRect.x += frameWidth;
@@ -162,7 +162,7 @@ void Character::movement()
 			playerRect.y = frameHeight * 4;
 			playerRect.x = frameWidth;
 			frameTime++;
-			if (FPS / frameTime <= 9)
+			if (SCREEN_FPS / frameTime <= 9)
 			{
 				frameTime = 0;
 				playerRect.x += frameWidth;
