@@ -9,7 +9,9 @@ Menu::Menu()
 	RankingTextRect = { 20, 450, medidaTextoRanking.x, medidaTextoRanking.y };
 	ExitTextRect = { 20, 550, medidaTextoExit.x, medidaTextoExit.y };
 	TitleTextRect = { 20, 100, medidaTextoTitle.x, medidaTextoTitle.y };
+	AudioTextRect = { 500, 650, medidaTextoAudio.x, medidaTextoAudio.y };
 	audioStarted = false;
+	mute = false;
 }
 
 
@@ -26,6 +28,8 @@ void Menu::Update()
 		Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
 		Mix_PlayMusic(soundtrack, -1);
 		audioStarted = true;
+		muted = false;
+		done = false;
 	}
 }
 
@@ -36,12 +40,14 @@ void Menu::Draw()
 	Renderer::Instance()->PushImage(TEXT_RANKING, RankingTextRect);
 	Renderer::Instance()->PushImage(TEXT_EXIT, ExitTextRect);
 	Renderer::Instance()->PushImage(TEXT_TITLE, TitleTextRect);
+	Renderer::Instance()->PushImage(TEXT_AUDIO, AudioTextRect);
 	Renderer::Instance()->Render();
 	
 }
 
 void Menu::HandleEvents()
 {
+	done = false;
 	bool jugar = false;
 	bool salir = false;
 	SDL_Event event;
@@ -70,6 +76,16 @@ void Menu::HandleEvents()
 			{
 				salir = false;
 			}
+			if (event.motion.x >= 500 && event.motion.x <= (medidaTextoAudio.x) + 500 && event.motion.y >= 650 && event.motion.y <= medidaTextoAudio.y + 650)
+			{
+				std::cout << "Audi";
+				mute = true;
+			}
+			else
+			{
+				mute = false;
+			}
+			
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			if (jugar == true)
@@ -80,6 +96,20 @@ void Menu::HandleEvents()
 			if (salir == true)
 			{
 				state = GameState::EXIT;
+			}
+			if (mute == true && muted == false && done == false)
+			{
+				Mix_PauseMusic();
+				muted = true;
+				std::cout << "muted";
+				done = true;
+			}
+			if (mute == true && muted == true &&  done == false)
+			{
+				Mix_ResumeMusic();
+				muted = false;
+				std::cout << "unmuted";
+				done = true;
 			}
 		default:;
 		}

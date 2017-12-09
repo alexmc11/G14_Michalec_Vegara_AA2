@@ -11,14 +11,16 @@ Game::Game()
 	Text ranking{ TEXT_RANKING, "RANKING",{ 255, 255, 255, 255 }, 0, 0 };
 	Text exit{ TEXT_EXIT, "EXIT",{ 255, 255, 255, 255 }, 0, 0 };
 	Text bomberman{ TEXT_TITLE, "BOMBERMAN", {255, 255, 255, 255}, 0, 0 };
-	Text hola{ TEXT_TITLE, };
+	Text audio{ TEXT_AUDIO, "AUDIO ON/OFF", {255, 255, 255, 255}, 0, 0 };
 
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
 	Renderer::Instance()->LoadFont({ GAME_OVERTITLE, PATH_FONT, 200 });
+	Renderer::Instance()->LoadFont({ GAME_OVERAUDIO, PATH_FONT, 70 });
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, play);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, exit);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, ranking);
 	Renderer::Instance()->LoadTextureText(GAME_OVERTITLE, bomberman);
+	Renderer::Instance()->LoadTextureText(GAME_OVERAUDIO, audio);
 
 	//CREATE TEXTURES
 	Renderer::Instance()->LoadTexture(PLAYER1_SPRITE, PATH_PLAYER1);

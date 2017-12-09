@@ -16,6 +16,7 @@ const std::string TEXT_PLAY = "TEXT_PLAY";
 const std::string TEXT_EXIT = "TEXT_EXIT";
 const std::string TEXT_RANKING = "TEXT_RANKING";
 const std::string TEXT_TITLE = "TEXT_TITLE";
+const std::string TEXT_AUDIO = "TEXT_AUDIO";
 const std::string EXPLOSION_SPRITE = "EXPLOSION";
 const std::string ITEMS_SPRITE = "ITEMS_SPRITE";
 
@@ -30,6 +31,7 @@ const std::string PATH_AUDIOGAME = "../../res/au/game_theme.mp3";
 const std::string PATH_AUDIOMENU = "../../res/au/menu.mp3";
 
 const std::string GAME_OVER80 = "GAME_OVER80";
+const std::string GAME_OVERAUDIO = "GAME_OVERAUDIO";
 const std::string GAME_OVERTITLE = "GAME_OVERTITLE";
 
 
