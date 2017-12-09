@@ -17,8 +17,7 @@ Play::~Play()
 
 void Play::Update()
 {
-	jugador1->movement();
-	jugador2->movement();
+	
 
 	/*deltaTime = (clock() - lastTime);
 
@@ -47,5 +46,6 @@ void Play::Draw()
 
 void Play::HandleEvents()
 {
-	
+	jugador1->movement();
+	jugador2->movement();
 }

@@ -111,12 +111,6 @@ void Character::movement()
 				playerRect = { posicion.x, posicion.y, 48, 48 };
 				playerTarget = { objetivo.x, objetivo.y, 48, 48 };
 			}
-		}
-	}
-	if (SDL_PollEvent(&event2))
-	{
-		if (event2.type == SDL_KEYDOWN)
-		{
 			if (player == player2)
 			{
 				if (event.key.keysym.sym == SDLK_UP && posicion.y > 128)
@@ -186,6 +180,13 @@ void Character::movement()
 
 				playerRect = { posicion.x, posicion.y, 48, 48 };
 			}
+		}
+	}
+	if (SDL_PollEvent(&event2))
+	{
+		if (event2.type == SDL_KEYDOWN)
+		{
+			
 		}
 	}
 }
