@@ -19,9 +19,9 @@ void Play::Update()
 {
 	jugador1->movement();
 	jugador2->movement();
-	
+	std::cout << jugador1->cantidadBombas.size();
 
-	deltaTime = (clock() - lastTime);
+	/*deltaTime = (clock() - lastTime);
 
 	lastTime = clock();
 
@@ -29,7 +29,7 @@ void Play::Update()
 
 	timeDown -= deltaTime;
 
-	std::cout << timeDown << std::endl;
+	std::cout << timeDown << std::endl;*/
 }
 
 void Play::Draw()

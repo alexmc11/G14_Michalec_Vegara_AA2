@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "Renderer.h"
 
+enum brickType { destructible, nonDestructible };
 
 class Brick
 {
@@ -17,6 +18,8 @@ public:
 	int frameWidth, frameHeight;
 
 	Vector2 imageSize = Renderer::Instance()->GetTextureSize(PATH_WALL);
+
+	brickType tipoLadrillo;
 
 };
 

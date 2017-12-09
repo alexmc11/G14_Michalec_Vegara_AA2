@@ -32,7 +32,14 @@ public:
 	int puntos = 0;
 
 	Position posicion;
+
 	SDL_Event event;
+	SDL_Event event2;
+
+	Bomb *bomba;
+
+	std::vector<Bomb*> cantidadBombas;
+
 	Character(playerTag jugador);
 	~Character();
 	void movement();

@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "Renderer.h"
 #include "Brick.h"
+#include "Bomb.h"
 #include <vector>
 
 struct posicionLadrillo
@@ -32,6 +33,11 @@ public:
 					   0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0,
 					   0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0,
 					   0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0};
+
+
+	std::vector<Brick> TodosLosMuros;
+
+	
 
 	posicionLadrillo ladrillos[5][6];
 

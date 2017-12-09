@@ -26,6 +26,7 @@ void Map::DrawMap()
 		for (int j = 0; j < 6; j++)
 		{
 			ladrillu.printBrick(ladrillos[i][j].posX, ladrillos[i][j].posY);
+			//TodosLosMuros.push_back();
 		}
 	}
 }
