@@ -2,10 +2,8 @@
 
 
 
-Brick::Brick(int posX, int posY)
+Brick::Brick()
 {
-	posicionX = posX;
-	posicionY = posY;
 }
 
 

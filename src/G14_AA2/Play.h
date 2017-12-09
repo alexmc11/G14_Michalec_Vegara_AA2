@@ -24,9 +24,11 @@ public:
 
 	clock_t lastTime;
 
-	float timeDown = 81;
+	float timeDown = 10;
 
 	float deltaTime = 0;
+
+	float timeUp = 0;
 
 	void Update() override;
 	void Draw() override;

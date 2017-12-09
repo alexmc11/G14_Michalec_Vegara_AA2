@@ -42,7 +42,6 @@ public:
 	posicionLadrillo ladrillos[5][6];
 
 	int **md;
-
 	Brick ladrillu;
 	Brick ladrilluDestructible;
 

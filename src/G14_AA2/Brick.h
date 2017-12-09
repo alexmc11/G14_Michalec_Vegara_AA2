@@ -7,7 +7,7 @@ enum brickType { destructible, nonDestructible };
 class Brick
 {
 public:
-	Brick(int posX, int posY);
+	Brick();
 	~Brick();
 
 	int posicionX, posicionY;

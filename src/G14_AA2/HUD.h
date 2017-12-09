@@ -7,7 +7,5 @@ class HUD
 public:
 	HUD();
 	~HUD();
-
-	SDL_Rect player1Vidas, player2Vidas, BG;
 };
 

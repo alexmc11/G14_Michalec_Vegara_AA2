@@ -12,7 +12,7 @@ Map::Map()
 		{
 			ladrillos[i][j].posX = posicionX;
 			ladrillos[i][j].posY = posicionY;
-			TodosLosMuros.push_back(new Brick(posicionX, posicionY));
+			//TodosLosMuros.push_back(new Brick(posicionX, posicionY));
 			// Para detectar colisiones cogemos el player y detectamos si se mueve en alguno de los bricks del vector con un iterador
 			posicionX += 96;
 		}
