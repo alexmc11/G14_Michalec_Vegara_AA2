@@ -6,7 +6,6 @@ Bomb::Bomb(int posX, int posY)
 {
 	bombRect = { posX, posY, 48, 48 };
 	bombTarget = { 0, 48, 48, 48 };
-	Renderer::Instance()->PushSprite(ITEMS_SPRITE, bombTarget, bombRect);
 }
 
 void Bomb::bombExplode(int posX, int posY)
@@ -53,6 +52,11 @@ void Bomb::bombExplode(int posX, int posY)
 	//RIGHT
 	Renderer::Instance()->PushSprite(EXPLOSION_SPRITE, right1Target, explodeRight1);
 	Renderer::Instance()->PushSprite(EXPLOSION_SPRITE, right2Target, explodeRight2);
+}
+
+void Bomb::placeBomb()
+{
+	Renderer::Instance()->PushSprite(ITEMS_SPRITE, bombTarget, bombRect);
 }
 
 

@@ -26,6 +26,7 @@ public:
 	SDL_Rect playerTarget;
 	int points;
 	int vidas;
+	bool hasbomb;
 
 	int textWidth, textHeight, frameWidth, frameHeight;
 

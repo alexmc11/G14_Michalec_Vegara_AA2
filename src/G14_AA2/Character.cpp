@@ -5,6 +5,7 @@ Character::Character(playerTag jugador)
 {
 	points = 0;
 	vidas = 3;
+	hasbomb = false;
 	SDL_Event event;
 	if (jugador == player1)
 	{
@@ -107,6 +108,7 @@ void Character::movement()
 				if (event.key.keysym.sym == SDLK_SPACE)
 				{
 					bomba = new Bomb(posicion.x, posicion.y);
+					hasbomb = true;
 				}
 
 				playerRect = { posicion.x, posicion.y, 48, 48 };
@@ -181,13 +183,6 @@ void Character::movement()
 
 				playerRect = { posicion.x, posicion.y, 48, 48 };
 			}
-		}
-	}
-	if (SDL_PollEvent(&event2))
-	{
-		if (event2.type == SDL_KEYDOWN)
-		{
-			
 		}
 	}
 }
