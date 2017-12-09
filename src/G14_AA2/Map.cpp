@@ -30,6 +30,30 @@ void Map::DrawMap()
 	}
 }
 
+void Map::DrawBricks()
+{
+	int posX = 0;
+	int posY = 80;
+	for (int i = 0; i < 143; i++)
+	{
+		if (craps[i] == 1)
+		{
+			ladrillu.printDestructible(posX, posY);
+			posX += 48;
+		}
+		else
+		{
+			posX += 48;
+		}
+		if (i % 13 == 0)
+		{
+			posY += 48;
+			posX = 48;
+		}
+		
+	}
+}
+
 
 
 

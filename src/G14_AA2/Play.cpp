@@ -37,6 +37,7 @@ void Play::Draw()
 	Renderer::Instance()->Clear();
 	Renderer::Instance()->PushImage(PLAY_BG, bgPlay);
 	mapa.DrawMap();
+	mapa.DrawBricks();
 	Renderer::Instance()->PushImage(RECTANGULO_SPRITE, interfaz.BG);
 	Renderer::Instance()->PushImage(VIDAS1_SPRITE, interfaz.player1Vidas);
 	Renderer::Instance()->PushImage(VIDAS2_SPRITE, interfaz.player2Vidas);

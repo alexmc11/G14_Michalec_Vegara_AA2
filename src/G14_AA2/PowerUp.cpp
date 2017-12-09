@@ -14,7 +14,7 @@ PowerUp::~PowerUp()
 void PowerUp::createPowerUp(int posX, int posY)
 {
 	powerupRect = { posX, posY, 48, 48 };
-	int result = rand() % 1;
+	int result = rand() % 2;
 	if (result == 1)
 	{
 		powerupTarget = { 48, 48, 48, 48 };
