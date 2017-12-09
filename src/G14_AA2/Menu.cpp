@@ -9,6 +9,7 @@ Menu::Menu()
 	RankingTextRect = { 20, 450, medidaTextoRanking.x, medidaTextoRanking.y };
 	ExitTextRect = { 20, 550, medidaTextoExit.x, medidaTextoExit.y };
 	TitleTextRect = { 20, 100, medidaTextoTitle.x, medidaTextoTitle.y };
+	audioStarted = false;
 }
 
 
@@ -18,7 +19,10 @@ Menu::~Menu()
 
 void Menu::Update()
 {
-	
+	/*if (audioStarted == false)
+	{
+		Mix_OpenAudio(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
+	}*/
 }
 
 void Menu::Draw()

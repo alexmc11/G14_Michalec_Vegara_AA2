@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include <iostream>
+#include <SDL_mixer.h>
 
 class Menu : public Scene
 {
@@ -8,7 +9,7 @@ public:
 	Menu();
 	~Menu();
 	SDL_Rect bgMenu;
-
+	bool audioStarted;
 	SDL_Surface *tmpSurf;
 
 	SDL_Rect PlaytextRect, ExitTextRect, RankingTextRect, TitleTextRect;

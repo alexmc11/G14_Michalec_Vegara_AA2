@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "HUD.h"
 #include "Map.h"
+#include <SDL_mixer.h>
 #include <time.h>
 
 class Play : public Scene
