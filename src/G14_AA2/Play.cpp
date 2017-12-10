@@ -27,7 +27,7 @@ void Play::Update()
 
 	timeDown -= deltaTime;
 
-	std::cout << timeDown << std::endl;
+	//std::cout << timeDown << std::endl;
 
 	if (audioStarted == false)
 	{

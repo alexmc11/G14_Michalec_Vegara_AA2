@@ -6,6 +6,7 @@
 #include <iostream>
 
 enum playerTag {player1, player2};
+enum direccion {UP, DOWN, LEFT, RIGHT};
 
 struct Position {
 	int x;
@@ -27,8 +28,15 @@ public:
 	int points;
 	int vidas;
 	bool hasbomb;
+	bool colision;
+
+	direccion direction;
 
 	int textWidth, textHeight, frameWidth, frameHeight;
+
+	bool colisiones(SDL_Rect* A, SDL_Rect* B);
+
+	bool iteradorcolisiones();
 
 	//int text2Width, text2Height, frame2Width, frame2Height;
 
@@ -41,6 +49,8 @@ public:
 	Position posicion;
 
 	target objetivo;
+
+	
 
 	SDL_Event event;
 	SDL_Event event2;

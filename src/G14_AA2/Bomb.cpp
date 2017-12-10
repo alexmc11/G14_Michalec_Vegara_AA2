@@ -4,6 +4,8 @@
 
 Bomb::Bomb(int posX, int posY)
 {
+	posicionX = posX;
+	posicionY = posY;
 	bombRect = { posX, posY, 48, 48 };
 	bombTarget = { 0, 48, 48, 48 };
 }
