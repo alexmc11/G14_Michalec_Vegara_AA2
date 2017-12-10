@@ -4,12 +4,17 @@
 
 HUD::HUD()
 {
-	//player1Vidas = { 35, 15, 48, 48 };
-	//player2Vidas = { 640, 15, 48, 48 };
-	//BG = { 0, 0, 720, 80 };
+	vidas1 = { 25, 15, medidaVidas.x, medidaVidas.y };
+	vidas2 = { 500, 15, medidaVidas2.x, medidaVidas2.y };
 }
 
 
 HUD::~HUD()
 {
+}
+
+void HUD::DrawHud()
+{
+	Renderer::Instance()->PushImage(TEXT_VIDAS, vidas1);
+	Renderer::Instance()->PushImage(TEXT_VIDAS2, vidas2);
 }

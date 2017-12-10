@@ -12,15 +12,22 @@ Game::Game()
 	Text exit{ TEXT_EXIT, "EXIT",{ 255, 255, 255, 255 }, 0, 0 };
 	Text bomberman{ TEXT_TITLE, "BOMBERMAN", {255, 255, 255, 255}, 0, 0 };
 	Text audio{ TEXT_AUDIO, "AUDIO ON/OFF", {255, 255, 255, 255}, 0, 0 };
+	Text vidas{ TEXT_VIDAS, "VIDAS P1: ",{ 255, 255, 255, 255 }, 0, 0 };
+	Text vidas2{ TEXT_VIDAS2, "VIDAS P2: ",{ 255, 255, 255, 255 }, 0, 0 };
 
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
 	Renderer::Instance()->LoadFont({ GAME_OVERTITLE, PATH_FONT, 200 });
 	Renderer::Instance()->LoadFont({ GAME_OVERAUDIO, PATH_FONT, 70 });
+	Renderer::Instance()->LoadFont({ GAME_OVERVIDAS, PATH_FONT, 70 });
+	Renderer::Instance()->LoadFont({ GAME_OVERVIDAS2, PATH_FONT, 70 });
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, play);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, exit);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, ranking);
 	Renderer::Instance()->LoadTextureText(GAME_OVERTITLE, bomberman);
 	Renderer::Instance()->LoadTextureText(GAME_OVERAUDIO, audio);
+	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS, vidas);
+	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, vidas2);
+	
 
 	//CREATE TEXTURES
 	Renderer::Instance()->LoadTexture(PLAYER1_SPRITE, PATH_PLAYER1);

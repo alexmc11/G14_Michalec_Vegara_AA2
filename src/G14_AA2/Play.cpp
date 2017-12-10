@@ -53,6 +53,7 @@ void Play::Draw()
 	{
 		jugador1->bomba->placeBomb();
 	}
+	interfaz.DrawHud();
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
 	Renderer::Instance()->Render();
