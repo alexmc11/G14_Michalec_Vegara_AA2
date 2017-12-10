@@ -33,6 +33,7 @@ public:
 	bool explode;
 	bool colision;
 	float timer;
+	const Uint8* key = SDL_GetKeyboardState(NULL);
 
 	int textWidth, textHeight, frameWidth, frameHeight;
 
@@ -60,4 +61,5 @@ public:
 	Character(playerTag jugador);
 	~Character();
 	void movement();
+	void movement2();
 };

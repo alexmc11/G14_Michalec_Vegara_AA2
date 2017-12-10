@@ -43,7 +43,7 @@ void Play::Update()
 		Mix_PlayMusic(soundtrack, -1);
 		audioStarted = true;
 	}
-	if(jugador1->hasbomb == true)
+	if (jugador1->hasbomb == true)
 	{
 		timer += 0.05;
 		if (timer > 12)
@@ -65,7 +65,7 @@ void Play::Draw()
 	{
 		jugador1->bomba->placeBomb();
 	}
-	
+
 	interfaz.DrawHud();
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
@@ -75,9 +75,9 @@ void Play::Draw()
 		jugador1->explode = false;
 		jugador1->hasbomb = false;
 	}
-	
+
 	Renderer::Instance()->Render();
-	
+
 }
 
 void Play::HandleEvents()

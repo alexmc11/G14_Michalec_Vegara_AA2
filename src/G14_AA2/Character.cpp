@@ -44,6 +44,7 @@ Character::Character(playerTag jugador)
 	vidas = 3;
 	hasbomb = false;
 	SDL_Event event;
+
 	timer = 0;
 	if (jugador == player1)
 	{
@@ -64,6 +65,8 @@ Character::Character(playerTag jugador)
 		playerTarget = { objetivo.x, objetivo.y, 48, 48 };
 	}
 	player = jugador;
+	const Uint8* key = SDL_GetKeyboardState(NULL);
+
 }
 
 Character::~Character()
@@ -108,7 +111,7 @@ void Character::collisionMovement()
 }
 void Character::movement()
 {
-	if (SDL_PollEvent(&event))
+	while (SDL_PollEvent(&event) != 0)
 	{
 		if (event.type == SDL_KEYDOWN)
 		{

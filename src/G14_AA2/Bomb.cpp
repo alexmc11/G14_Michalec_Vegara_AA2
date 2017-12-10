@@ -2,6 +2,7 @@
 
 
 
+
 Bomb::Bomb(int posX, int posY)
 {
 	posicionX = posX;
@@ -55,6 +56,8 @@ void Bomb::bombExplode(int posX, int posY)
 	//RIGHT
 	Renderer::Instance()->PushSprite(EXPLOSION_SPRITE, right1Target, explodeRight1);
 	Renderer::Instance()->PushSprite(EXPLOSION_SPRITE, right2Target, explodeRight2);
+
+
 }
 
 void Bomb::placeBomb()

@@ -36,6 +36,7 @@ public:
 
 
 	std::vector<SDL_Rect> TodosLosMuros;
+	
 
 	
 
