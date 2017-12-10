@@ -19,13 +19,7 @@ public:
 	Character *jugador1;
 	Character *jugador2;
 
-	SDL_Rect tiempoRect;
-
-	Vector2 medidaImagen = Renderer::Instance()->GetTextureSize(TEXT_TIEMPO);
-
 	HUD interfaz;
-
-	Brick ladrillo;
 
 	Map mapa;
 
@@ -36,8 +30,6 @@ public:
 	float deltaTime = 0;
 
 	float timeUp = 0;
-
-	std::string time_str = std::to_string(timeDown);
 
 	void Update() override;
 	void Draw() override;

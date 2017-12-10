@@ -5,13 +5,10 @@
 Play::Play()
 {
 	bgPlay = { 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
-	tiempoRect = { 400, 15, medidaImagen.x, medidaImagen.y };
 	jugador1 = new Character(player1);
 	jugador2 = new Character(player2);
 	lastTime = clock();
 	audioStarted = false;
-	Text tiempo{ TEXT_TIEMPO, time_str,{ 255, 255, 255, 255 }, 0, 0 };
-	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS, tiempo);
 }
 
 
@@ -29,8 +26,6 @@ void Play::Update()
 	deltaTime /= CLOCKS_PER_SEC;
 
 	timeDown -= deltaTime;
-
-	time_str = std::to_string(timeDown);
 
 	//std::cout << timeDown << std::endl;
 
@@ -60,7 +55,6 @@ void Play::Draw()
 	}
 	
 	interfaz.DrawHud();
-	Renderer::Instance()->PushImage(TEXT_TIEMPO, tiempoRect);
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
 	if (jugador1->explode == true)
@@ -76,10 +70,11 @@ void Play::Draw()
 void Play::HandleEvents()
 {
 	jugador1->movement();
-	jugador1->movement2();
+	jugador1->collisionMovement();
 	jugador2->movement();
 	if (timeDown < timeUp || jugador1->vidas == 0 || jugador2->vidas == 0)
 	{
+		std::cout << "Se acabó el tiempo";
 		Mix_CloseAudio();
 		state = GameState::GOTO;
 	}

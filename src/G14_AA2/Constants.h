@@ -21,7 +21,6 @@ const std::string TEXT_VIDAS = "TEXT_VIDAS";
 const std::string TEXT_VIDAS2 = "TEXT_VIDAS2";
 const std::string TEXT_VIDAS1NUM = "TEXT_VIDAS1NUM";
 const std::string TEXT_VIDAS2NUM = "TEXT_VIDAS2NUM";
-const std::string TEXT_TIEMPO = "TEXT_TIEMPO";
 const std::string EXPLOSION_SPRITE = "EXPLOSION";
 const std::string ITEMS_SPRITE = "ITEMS_SPRITE";
 

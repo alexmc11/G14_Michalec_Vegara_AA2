@@ -15,12 +15,6 @@ public:
 
 	int posicionX, posicionY;
 
-	clock_t lastTime;
-
-	float timeDown = 6;
-
-	float deltaTime = 0;
-
 	SDL_Rect bombRect, explodeCenter, explodeUp1, explodeUp2, explodeLeft1, explodeLeft2, explodeRight1, explodeRight2, explodeDown1, explodeDown2;
 	SDL_Rect bombTarget, centerTarget, up1Target, up2Target, left1Target, left2Taget, right1Target, right2Target, down1Target, down2Target;
 

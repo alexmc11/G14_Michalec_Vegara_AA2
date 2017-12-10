@@ -22,9 +22,6 @@ public:
 
 	brickType tipoLadrillo;
 
-	std::vector<SDL_Rect> colisionesNoDestructible;
-
-	std::vector<SDL_Rect> colisionesDestructible;
 
 };
 

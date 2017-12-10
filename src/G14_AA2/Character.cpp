@@ -1,66 +1,6 @@
 #include "Character.h"
 
 
-
-//(posicion.x + 38) > mapa.TodosLosMuros[i].x  //Right
-//posicion.x > (mapa.TodosLosMuros[i].x + 38) //Left
-//(posicion.y + 38) > mapa.TodosLosMuros[i].y //Down
-/*
-bool Character::collisionUp(int nextPosition)
-{
-for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
-{
-if (nextPosition > (mapa.TodosLosMuros[i].y + 48))
-{
-return true;
-break;
-}
-}
-return false;
-}
-
-bool Character::collisionDown(int nextPosition)
-{
-for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
-{
-if ((nextPosition + 48) > mapa.TodosLosMuros[i].y)
-{
-return true;
-break;
-}
-}
-return false;
-}
-
-bool Character::collisionLeft(int nextPosition)
-{
-for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
-{
-if (nextPosition >(mapa.TodosLosMuros[i].x + 48))
-{
-return true;
-break;
-}
-}
-return false;
-}
-
-bool Character::collisionRight(int nextPosition)
-{
-for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
-{
-if ((nextPosition + 48) > mapa.TodosLosMuros[i].x)
-{
-return true;
-break;
-}
-}
-return false;
-}
-*/
-
-
-
 bool Character::colisiones(SDL_Rect* A, SDL_Rect* B)
 {
 	if (A->y >= (B->y + B->h))
@@ -128,7 +68,7 @@ Character::~Character()
 {
 }
 
-void Character::movement2()
+void Character::collisionMovement()
 {
 	if (lastkey == UP)
 	{

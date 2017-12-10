@@ -27,13 +27,11 @@ public:
 	SDL_Rect playerTarget;
 	int points;
 	int vidas;
-	void movement2();
+	void collisionMovement();
 	direccion lastkey;
 	bool hasbomb;
 	bool explode;
 	bool colision;
-
-	direccion direction;
 
 	int textWidth, textHeight, frameWidth, frameHeight;
 
@@ -52,8 +50,6 @@ public:
 	Position posicion;
 
 	target objetivo;
-
-
 
 	SDL_Event event;
 	SDL_Event event2;
