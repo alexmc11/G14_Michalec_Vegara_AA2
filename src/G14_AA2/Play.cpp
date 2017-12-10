@@ -68,6 +68,7 @@ void Play::Draw()
 		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
 		jugador1->explode = false;
 	}
+	
 	Renderer::Instance()->Render();
 	
 }
