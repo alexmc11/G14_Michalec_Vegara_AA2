@@ -9,6 +9,12 @@ Play::Play()
 	jugador2 = new Character(player2);
 	lastTime = clock();
 	audioStarted = false;
+	char buffer[50];
+	int texW = 0;
+	int textH = 0;
+
+	
+
 }
 
 
@@ -37,18 +43,24 @@ void Play::Update()
 		Mix_PlayMusic(soundtrack, -1);
 		audioStarted = true;
 	}
-	
+	if(jugador1->hasbomb == true)
+	{
+		timer += 0.05;
+		if (timer > 12)
+		{
+			jugador1->explode = true;
+			timer = 0;
+		}
+	}
 }
 
 void Play::Draw()
 {
 	Renderer::Instance()->Clear();
 	Renderer::Instance()->PushImage(PLAY_BG, bgPlay);
+
 	mapa.DrawMap();
 	mapa.DrawBricks();
-	//Renderer::Instance()->PushImage(RECTANGULO_SPRITE, interfaz.BG);
-	//Renderer::Instance()->PushImage(VIDAS1_SPRITE, interfaz.player1Vidas);
-	//Renderer::Instance()->PushImage(VIDAS2_SPRITE, interfaz.player2Vidas);
 	if (jugador1->hasbomb == true)
 	{
 		jugador1->bomba->placeBomb();
@@ -61,6 +73,7 @@ void Play::Draw()
 	{
 		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
 		jugador1->explode = false;
+		jugador1->hasbomb = false;
 	}
 	
 	Renderer::Instance()->Render();

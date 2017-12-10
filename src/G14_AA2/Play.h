@@ -14,6 +14,7 @@ public:
 	Play();
 	~Play();
 
+	float timer = 0.f;
 	SDL_Rect bgPlay;
 	bool audioStarted;
 	Character *jugador1;
@@ -21,7 +22,9 @@ public:
 
 	HUD interfaz;
 
+
 	Map mapa;
+	char buffer[50];
 
 	clock_t lastTime;
 

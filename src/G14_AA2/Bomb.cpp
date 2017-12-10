@@ -40,6 +40,7 @@ void Bomb::bombExplode(int posX, int posY)
 	explodeRight2 = { posX + 96, posY, 48, 48 };
 	right2Target = { 0, 96, 48, 48 };
 
+	
 	//Center
 	Renderer::Instance()->PushSprite(EXPLOSION_SPRITE, centerTarget, explodeCenter);
 	//UP

@@ -32,6 +32,7 @@ public:
 	bool hasbomb;
 	bool explode;
 	bool colision;
+	float timer;
 
 	int textWidth, textHeight, frameWidth, frameHeight;
 

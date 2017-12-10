@@ -21,6 +21,7 @@ bool Character::colisiones(SDL_Rect* A, SDL_Rect* B)
 	}
 
 	return 1;
+	
 }
 
 bool Character::iteradorcolisiones()
@@ -43,6 +44,7 @@ Character::Character(playerTag jugador)
 	vidas = 3;
 	hasbomb = false;
 	SDL_Event event;
+	timer = 0;
 	if (jugador == player1)
 	{
 		posicion.x = 48;
@@ -191,11 +193,7 @@ void Character::movement()
 						bomba = new Bomb(posicion.x, posicion.y);
 						hasbomb = true;
 					}
-					else
-					{
-						explode = true;
-						hasbomb = false;
-					}
+
 				}
 
 				playerRect = { posicion.x, posicion.y, 48, 48 };
