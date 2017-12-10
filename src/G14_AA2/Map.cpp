@@ -41,6 +41,7 @@ void Map::DrawBricks()
 		if (craps[i] == 1)
 		{
 			ladrillu.printDestructible(posX, posY);
+
 			posX += 48;
 		}
 		else

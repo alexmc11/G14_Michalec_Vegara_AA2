@@ -140,7 +140,7 @@ void Character::movement()
 					posicion.y -= 2;
 					if (iteradorcolisiones() == true)
 					{
-						posicion.y += 3;
+						posicion.y += 4;
 					}
 					objetivo.y = 0;
 					//objetivo.x = 0;
@@ -160,7 +160,7 @@ void Character::movement()
 					posicion.x -= 2;
 					if (iteradorcolisiones() == true)
 					{
-						posicion.x += 3;
+						posicion.x += 4;
 					}
 					//objetivo.x = 0;
 					objetivo.y = 48;
@@ -180,7 +180,7 @@ void Character::movement()
 					posicion.y += 2;
 					if (iteradorcolisiones() == true)
 					{
-						posicion.y -= 3;
+						posicion.y -= 4;
 					}
 					//objetivo.x = 0;
 					objetivo.y = 96;
@@ -200,7 +200,7 @@ void Character::movement()
 					posicion.x += 2;
 					if (iteradorcolisiones() == true)
 					{
-						posicion.x -= 3;
+						posicion.x -= 4;
 					}
 					//objetivo.x = 0;
 					objetivo.y = 144;
