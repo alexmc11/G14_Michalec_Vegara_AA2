@@ -9,7 +9,8 @@ class Game
 private:
 
 public:
-	Scene *scene;
+	Scene * scene;
+	Play *jugar;
 	void GameLoop();
 	Game();
 	~Game();

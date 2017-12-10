@@ -17,6 +17,10 @@ public:
 	Character *jugador1;
 	Character *jugador2;
 
+	SDL_Rect tiempoRect;
+
+	Vector2 medidaImagen = Renderer::Instance()->GetTextureSize(TEXT_TIEMPO);
+
 	HUD interfaz;
 
 	Brick ladrillo;
