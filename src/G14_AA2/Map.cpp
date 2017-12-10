@@ -19,6 +19,25 @@ Map::Map()
 		posicionX = 96;
 		posicionY += 96;
 	}
+
+	int posX = 96;
+	int posY = 80;
+	for (int i = 0; i < 155; i++)
+	{
+		if (craps[i] == 1)
+		{
+			TodosLosMuros.push_back({ posX, posY, 48, 48 });
+		}
+		else
+		{
+			posX += 48;
+		}
+		if (i % 14 == 0)
+		{
+			posY += 48;
+			posX = 0;
+		}
+	}
 }
 
 void Map::DrawMap()
@@ -41,7 +60,6 @@ void Map::DrawBricks()
 		if (craps[i] == 1)
 		{
 			ladrillu.printDestructible(posX, posY);
-
 			posX += 48;
 		}
 		else

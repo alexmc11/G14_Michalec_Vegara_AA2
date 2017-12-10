@@ -8,54 +8,54 @@
 /*
 bool Character::collisionUp(int nextPosition)
 {
-	for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
-	{
-		if (nextPosition > (mapa.TodosLosMuros[i].y + 48))
-		{
-			return true;
-			break;
-		}
-	}
-	return false;
+for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
+{
+if (nextPosition > (mapa.TodosLosMuros[i].y + 48))
+{
+return true;
+break;
+}
+}
+return false;
 }
 
 bool Character::collisionDown(int nextPosition)
 {
-	for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
-	{
-		if ((nextPosition + 48) > mapa.TodosLosMuros[i].y)
-		{
-			return true;
-			break;
-		}
-	}
-	return false;
+for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
+{
+if ((nextPosition + 48) > mapa.TodosLosMuros[i].y)
+{
+return true;
+break;
+}
+}
+return false;
 }
 
 bool Character::collisionLeft(int nextPosition)
 {
-	for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
-	{
-		if (nextPosition >(mapa.TodosLosMuros[i].x + 48))
-		{
-			return true;
-			break;
-		}
-	}
-	return false;
+for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
+{
+if (nextPosition >(mapa.TodosLosMuros[i].x + 48))
+{
+return true;
+break;
+}
+}
+return false;
 }
 
 bool Character::collisionRight(int nextPosition)
 {
-	for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
-	{
-		if ((nextPosition + 48) > mapa.TodosLosMuros[i].x)
-		{
-			return true;
-			break;
-		}
-	}
-	return false;
+for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
+{
+if ((nextPosition + 48) > mapa.TodosLosMuros[i].x)
+{
+return true;
+break;
+}
+}
+return false;
 }
 */
 
@@ -98,6 +98,7 @@ bool Character::iteradorcolisiones()
 
 Character::Character(playerTag jugador)
 {
+	lastkey = DEFAULT;
 	points = 0;
 	vidas = 3;
 	hasbomb = false;
@@ -118,7 +119,7 @@ Character::Character(playerTag jugador)
 		objetivo.x = 0;
 		objetivo.y = 0;
 		playerRect = { posicion.x, posicion.y, 48, 48 };
-		playerTarget = { objetivo.x, objetivo.y, 48, 48 };		
+		playerTarget = { objetivo.x, objetivo.y, 48, 48 };
 	}
 	player = jugador;
 }
@@ -127,6 +128,42 @@ Character::~Character()
 {
 }
 
+void Character::movement2()
+{
+	if (lastkey == UP)
+	{
+		if (iteradorcolisiones() == true)
+		{
+			posicion.y += 2;
+			lastkey = DEFAULT;
+		}
+
+	}
+	if (lastkey == DOWN)
+	{
+		if (iteradorcolisiones() == true)
+		{
+			posicion.y -= 2;
+			lastkey = DEFAULT;
+		}
+	}
+	if (lastkey == LEFT)
+	{
+		if (iteradorcolisiones() == true)
+		{
+			posicion.x += 2;
+			lastkey = DEFAULT;
+		}
+	}
+	if (lastkey == RIGHT)
+	{
+		if (iteradorcolisiones() == true)
+		{
+			posicion.x -= 2;
+			lastkey = DEFAULT;
+		}
+	}
+}
 void Character::movement()
 {
 	if (SDL_PollEvent(&event))
@@ -138,10 +175,7 @@ void Character::movement()
 				if (event.key.keysym.sym == SDLK_w && posicion.y > 128)
 				{
 					posicion.y -= 2;
-					if (iteradorcolisiones() == true)
-					{
-						posicion.y += 4;
-					}
+
 					objetivo.y = 0;
 					//objetivo.x = 0;
 					frameTime++;
@@ -154,14 +188,12 @@ void Character::movement()
 							objetivo.x = 0;
 						}
 					}
+					lastkey = UP;
 				}
 				if (event.key.keysym.sym == SDLK_a && posicion.x > 48)
 				{
 					posicion.x -= 2;
-					if (iteradorcolisiones() == true)
-					{
-						posicion.x += 4;
-					}
+
 					//objetivo.x = 0;
 					objetivo.y = 48;
 					frameTime++;
@@ -174,14 +206,12 @@ void Character::movement()
 							objetivo.x = 0;
 						}
 					}
+					lastkey = LEFT;
 				}
 				if (event.key.keysym.sym == SDLK_s && posicion.y < 608)
 				{
 					posicion.y += 2;
-					if (iteradorcolisiones() == true)
-					{
-						posicion.y -= 4;
-					}
+
 					//objetivo.x = 0;
 					objetivo.y = 96;
 					frameTime++;
@@ -194,14 +224,12 @@ void Character::movement()
 							objetivo.x = 0;
 						}
 					}
+					lastkey = DOWN;
 				}
 				if (event.key.keysym.sym == SDLK_d && posicion.x < 624)
 				{
 					posicion.x += 2;
-					if (iteradorcolisiones() == true)
-					{
-						posicion.x -= 4;
-					}
+
 					//objetivo.x = 0;
 					objetivo.y = 144;
 					frameTime++;
@@ -214,11 +242,20 @@ void Character::movement()
 							objetivo.x = 0;
 						}
 					}
+					lastkey = RIGHT;
 				}
 				if (event.key.keysym.sym == SDLK_SPACE)
 				{
-					bomba = new Bomb(posicion.x, posicion.y);
-					hasbomb = true;
+					if (hasbomb == false)
+					{
+						bomba = new Bomb(posicion.x, posicion.y);
+						hasbomb = true;
+					}
+					else
+					{
+						explode = true;
+						hasbomb = false;
+					}
 				}
 
 				playerRect = { posicion.x, posicion.y, 48, 48 };
@@ -297,5 +334,3 @@ void Character::movement()
 		}
 	}
 }
-
-

@@ -5,8 +5,8 @@
 #include "Map.h"
 #include <iostream>
 
-enum playerTag {player1, player2};
-enum direccion {UP, DOWN, LEFT, RIGHT};
+enum playerTag { player1, player2 };
+enum direccion { UP, DOWN, LEFT, RIGHT, DEFAULT };
 
 struct Position {
 	int x;
@@ -27,7 +27,10 @@ public:
 	SDL_Rect playerTarget;
 	int points;
 	int vidas;
+	void movement2();
+	direccion lastkey;
 	bool hasbomb;
+	bool explode;
 	bool colision;
 
 	direccion direction;
@@ -50,7 +53,7 @@ public:
 
 	target objetivo;
 
-	
+
 
 	SDL_Event event;
 	SDL_Event event2;
@@ -61,4 +64,3 @@ public:
 	~Character();
 	void movement();
 };
-

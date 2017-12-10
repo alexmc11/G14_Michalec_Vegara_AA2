@@ -18,13 +18,13 @@ void Bomb::bombExplode(int posX, int posY)
 
 	//Up
 	explodeUp1 = { posX, posY - 48, 48, 48 };
-	up1Target = { 0, 336, 48, 48 };
+	up1Target = { 0, 288, 48, 48 };
 	explodeUp2 = { posX, posY - 96, 48, 48 };
 	up2Target = { 0, 144, 48, 48 };
 
 	//Down
 	explodeDown1 = { posX, posY + 48, 48, 48 };
-	down1Target = { 0, 336, 48, 48 };
+	down1Target = { 0, 288, 48, 48 };
 	explodeDown2 = { posX, posY + 96, 48, 48 };
 	down2Target = { 0, 192, 48, 48 };
 

@@ -5,6 +5,8 @@
 #include "Map.h"
 #include <SDL_mixer.h>
 #include <time.h>
+#include <sstream>
+#include <string>
 
 class Play : public Scene
 {
@@ -34,6 +36,8 @@ public:
 	float deltaTime = 0;
 
 	float timeUp = 0;
+
+	std::string time_str = std::to_string(timeDown);
 
 	void Update() override;
 	void Draw() override;

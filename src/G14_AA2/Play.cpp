@@ -10,7 +10,7 @@ Play::Play()
 	jugador2 = new Character(player2);
 	lastTime = clock();
 	audioStarted = false;
-	Text tiempo{ TEXT_TIEMPO, std::to_string(timeDown),{ 255, 255, 255, 255 }, 0, 0 };
+	Text tiempo{ TEXT_TIEMPO, time_str,{ 255, 255, 255, 255 }, 0, 0 };
 	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS, tiempo);
 }
 
@@ -29,6 +29,8 @@ void Play::Update()
 	deltaTime /= CLOCKS_PER_SEC;
 
 	timeDown -= deltaTime;
+
+	time_str = std::to_string(timeDown);
 
 	//std::cout << timeDown << std::endl;
 
@@ -56,10 +58,16 @@ void Play::Draw()
 	{
 		jugador1->bomba->placeBomb();
 	}
+	
 	interfaz.DrawHud();
 	Renderer::Instance()->PushImage(TEXT_TIEMPO, tiempoRect);
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
+	if (jugador1->explode == true)
+	{
+		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
+		jugador1->explode = false;
+	}
 	Renderer::Instance()->Render();
 	
 }
@@ -67,6 +75,7 @@ void Play::Draw()
 void Play::HandleEvents()
 {
 	jugador1->movement();
+	jugador1->movement2();
 	jugador2->movement();
 	if (timeDown < timeUp || jugador1->vidas == 0 || jugador2->vidas == 0)
 	{
