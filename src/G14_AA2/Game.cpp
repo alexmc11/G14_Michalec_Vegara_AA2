@@ -7,7 +7,8 @@ Game::Game()
 	//Backgrounds
 	Renderer::Instance()->LoadTexture(PLAY_BG, PATH_PLAY);
 	//CREATE TEXTS
-	Text play{ TEXT_PLAY, "PLAY",{ 255, 255, 255, 255 }, 0, 0 };
+	Text play1{ TEXT_PLAY1, "PLAY LVL 1",{ 255, 255, 255, 255 }, 0, 0 };
+	Text play2{ TEXT_PLAY2, "PLAY LVL 2",{ 255, 255, 255, 255 }, 0, 0 };
 	Text ranking{ TEXT_RANKING, "RANKING",{ 255, 255, 255, 255 }, 0, 0 };
 	Text exit{ TEXT_EXIT, "EXIT",{ 255, 255, 255, 255 }, 0, 0 };
 	Text bomberman{ TEXT_TITLE, "BOMBERMAN", {255, 255, 255, 255}, 0, 0 };
@@ -21,7 +22,8 @@ Game::Game()
 	Renderer::Instance()->LoadFont({ GAME_OVERAUDIO, PATH_FONT, 70 });
 	Renderer::Instance()->LoadFont({ GAME_OVERVIDAS, PATH_FONT, 70 });
 	Renderer::Instance()->LoadFont({ GAME_OVERVIDAS2, PATH_FONT, 70 });
-	Renderer::Instance()->LoadTextureText(GAME_OVER80, play);
+	Renderer::Instance()->LoadTextureText(GAME_OVER80, play1);
+	Renderer::Instance()->LoadTextureText(GAME_OVER80, play2);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, exit);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, ranking);
 	Renderer::Instance()->LoadTextureText(GAME_OVERTITLE, bomberman);

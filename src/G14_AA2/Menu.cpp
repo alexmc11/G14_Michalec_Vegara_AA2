@@ -5,14 +5,16 @@
 Menu::Menu()
 {
 	bgMenu = { 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
-	PlaytextRect = {20, 350, medidaTextoPlay.x, medidaTextoPlay.y };
+	Play1textRect = {20, 250, medidaTextoPlay1.x, medidaTextoPlay1.y };
+	Play2textRect = { 20, 350, medidaTextoPlay2.x, medidaTextoPlay2.y };
 	RankingTextRect = { 20, 450, medidaTextoRanking.x, medidaTextoRanking.y };
 	ExitTextRect = { 20, 550, medidaTextoExit.x, medidaTextoExit.y };
 	TitleTextRect = { 20, 100, medidaTextoTitle.x, medidaTextoTitle.y };
 	AudioTextRect = { 500, 650, medidaTextoAudio.x, medidaTextoAudio.y };
 	audioStarted = false;
 	mute = false;
-	bool jugar = false;
+	bool jugar1 = false;
+	bool jugar2 = false;
 	bool salir = false;
 }
 
@@ -38,7 +40,8 @@ void Menu::Update()
 void Menu::Draw()
 {
 	Renderer::Instance()->Clear();
-	Renderer::Instance()->PushImage(TEXT_PLAY, PlaytextRect);
+	Renderer::Instance()->PushImage(TEXT_PLAY1, Play1textRect);
+	Renderer::Instance()->PushImage(TEXT_PLAY2, Play2textRect);
 	Renderer::Instance()->PushImage(TEXT_RANKING, RankingTextRect);
 	Renderer::Instance()->PushImage(TEXT_EXIT, ExitTextRect);
 	Renderer::Instance()->PushImage(TEXT_TITLE, TitleTextRect);
@@ -55,14 +58,23 @@ void Menu::HandleEvents()
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 		case SDL_MOUSEMOTION:
-			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoPlay.x) + 20 && event.motion.y >= 350 && event.motion.y <= medidaTextoPlay.y + 350)
+			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoPlay1.x) + 20 && event.motion.y >= 250 && event.motion.y <= medidaTextoPlay1.y + 250)
 			{
-				std::cout << "Plei";
-				jugar = true;
+				std::cout << "Plei1";
+				jugar1 = true;
 			}
 			else
 			{
-				jugar = false;
+				jugar1 = false;
+			}
+			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoPlay1.x) + 20 && event.motion.y >= 350 && event.motion.y <= medidaTextoPlay1.y + 350)
+			{
+				std::cout << "Plei2";
+				jugar2 = true;
+			}
+			else
+			{
+				jugar2 = false;
 			}
 			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoRanking.x) + 20 && event.motion.y >= 450 && event.motion.y <= medidaTextoRanking.y + 450)
 			{
@@ -89,7 +101,7 @@ void Menu::HandleEvents()
 			
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			if (jugar == true)
+			if (jugar1 == true)
 			{
 				Mix_CloseAudio();
 				state = GameState::GOTO;
