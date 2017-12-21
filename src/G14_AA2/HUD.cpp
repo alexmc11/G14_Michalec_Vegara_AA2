@@ -4,7 +4,7 @@
 
 HUD::HUD()
 {
-	vidas1 = { 25, 15, medidaVidas.x, medidaVidas.y };
+	vidas1 = { 45, 15, medidaVidas.x, medidaVidas.y };
 	vidas2 = { 500, 15, medidaVidas2.x, medidaVidas2.y };
 }
 

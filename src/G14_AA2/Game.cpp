@@ -12,8 +12,9 @@ Game::Game()
 	Text exit{ TEXT_EXIT, "EXIT",{ 255, 255, 255, 255 }, 0, 0 };
 	Text bomberman{ TEXT_TITLE, "BOMBERMAN", {255, 255, 255, 255}, 0, 0 };
 	Text audio{ TEXT_AUDIO, "AUDIO ON/OFF", {255, 255, 255, 255}, 0, 0 };
-	Text vidas{ TEXT_VIDAS, "VIDAS P1: ",{ 255, 255, 255, 255 }, 0, 0 };
-	Text vidas2{ TEXT_VIDAS2, "VIDAS P2: ",{ 255, 255, 255, 255 }, 0, 0 };
+	Text vidas{ TEXT_VIDAS, "VIDAS P1: ",{ 0, 0, 255, 255 }, 0, 0 };
+	Text vidas2{ TEXT_VIDAS2, "VIDAS P2: ",{ 255, 0, 0, 255 }, 0, 0 };
+	
 
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
 	Renderer::Instance()->LoadFont({ GAME_OVERTITLE, PATH_FONT, 200 });
