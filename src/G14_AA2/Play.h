@@ -8,10 +8,12 @@
 #include <sstream>
 #include <string>
 
+enum Levels {lvl1, lvl2};
+
 class Play : public Scene
 {
 public:
-	Play();
+	Play(Levels lvl);
 	~Play();
 
 	float timer = 0.f;
@@ -26,6 +28,7 @@ public:
 	SDL_Rect TimeRect, vidasP1Rect, vidasP2Rect;
 	Vector2 medidaTextoTime, medidaTextoVidasP1, medidaTextoVidasP2;
 
+	Levels level;
 	Map mapa;
 	char buffer[50];
 

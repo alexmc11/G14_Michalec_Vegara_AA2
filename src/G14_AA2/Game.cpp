@@ -38,6 +38,7 @@ Game::Game()
 	Renderer::Instance()->LoadTexture(ITEMS_SPRITE, PATH_ITEMS);
 	Renderer::Instance()->LoadTexture(EXPLOSION_SPRITE, PATH_EXPLOSION);
 	scene = new Menu();
+	int hola = 1;
 }
 
 Game::~Game()
@@ -50,6 +51,7 @@ void Game::GameLoop()
 	scene->escenActual = CurrentScene::MENIU;
 	while (scene->state != GameState::EXIT) 
 	{
+	
 			switch (scene->state)
 			{
 			case GameState::MENU:
@@ -65,7 +67,7 @@ void Game::GameLoop()
 				scene->Update();
 				scene->Draw();
 				break;
-
+				
 			case GameState::EXIT:
 				switch (scene->state)
 				{
@@ -87,9 +89,18 @@ void Game::GameLoop()
 				switch (scene->escenActual)
 				{
 				case CurrentScene::MENIU:
-					delete scene;
-					scene = new Play();
-					scene->state = GameState::PLAY;
+					if (scene->lvl == Level::LVL1)
+					{
+						delete scene;
+						scene = new Play(lvl1);
+						scene->state = GameState::PLAY;
+					}
+					if (scene->lvl == Level::LVL2)
+					{
+						delete scene;
+						scene = new Play(lvl2);
+						scene->state = GameState::PLAY;
+					}
 					break;
 				case CurrentScene::PLEI:
 					delete scene;

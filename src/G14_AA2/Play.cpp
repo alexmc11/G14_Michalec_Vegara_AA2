@@ -2,13 +2,14 @@
 
 
 
-Play::Play()
+Play::Play(Levels lvl)
 {
 	bgPlay = { 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
 	jugador1 = new Character(player1);
 	jugador2 = new Character(player2);
 	lastTime = clock();
 	audioStarted = false;
+	level = lvl;
 	char buffer[50];
 	int texW = 0;
 	int textH = 0;
@@ -75,8 +76,15 @@ void Play::Draw()
 	Renderer::Instance()->Clear();
 	Renderer::Instance()->PushImage(PLAY_BG, bgPlay);
 
-	mapa.DrawMap();
-	mapa.DrawBricks();
+	if (level == lvl1)
+	{
+		mapa.DrawMap();
+		mapa.DrawBricks();
+	}
+	else
+	{
+
+	}
 	if (jugador1->hasbomb == true)
 	{
 		jugador1->bomba->placeBomb();
@@ -196,7 +204,10 @@ void Play::Draw()
 void Play::HandleEvents()
 {
 	jugador1->movement();
-	jugador1->collisionMovement();
+	if (level == lvl1)
+	{
+		jugador1->collisionMovement();
+	}
 	jugador2->movement();
 	if (timeDown < timeUp || jugador1->vidas == 0 || jugador2->vidas == 0)
 	{

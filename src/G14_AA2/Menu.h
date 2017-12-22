@@ -3,8 +3,11 @@
 #include <iostream>
 #include <SDL_mixer.h>
 
+
+
 class Menu : public Scene
 {
+
 public:
 	Menu();
 	~Menu();
@@ -14,7 +17,6 @@ public:
 	bool salir;
 	bool mute, muted, done;
 	SDL_Rect Play1textRect, Play2textRect, ExitTextRect, RankingTextRect, TitleTextRect, AudioTextRect;
-
 	Vector2 medidaTextoPlay1 = Renderer::Instance()->GetTextureSize(TEXT_PLAY1);
 	Vector2 medidaTextoPlay2 = Renderer::Instance()->GetTextureSize(TEXT_PLAY2);
 	Vector2 medidaTextoRanking = Renderer::Instance()->GetTextureSize(TEXT_RANKING);

@@ -52,6 +52,7 @@ void Menu::Draw()
 
 void Menu::HandleEvents()
 {
+	int static level;
 	done = false;
 
 	SDL_Event event;
@@ -103,7 +104,15 @@ void Menu::HandleEvents()
 		case SDL_MOUSEBUTTONDOWN:
 			if (jugar1 == true)
 			{
+				
 				Mix_CloseAudio();
+				lvl = Level::LVL1;
+				state = GameState::GOTO;
+			}
+			if (jugar2 == true)
+			{
+				Mix_CloseAudio();
+				lvl = Level::LVL2;
 				state = GameState::GOTO;
 			}
 			if (salir == true)

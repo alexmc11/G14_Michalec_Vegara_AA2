@@ -9,7 +9,6 @@ class Game
 private:
 
 public:
-	Menu bigmac;
 	Scene * scene;
 	void GameLoop();
 	Game();
