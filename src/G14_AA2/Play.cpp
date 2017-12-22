@@ -72,8 +72,102 @@ void Play::Draw()
 	if (jugador1->explode == true)
 	{
 		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
-		jugador1->explode = false;
-		jugador1->hasbomb = false;
+		frameTime++;
+		if (SCREEN_FPS / frameTime <= 9)
+		{
+			frameTime = 0;
+			//Center
+			if (jugador1->bomba->centerTarget.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->centerTarget.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+			//Up1
+			if (jugador1->bomba->up1Target.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->up1Target.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+			//Up2
+			if (jugador1->bomba->up2Target.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->up2Target.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+			//Down1
+			if (jugador1->bomba->down1Target.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->down1Target.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+			//Down2
+			if (jugador1->bomba->down2Target.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->down2Target.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+			//Right1
+			if (jugador1->bomba->right1Target.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->right1Target.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+			//Right2
+			if (jugador1->bomba->right2Target.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->right2Target.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+			//Left
+			if (jugador1->bomba->left1Target.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->left1Target.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+			//Left
+			if (jugador1->bomba->left2Taget.x <= jugador1->bomba->explodeImageSize.x)
+			{
+				jugador1->bomba->left2Taget.x += 48;
+			}
+			else
+			{
+				jugador1->explode = false;
+				jugador1->hasbomb = false;
+			}
+		}
+		
 	}
 
 	Renderer::Instance()->Render();

@@ -34,6 +34,14 @@ public:
 
 	float timeUp = 0;
 
+	clock_t lastTime2;
+
+	float timeDown2 = 81;
+
+	float deltaTime2 = 0;
+
+	float frameTime = 0;
+
 	void Update() override;
 	void Draw() override;
 	void HandleEvents() override;
