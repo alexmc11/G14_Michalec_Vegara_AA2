@@ -26,9 +26,9 @@ bool Character::colisiones(SDL_Rect* A, SDL_Rect* B)
 
 bool Character::iteradorcolisiones()
 {
-	for (int i = 0; i < mapa.TodosLosMuros.size(); i++)
+	for (int i = 0; i < mapa.MurosFijos.size(); i++)
 	{
-		if (colisiones(&mapa.TodosLosMuros[i], &playerRect) == 1)
+		if (colisiones(&mapa.MurosFijos[i].fixBrickRect, &playerRect) == 1)
 		{
 			return true;
 		}

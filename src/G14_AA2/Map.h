@@ -57,7 +57,11 @@ public:
 
 	std::vector<FixBrick> MurosFijos;
 
+	std::vector<FixBrick> MurosFijos2;
+
 	std::vector<DestructibleBrick> MurosDestruibles;
+
+	std::vector<DestructibleBrick> MurosDestruibles2;
 	
 
 	
