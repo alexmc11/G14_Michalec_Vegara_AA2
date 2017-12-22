@@ -1,7 +1,7 @@
 #include "Brick.h"
 
 
-
+/*
 Brick::Brick()
 {
 }
@@ -26,3 +26,4 @@ void Brick::printDestructible(int posX, int posY)
 	tipoLadrillo = destructible;
 	Renderer::Instance()->PushSprite(ITEMS_SPRITE, brickTarget, brickRect);
 }
+*/

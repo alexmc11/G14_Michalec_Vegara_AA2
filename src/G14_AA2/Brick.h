@@ -7,7 +7,7 @@ enum brickType { destructible, nonDestructible };
 class Brick
 {
 public:
-	Brick();
+	/*Brick();
 	~Brick();
 
 	void printBrick(int posX, int posY);
@@ -18,6 +18,6 @@ public:
 
 	brickType tipoLadrillo;
 
-
+	*/
 };
 

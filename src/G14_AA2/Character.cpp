@@ -33,6 +33,13 @@ bool Character::iteradorcolisiones()
 			return true;
 		}
 	}
+	for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
+	{
+		if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &playerRect) == 1)
+		{
+			return true;
+		}
+	}
 	return false;
 }
 
