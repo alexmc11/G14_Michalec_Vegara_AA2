@@ -3,12 +3,30 @@
 #include "Renderer.h"
 #include "Brick.h"
 #include "Bomb.h"
+#include "../../dep/inc/XML/rapidxml.hpp"
+#include "../../dep/inc/XML/rapidxml_utils.hpp"
+#include "../../dep/inc/XML/rapidxml_iterators.hpp"
+#include "../../dep/inc/XML/rapidxml_print.hpp"
 #include <vector>
+#include <string>
+#include <iostream>
+#include <sstream>
+
 
 struct posicionLadrillo
 {
 	int posX;
 	int posY;
+};
+
+struct FixBrick
+{
+	SDL_Rect fixBrickRect, fixBrickTarget;
+};
+
+struct DestructibleBrick
+{
+	SDL_Rect destructibleBrickRect, destructibleBrickTarget;
 };
 
 class Map
@@ -36,6 +54,10 @@ public:
 
 
 	std::vector<SDL_Rect> TodosLosMuros;
+
+	std::vector<FixBrick> MurosFijos;
+
+	std::vector<DestructibleBrick> MurosDestruibles;
 	
 
 	

@@ -10,15 +10,11 @@ public:
 	Brick();
 	~Brick();
 
-	int posicionX, posicionY;
-
 	void printBrick(int posX, int posY);
 
 	void printDestructible(int posX, int posY);
 
 	SDL_Rect wallRect, wallTarget, brickRect, brickTarget;
-
-	int frameWidth, frameHeight;
 
 	brickType tipoLadrillo;
 
