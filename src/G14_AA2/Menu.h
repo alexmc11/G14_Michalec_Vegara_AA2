@@ -10,12 +10,13 @@ public:
 	~Menu();
 	SDL_Rect bgMenu;
 	bool audioStarted;
-	bool jugar;
+	bool jugar1, jugar2;
 	bool salir;
 	bool mute, muted, done;
-	SDL_Rect PlaytextRect, ExitTextRect, RankingTextRect, TitleTextRect, AudioTextRect;
+	SDL_Rect Play1textRect, Play2textRect, ExitTextRect, RankingTextRect, TitleTextRect, AudioTextRect;
 
-	Vector2 medidaTextoPlay = Renderer::Instance()->GetTextureSize(TEXT_PLAY);
+	Vector2 medidaTextoPlay1 = Renderer::Instance()->GetTextureSize(TEXT_PLAY1);
+	Vector2 medidaTextoPlay2 = Renderer::Instance()->GetTextureSize(TEXT_PLAY2);
 	Vector2 medidaTextoRanking = Renderer::Instance()->GetTextureSize(TEXT_RANKING);
 	Vector2 medidaTextoExit = Renderer::Instance()->GetTextureSize(TEXT_EXIT);
 	Vector2 medidaTextoTitle = Renderer::Instance()->GetTextureSize(TEXT_TITLE);

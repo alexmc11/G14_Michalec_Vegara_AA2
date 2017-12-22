@@ -22,6 +22,9 @@ public:
 
 	HUD interfaz;
 
+	Text tiempo, vidasP1, vidasP2;
+	SDL_Rect TimeRect, vidasP1Rect, vidasP2Rect;
+	Vector2 medidaTextoTime, medidaTextoVidasP1, medidaTextoVidasP2;
 
 	Map mapa;
 	char buffer[50];

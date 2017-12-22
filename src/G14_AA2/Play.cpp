@@ -15,6 +15,7 @@ Play::Play()
 
 	
 
+
 }
 
 
@@ -34,6 +35,21 @@ void Play::Update()
 	timeDown -= deltaTime;
 
 	//std::cout << timeDown << std::endl;
+
+	Text tiempo{ TEXT_TIME, std::to_string((int)timeDown),{ 127, 0, 255, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, tiempo);
+	medidaTextoTime = Renderer::Instance()->GetTextureSize(TEXT_TIME);
+	TimeRect = { 345, 15, medidaTextoTime.x, medidaTextoTime.y };
+
+	Text vidasP1{ TEXT_VIDAS1NUM, std::to_string(jugador1->vidas),{ 0, 0, 255, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, vidasP1);
+	medidaTextoVidasP1 = Renderer::Instance()->GetTextureSize(TEXT_VIDAS1NUM);
+	vidasP1Rect = { 180, 15, medidaTextoVidasP1.x, medidaTextoVidasP1.y };
+
+	Text vidasP2{ TEXT_VIDAS2NUM, std::to_string(jugador2->vidas),{ 255, 0, 0, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, vidasP2);
+	medidaTextoVidasP2 = Renderer::Instance()->GetTextureSize(TEXT_VIDAS2NUM);
+	vidasP2Rect = { 640, 15, medidaTextoVidasP2.x, medidaTextoVidasP2.y };
 
 	if (audioStarted == false)
 	{
@@ -67,6 +83,9 @@ void Play::Draw()
 	}
 
 	interfaz.DrawHud();
+	Renderer::Instance()->PushImage(TEXT_TIME, TimeRect);
+	Renderer::Instance()->PushImage(TEXT_VIDAS1NUM, vidasP1Rect);
+	Renderer::Instance()->PushImage(TEXT_VIDAS2NUM, vidasP2Rect);
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
 	if (jugador1->explode == true)

@@ -12,7 +12,8 @@ const std::string PLAYER1_SPRITE = "PLAY_GOLD";
 const std::string PLAYER2_SPRITE = "PLAYER_SPRITE";
 const std::string SCORE_PLAYER1 = "SCORE_PLAYER1";
 const std::string SCORE_PLAYER2 = "SCORE_PLAYER1";
-const std::string TEXT_PLAY = "TEXT_PLAY";
+const std::string TEXT_PLAY1 = "TEXT_PLAY1";
+const std::string TEXT_PLAY2 = "TEXT_PLAY2";
 const std::string TEXT_EXIT = "TEXT_EXIT";
 const std::string TEXT_RANKING = "TEXT_RANKING";
 const std::string TEXT_TITLE = "TEXT_TITLE";
@@ -21,6 +22,7 @@ const std::string TEXT_VIDAS = "TEXT_VIDAS";
 const std::string TEXT_VIDAS2 = "TEXT_VIDAS2";
 const std::string TEXT_VIDAS1NUM = "TEXT_VIDAS1NUM";
 const std::string TEXT_VIDAS2NUM = "TEXT_VIDAS2NUM";
+const std::string TEXT_TIME = "TEXT_TIME";
 const std::string EXPLOSION_SPRITE = "EXPLOSION";
 const std::string ITEMS_SPRITE = "ITEMS_SPRITE";
 
