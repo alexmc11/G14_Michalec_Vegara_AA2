@@ -15,6 +15,7 @@ public:
 	bool audioStarted;
 	bool jugar1, jugar2;
 	bool salir;
+	bool ranking;
 	bool mute, muted, done;
 	SDL_Rect Play1textRect, Play2textRect, ExitTextRect, RankingTextRect, TitleTextRect, AudioTextRect;
 	Vector2 medidaTextoPlay1 = Renderer::Instance()->GetTextureSize(TEXT_PLAY1);

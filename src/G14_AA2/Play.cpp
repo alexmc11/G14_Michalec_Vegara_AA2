@@ -13,6 +13,14 @@ Play::Play(Levels lvl)
 	char buffer[50];
 	int texW = 0;
 	int textH = 0;
+	if (level == lvl1)
+	{
+		mapa.ReadXML1();
+	}
+	else
+	{
+		mapa.ReadXML2();
+	}
 }
 
 
@@ -89,8 +97,8 @@ void Play::Draw()
 	}
 	else
 	{
-		mapa.DrawMap2();
-		mapa.DrawBricks2();
+		mapa.DrawMap1();
+		mapa.DrawBricks1();
 	}
 	if (jugador1->hasbomb == true)
 	{
@@ -467,10 +475,9 @@ void Play::powerUp(int posX, int posY)
 void Play::HandleEvents()
 {
 	jugador1->movement();
-	if (level == lvl1)
-	{
+
 		collisionMovement();
-	}
+
 	jugador2->movement();
 	if (timeDown < timeUp || jugador1->vidas <= 0 || jugador2->vidas <= 0)
 	{

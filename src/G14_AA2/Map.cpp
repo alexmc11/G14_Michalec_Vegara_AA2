@@ -3,6 +3,10 @@
 
 
 Map::Map()
+{	
+}
+
+void Map::ReadXML1()
 {
 	rapidxml::xml_document<> doc;
 	std::ifstream file("../../res/files/config.xml");
@@ -12,161 +16,162 @@ Map::Map()
 	std::string content(buffer.str());
 	doc.parse<0>(&content[0]);
 
-	int aux = 0;
-	int aux2 = 0;
-	int valorI = 0;
-	int valorJ = 0;
-	std::pair<int, int> coordenadas;
+	std::pair<int, int> coords;
 	std::string nombreAttr;
 	std::string nombreCoord;
 	rapidxml::xml_node<> *pRoot = doc.first_node();
 	rapidxml::xml_attribute<> *iAttr;
 	rapidxml::xml_attribute<> *jAttr;
+	rapidxml::xml_node<> *pNode = pRoot->first_node("Level");
 
-	for (rapidxml::xml_node<> *pNode = pRoot->first_node("Level"); pNode; pNode = pNode->next_sibling())
+	for (rapidxml::xml_attribute<> *iAttr1 = pNode->first_attribute(); iAttr1; iAttr1 = iAttr1->next_attribute())
 	{
-		std::cout << pNode->name() << ':' << '\n';
-		
-		for (rapidxml::xml_attribute<> *iAttr1 = pNode->first_attribute(); iAttr1; iAttr1 = iAttr1->next_attribute())
+		nombreAttr = iAttr1->name();
+		if (nombreAttr == "id")
 		{
-			nombreAttr = iAttr1->name();
-			if (nombreAttr == "id")
-			{
-				levelID = atoi(iAttr1->value());
-			}
-			if (levelID == 1)
-			{
-				for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed"); pNode1; pNode1 = pNode1->next_sibling())
-				{
-					for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
-					{
-						for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
-						{
-							nombreCoord = iAttr->name();
-							if (nombreCoord == "i")
-							{
-								coordenadas.first = atoi(iAttr->value());
-							}
-							else if (nombreCoord == "j")
-							{
-								FixBrick muriyo;
-								coordenadas.second = atoi(iAttr->value());
-								muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
-								muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
-								muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
-								muriyo.fixBrickRect.y = (coordenadas.first * 48) + 80 + 48;
-								muriyo.fixBrickRect.x = (coordenadas.second * 48) + 48; //
-								MurosFijos.push_back(muriyo);
-							}
-								
-						}
-					}
-				}
-				for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Destructible"); pNode1; pNode1 = pNode1->next_sibling())
-				{
-
-					for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
-					{
-						aux = 0;
-						for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
-						{
-							aux++;
-							if (aux == 1)
-							{
-								valorI = atoi(iAttr->value());
-							}
-							else if (aux == 2)
-							{
-								valorJ = atoi(iAttr->value());
-
-								if (MurosDestruibles.size() < 33)
-								{
-									DestructibleBrick muriyo;
-									muriyo.destructibleBrickTarget.x = 48;
-									muriyo.destructibleBrickTarget.y = 0;
-									muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
-									muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
-									muriyo.destructibleBrickRect.y = (valorI * 48) + 80 + 48;
-									muriyo.destructibleBrickRect.x = (valorJ * 48) + 48; //
-									MurosDestruibles.push_back(muriyo);
-								}
-								aux = 0;
-							}
-						}
-					}
-				}
-			}
-			//if (levelID == 2)
-			//{
-			//	for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed"); pNode1; pNode1 = pNode1->next_sibling())
-			//	{
-			//		for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
-			//		{
-			//			for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
-			//			{
-			//				nombreCoord = iAttr->name();
-			//				if (nombreCoord == "i")
-			//				{
-			//					coordenadas.first = atoi(iAttr->value());
-			//				}
-			//				else if (nombreCoord == "j")
-			//				{
-			//					FixBrick muriyo;
-			//					coordenadas.second = atoi(iAttr->value());
-			//					muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
-			//					muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
-			//					muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
-			//					muriyo.fixBrickRect.y = (coordenadas.first * 48) + 80 + 48;
-			//					muriyo.fixBrickRect.x = (coordenadas.second * 48) + 48; //
-			//					MurosFijos.push_back(muriyo);
-			//				}
-			//
-			//			}
-			//		}
-			//	}
-			//	for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Destructible"); pNode1; pNode1 = pNode1->next_sibling())
-			//	{
-			//
-			//		for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
-			//		{
-			//			aux = 0;
-			//			for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
-			//			{
-			//				aux++;
-			//				if (aux == 1)
-			//				{
-			//					valorI = atoi(iAttr->value());
-			//				}
-			//				else if (aux == 2)
-			//				{
-			//					valorJ = atoi(iAttr->value());
-			//
-			//					if (MurosDestruibles.size() < 33)
-			//					{
-			//						DestructibleBrick muriyo;
-			//						muriyo.destructibleBrickTarget.x = 48;
-			//						muriyo.destructibleBrickTarget.y = 0;
-			//						muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
-			//						muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
-			//						muriyo.destructibleBrickRect.y = (valorI * 48) + 80 + 48;
-			//						muriyo.destructibleBrickRect.x = (valorJ * 48) + 48; //
-			//						MurosDestruibles.push_back(muriyo);
-			//					}
-			//					aux = 0;
-			//				}
-			//			}
-			//		}
-			//	}
-			//}
+			levelID = atoi(iAttr1->value());
 		}
-		
-		
-		std::cout << "\n";
+
+		for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed")->first_node("Wall"); pNode1; pNode1 = pNode1->next_sibling())
+		{			
+				for (rapidxml::xml_attribute<> *iAttr = pNode1->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+				{
+					nombreCoord = iAttr->name();
+					if (nombreCoord == "i")
+					{
+						coords.first = atoi(iAttr->value());
+					}
+					else if (nombreCoord == "j")
+					{
+						FixBrick muriyo;
+						coords.second = atoi(iAttr->value());
+						muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
+						muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
+						muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
+						muriyo.fixBrickRect.y = (coords.first * 48) + 80 + 48;
+						muriyo.fixBrickRect.x = (coords.second * 48) + 48; 
+						MurosFijos.push_back(muriyo);
+					}
+
+				}
+			}
+		for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Destructible")->first_node("Wall"); pNode1; pNode1 = pNode1->next_sibling())
+		{
+			for (rapidxml::xml_attribute<> *iAttr = pNode1->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+			{
+				nombreCoord = iAttr->name();
+				if (nombreCoord == "i")
+				{
+					coords.first = atoi(iAttr->value());
+				}
+				else if (nombreCoord == "j")
+				{
+					DestructibleBrick muriyo;
+					coords.second = atoi(iAttr->value());
+					muriyo.destructibleBrickTarget.x = 48;
+					muriyo.destructibleBrickTarget.y = 0;
+					muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
+					muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
+					muriyo.destructibleBrickRect.y = (coords.first * 48) + 80 + 48;
+					muriyo.destructibleBrickRect.x = (coords.second * 48) + 48; 
+					MurosDestruibles.push_back(muriyo);
+				}
+
+			}
+		}
 	}
 }
 
-void Map::DrawMap1()
+
+
+void Map::ReadXML2()
 {
+	rapidxml::xml_document<> doc;
+	std::ifstream file("../../res/files/config.xml");
+	std::stringstream buffer;
+	buffer << file.rdbuf();
+	file.close();
+	std::string content(buffer.str());
+	doc.parse<0>(&content[0]);
+
+	std::pair<int, int> coords;
+	std::string nombreAttr;
+	std::string nombreCoord;
+	rapidxml::xml_node<> *pRoot = doc.first_node();
+	rapidxml::xml_attribute<> *iAttr;
+	rapidxml::xml_attribute<> *jAttr;
+	rapidxml::xml_node<> *pNode = pRoot->last_node("Level");
+
+	for (rapidxml::xml_attribute<> *iAttr1 = pNode->first_attribute(); iAttr1; iAttr1 = iAttr1->next_attribute())
+	{
+		nombreAttr = iAttr1->name();
+		if (nombreAttr == "id")
+		{
+			levelID = atoi(iAttr1->value());
+		}
+	}
+	for (rapidxml::xml_attribute<> *iAttr1 = pNode->first_attribute(); iAttr1; iAttr1 = iAttr1->next_attribute())
+	{
+		nombreAttr = iAttr1->name();
+		if (nombreAttr == "id")
+		{
+			levelID = atoi(iAttr1->value());
+		}
+
+		for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed")->first_node("Wall"); pNode1; pNode1 = pNode1->next_sibling())
+		{
+			for (rapidxml::xml_attribute<> *iAttr = pNode1->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+			{
+				nombreCoord = iAttr->name();
+				if (nombreCoord == "i")
+				{
+					coords.first = atoi(iAttr->value());
+				}
+				else if (nombreCoord == "j")
+				{
+					FixBrick muriyo;
+					coords.second = atoi(iAttr->value());
+					muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
+					muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
+					muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
+					muriyo.fixBrickRect.y = (coords.first * 48) + 80;
+					muriyo.fixBrickRect.x = (coords.second * 48) + 48;
+					MurosFijos.push_back(muriyo);
+				}
+
+			}
+		}
+		for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Destructible")->first_node("Wall"); pNode1; pNode1 = pNode1->next_sibling())
+		{
+			for (rapidxml::xml_attribute<> *iAttr = pNode1->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+			{
+				nombreCoord = iAttr->name();
+				if (nombreCoord == "i")
+				{
+					coords.first = atoi(iAttr->value());
+				}
+				else if (nombreCoord == "j")
+				{
+					DestructibleBrick muriyo;
+					coords.second = atoi(iAttr->value());
+					muriyo.destructibleBrickTarget.x = 48;
+					muriyo.destructibleBrickTarget.y = 0;
+					muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
+					muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
+					muriyo.destructibleBrickRect.y = (coords.first * 48) + 80;
+					muriyo.destructibleBrickRect.x = (coords.second * 48) + 48;
+					MurosDestruibles.push_back(muriyo);
+				}
+
+			}
+		}
+	}
+}
+		
+
+
+void Map::DrawMap1()
+{					
 	for (int i = 0; i < MurosFijos.size(); i++)
 	{
 		Renderer::Instance()->PushSprite(ITEMS_SPRITE, MurosFijos[i].fixBrickTarget, MurosFijos[i].fixBrickRect);

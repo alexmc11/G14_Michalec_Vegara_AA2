@@ -22,7 +22,7 @@ struct target
 class Character
 {
 public:
-	Map mapa;
+	Map mapa(int n);
 	playerTag player;
 	SDL_Rect playerRect, playerPosition;
 	SDL_Rect playerTarget;

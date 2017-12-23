@@ -80,6 +80,11 @@ void Menu::HandleEvents()
 			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoRanking.x) + 20 && event.motion.y >= 450 && event.motion.y <= medidaTextoRanking.y + 450)
 			{
 				std::cout << "Ranquinc";
+				ranking = true;
+			}
+			else
+			{
+				ranking = false;
 			}
 			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoExit.x) + 20 && event.motion.y >= 550 && event.motion.y <= medidaTextoExit.y + 550)
 			{
@@ -115,9 +120,15 @@ void Menu::HandleEvents()
 				lvl = Level::LVL2;
 				state = GameState::GOTO;
 			}
+			if (ranking == true)
+			{
+				lvl = Level::RANK;
+				state = GameState::GOTO;
+			}
 			if (salir == true)
 			{
 				state = GameState::EXIT;
+				state = GameState::GOTO;
 			}
 			if (mute == true && muted == false && done == false)
 			{

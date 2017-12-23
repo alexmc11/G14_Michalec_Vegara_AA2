@@ -36,6 +36,9 @@ class Map
 public:
 	Map();
 
+	void ReadXML1();
+
+	void ReadXML2();
 
 	void DrawMap1();
 
@@ -46,8 +49,6 @@ public:
 	void DrawBricks2();
 
 	~Map();
-
-	Menu mainmenu;
 
 	bool level1 = false;
 	bool level2 = false;
@@ -69,8 +70,6 @@ public:
 					   0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0};
 
 
-	std::vector<SDL_Rect> TodosLosMuros;
-
 	std::vector<FixBrick> MurosFijos;
 
 	std::vector<FixBrick> MurosFijos2;
@@ -78,16 +77,6 @@ public:
 	std::vector<DestructibleBrick> MurosDestruibles;
 
 	std::vector<DestructibleBrick> MurosDestruibles2;
-	
 
-	
-
-	posicionLadrillo ladrillos[5][6];
-
-	int **md;
-	Brick ladrillu;
-	Brick ladrilluDestructible;
-
-	int posiciones[29][2];
 };
 

@@ -67,6 +67,13 @@ void Game::GameLoop()
 				scene->Update();
 				scene->Draw();
 				break;
+
+			case GameState::RANKING:
+				scene->escenActual = CurrentScene::RANQUINC;
+				scene->HandleEvents();
+				scene->Update();
+				scene->Draw();
+				break;
 				
 			case GameState::EXIT:
 				switch (scene->state)
@@ -84,7 +91,7 @@ void Game::GameLoop()
 					break;
 				}
 				break;
-
+		
 			case GameState::GOTO:
 				switch (scene->escenActual)
 				{
@@ -95,11 +102,17 @@ void Game::GameLoop()
 						scene = new Play(lvl1);
 						scene->state = GameState::PLAY;
 					}
-					if (scene->lvl == Level::LVL2)
+					else if (scene->lvl == Level::LVL2)
 					{
 						delete scene;
 						scene = new Play(lvl2);
 						scene->state = GameState::PLAY;
+					}
+					else if (scene->lvl == Level::RANK)
+					{
+						delete scene;
+						scene = new Ranking();
+						scene->state = GameState::RANKING;
 					}
 					break;
 				case CurrentScene::PLEI:

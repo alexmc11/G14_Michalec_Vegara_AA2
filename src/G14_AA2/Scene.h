@@ -3,7 +3,7 @@
 
 enum GameState { PLAY, MENU, RANKING, EXIT, GOTO };
 enum CurrentScene { PLEI, MENIU, RANQUINC, ECSIT };
-enum Level {LVL1, LVL2};
+enum Level {LVL1, LVL2, RANK};
 
 class Scene
 {

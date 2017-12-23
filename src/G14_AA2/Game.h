@@ -1,6 +1,7 @@
 #pragma once
 #include "Menu.h"
 #include "Play.h"
+#include "Ranking.h"
 #include <string>
 
 
