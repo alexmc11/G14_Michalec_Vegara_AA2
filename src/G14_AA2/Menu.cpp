@@ -128,7 +128,6 @@ void Menu::HandleEvents()
 			if (salir == true)
 			{
 				state = GameState::EXIT;
-				state = GameState::GOTO;
 			}
 			if (mute == true && muted == false && done == false)
 			{

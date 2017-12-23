@@ -150,8 +150,6 @@ void Play::Draw()
 			bonus->drawPowerUp();
 			if (colisiones(&jugador1->playerRect, &bonus->powerupRect) == 1)
 			{
-
-
 				if (bonus->powerUpType == 1 && speedUp != true)
 				{
 					std::cout << "speed active" << std::endl;
@@ -165,7 +163,6 @@ void Play::Draw()
 					jugador1->hasimmunity = true;
 				}
 				bonus->active = false;
-
 				delete bonus;
 			}
 		}

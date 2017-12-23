@@ -18,6 +18,7 @@ void Ranking::Update()
 void Ranking::Draw()
 {
 	Renderer::Instance()->Clear();
+
 	Renderer::Instance()->Render();
 }
 
