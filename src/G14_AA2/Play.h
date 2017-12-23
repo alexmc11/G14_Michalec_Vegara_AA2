@@ -42,6 +42,8 @@ public:
 
 	float timeUp = 0;
 
+	bool damage = false;
+
 	clock_t lastTime2;
 
 	float timeDown2 = 81;

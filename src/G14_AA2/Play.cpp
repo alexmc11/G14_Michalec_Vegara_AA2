@@ -96,9 +96,58 @@ void Play::Draw()
 	Renderer::Instance()->PushImage(TEXT_VIDAS2NUM, vidasP2Rect);
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
+	Renderer::Instance()->PushSprite(ITEMS_SPRITE, bonus.powerupTarget, bonus.powerupRect);
 	if (jugador1->explode == true)
 	{
 		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
+		if (jugador1->hasimmunity == false && damage == false)
+		{
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeCenter) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeUp1) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeUp2) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeDown1) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeDown2) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeLeft1) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeLeft2) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeRight1) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeRight2) == 1)
+			{
+				jugador1->vidas--;
+				damage = true;
+			}
+		}
 		for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
 		{
 			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeUp1) == 1)
@@ -155,6 +204,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 			//Up1
 			if (jugador1->bomba->up1Target.x <= jugador1->bomba->explodeImageSize.x)
@@ -165,6 +215,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 			//Up2
 			if (jugador1->bomba->up2Target.x <= jugador1->bomba->explodeImageSize.x)
@@ -175,6 +226,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 			//Down1
 			if (jugador1->bomba->down1Target.x <= jugador1->bomba->explodeImageSize.x)
@@ -185,6 +237,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 			//Down2
 			if (jugador1->bomba->down2Target.x <= jugador1->bomba->explodeImageSize.x)
@@ -195,6 +248,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 			//Right1
 			if (jugador1->bomba->right1Target.x <= jugador1->bomba->explodeImageSize.x)
@@ -205,6 +259,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 			//Right2
 			if (jugador1->bomba->right2Target.x <= jugador1->bomba->explodeImageSize.x)
@@ -215,6 +270,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 			//Left
 			if (jugador1->bomba->left1Target.x <= jugador1->bomba->explodeImageSize.x)
@@ -225,6 +281,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 			//Left
 			if (jugador1->bomba->left2Taget.x <= jugador1->bomba->explodeImageSize.x)
@@ -235,6 +292,7 @@ void Play::Draw()
 			{
 				jugador1->explode = false;
 				jugador1->hasbomb = false;
+				damage = false;
 			}
 		}
 		

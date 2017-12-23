@@ -33,6 +33,7 @@ public:
 	bool hasbomb;
 	bool explode;
 	bool colision;
+	bool hasimmunity = false;
 	float timer;
 	const Uint8* key = SDL_GetKeyboardState(NULL);
 
