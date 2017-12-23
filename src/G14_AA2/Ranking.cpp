@@ -5,11 +5,6 @@ Ranking::Ranking()
 	returnMenuRect = { 20, 650, medidaTextMenu.x, medidaTextMenu.y };
 	returnMenu = false;
 
-	struct playerData
-	{
-		std::string name;
-		int score;
-	};
 	std::string auxname;
 	int auxscore = 0;
 	playerData aux;
@@ -56,18 +51,27 @@ Ranking::Ranking()
 		for (int i = 0; fentrada.eof() != true; i++)
 		{
 			std::getline(fentrada, auxname, '\0'); // get player name (remember we null ternimated in binary)
-			fentrada.read(reinterpret_cast<char *>(&auxscore), sizeof(auxscore));			// read int bytes
+			fentrada.read(reinterpret_cast<char *>(&auxscore), sizeof(auxscore));
+			// read int bytes
 			aux = { auxname, auxscore };
 			ReadScores.push_back(aux);			
 		}
 	}
 	ReadScores.erase(ReadScores.end()-1);
-	//std::sort(ReadScores.begin(), ReadScores.end());
+
+	
+	std::sort(ReadScores.begin(), ReadScores.end(), comparePoints);
+	
 	for (int i = 0; i < ReadScores.size(); i++)
 	{
 		std::cout << "Player " << i+1 << " name: " << ReadScores[i].name << std::endl;
 		std::cout << "Player " << i+1 << " score: " << ReadScores[i].score << std::endl;
 	}
+}
+
+bool Ranking::comparePoints(const playerData &a, const playerData &b)
+{
+	return a.score > b.score;
 }
 
 Ranking::~Ranking()
