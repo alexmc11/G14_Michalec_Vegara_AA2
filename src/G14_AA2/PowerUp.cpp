@@ -4,6 +4,8 @@
 
 PowerUp::PowerUp()
 {
+	active = true;
+	powerUpType = 0;
 }
 
 
@@ -18,10 +20,16 @@ void PowerUp::createPowerUp(int posX, int posY)
 	if (result == 1)
 	{
 		powerupTarget = { 48, 48, 48, 48 };
+		powerUpType = 1;
 	}
 	else
 	{
 		powerupTarget = { 96, 48, 48, 48 };
+		powerUpType = 2;
 	}
+}
+
+void PowerUp::drawPowerUp()
+{
 	Renderer::Instance()->PushSprite(ITEMS_SPRITE, powerupTarget, powerupRect);
 }

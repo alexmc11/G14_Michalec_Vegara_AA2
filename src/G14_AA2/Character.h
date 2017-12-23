@@ -28,12 +28,13 @@ public:
 	SDL_Rect playerTarget;
 	int points;
 	int vidas;
+	int speed;
 	void collisionMovement();
 	direccion lastkey;
 	bool hasbomb;
 	bool explode;
 	bool colision;
-	bool hasimmunity = false;
+	bool hasimmunity;
 	float timer;
 	const Uint8* key = SDL_GetKeyboardState(NULL);
 

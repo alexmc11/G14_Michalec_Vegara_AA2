@@ -18,6 +18,8 @@ public:
 	~Play();
 
 	float timer = 0.f;
+	float timer2 = 0.f;
+	float timer3 = 0.f;
 	SDL_Rect bgPlay;
 	bool audioStarted;
 	Character *jugador1;
@@ -31,7 +33,9 @@ public:
 
 	Levels level;
 	Map mapa;
-	PowerUp bonus;
+	PowerUp *bonus;
+	bool power;
+	bool speedUp;
 	char buffer[50];
 
 	clock_t lastTime;

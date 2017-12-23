@@ -38,7 +38,6 @@ Game::Game()
 	Renderer::Instance()->LoadTexture(ITEMS_SPRITE, PATH_ITEMS);
 	Renderer::Instance()->LoadTexture(EXPLOSION_SPRITE, PATH_EXPLOSION);
 	scene = new Menu();
-	int hola = 1;
 }
 
 Game::~Game()

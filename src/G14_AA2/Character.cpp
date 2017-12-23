@@ -46,10 +46,12 @@
 
 Character::Character(playerTag jugador)
 {
+	hasimmunity = false;
 	lastkey = DEFAULT;
 	points = 0;
 	vidas = 3;
 	hasbomb = false;
+	speed = 2;
 	SDL_Event event;
 
 	timer = 0;
@@ -125,7 +127,7 @@ void Character::movement()
 			{
 				if (event.key.keysym.sym == SDLK_w && posicion.y > 128)
 				{
-					posicion.y -= 2;
+					posicion.y -= speed;
 
 					objetivo.y = 0;
 					//objetivo.x = 0;
@@ -143,7 +145,7 @@ void Character::movement()
 				}
 				if (event.key.keysym.sym == SDLK_a && posicion.x > 48)
 				{
-					posicion.x -= 2;
+					posicion.x -= speed;
 
 					//objetivo.x = 0;
 					objetivo.y = 48;
@@ -161,7 +163,7 @@ void Character::movement()
 				}
 				if (event.key.keysym.sym == SDLK_s && posicion.y < 608)
 				{
-					posicion.y += 2;
+					posicion.y += speed;
 
 					//objetivo.x = 0;
 					objetivo.y = 96;
@@ -179,7 +181,7 @@ void Character::movement()
 				}
 				if (event.key.keysym.sym == SDLK_d && posicion.x < 624)
 				{
-					posicion.x += 2;
+					posicion.x += speed;
 
 					//objetivo.x = 0;
 					objetivo.y = 144;
@@ -213,7 +215,7 @@ void Character::movement()
 			{
 				if (event.key.keysym.sym == SDLK_UP && posicion.y > 128)
 				{
-					posicion.y -= 2;
+					posicion.y -= speed;
 					objetivo.y = 0;
 					frameTime++;
 					if (SCREEN_FPS / frameTime <= 9)
@@ -228,7 +230,7 @@ void Character::movement()
 				}
 				if (event.key.keysym.sym == SDLK_LEFT && posicion.x > 48)
 				{
-					posicion.x -= 2;
+					posicion.x -= speed;
 					objetivo.y = 48;
 					frameTime++;
 					if (SCREEN_FPS / frameTime <= 9)
@@ -243,7 +245,7 @@ void Character::movement()
 				}
 				if (event.key.keysym.sym == SDLK_DOWN && posicion.y < 608)
 				{
-					posicion.y += 2;
+					posicion.y += speed;
 					objetivo.y = 96;
 					frameTime++;
 					if (SCREEN_FPS / frameTime <= 9)
@@ -258,7 +260,7 @@ void Character::movement()
 				}
 				if (event.key.keysym.sym == SDLK_RIGHT && posicion.x < 624)
 				{
-					posicion.x += 2;
+					posicion.x += speed;
 					objetivo.y = 144;
 					frameTime++;
 					if (SCREEN_FPS / frameTime <= 9)

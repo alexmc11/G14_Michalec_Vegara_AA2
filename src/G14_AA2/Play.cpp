@@ -12,6 +12,7 @@ Play::Play(Levels lvl)
 	level = lvl;
 	char buffer[50];
 	int texW = 0;
+	power = false;
 	int textH = 0;
 	if (level == lvl1)
 	{
@@ -89,6 +90,29 @@ void Play::Update()
 			timer = 0;
 		}
 	}
+
+	if (jugador1->hasimmunity == true)
+	{
+		timer2 += 0.05;
+		if (timer2 > 30)
+		{
+			std::cout << "immunity reset" << std::endl;
+			jugador1->hasimmunity = false;
+			timer2 = 0;
+		}
+	}
+
+	if (speedUp == true)
+	{
+		timer3 += 0.05;
+		if (timer3 > 30)
+		{
+			std::cout << "speed reset" << std::endl;
+			jugador1->speed = 2;
+			speedUp = false;
+			timer3 = 0;
+		}
+	}
 }
 
 void Play::Draw()
@@ -119,7 +143,34 @@ void Play::Draw()
 	Renderer::Instance()->PushImage(TEXT_POINTS2NUM, pointsP2Rect);
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
-	Renderer::Instance()->PushSprite(ITEMS_SPRITE, bonus.powerupTarget, bonus.powerupRect);
+	if (power == true)
+	{
+		if (bonus->active == true)
+		{
+			bonus->drawPowerUp();
+			if (colisiones(&jugador1->playerRect, &bonus->powerupRect) == 1)
+			{
+
+
+				if (bonus->powerUpType == 1 && speedUp != true)
+				{
+					std::cout << "speed active" << std::endl;
+					jugador1->speed*=2;
+					speedUp = true;
+				}
+				if (bonus->powerUpType == 2)
+				{
+					std::cout << "immunity active" << std::endl;
+					timer2 = 0;
+					jugador1->hasimmunity = true;
+				}
+				bonus->active = false;
+
+				delete bonus;
+			}
+		}
+		
+	}
 	if (jugador1->explode == true)
 	{
 		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
@@ -439,7 +490,7 @@ void Play::collisionMovement()
 	{
 		if (iteradorcolisiones() == true)
 		{
-			jugador1->posicion.y += 2;
+			jugador1->posicion.y += jugador1->speed;
 			jugador1->lastkey = DEFAULT;
 		}
 	}
@@ -447,7 +498,7 @@ void Play::collisionMovement()
 	{
 		if (iteradorcolisiones() == true)
 		{
-			jugador1->posicion.y -= 2;
+			jugador1->posicion.y -= jugador1->speed;
 			jugador1->lastkey = DEFAULT;
 		}
 	}
@@ -455,7 +506,7 @@ void Play::collisionMovement()
 	{
 		if (iteradorcolisiones() == true)
 		{
-			jugador1->posicion.x += 2;
+			jugador1->posicion.x += jugador1->speed;
 			jugador1->lastkey = DEFAULT;
 		}
 	}
@@ -463,7 +514,7 @@ void Play::collisionMovement()
 	{
 		if (iteradorcolisiones() == true)
 		{
-			jugador1->posicion.x -= 2;
+			jugador1->posicion.x -= jugador1->speed;
 			jugador1->lastkey = DEFAULT;
 		}
 	}
@@ -472,9 +523,11 @@ void Play::collisionMovement()
 void Play::powerUp(int posX, int posY)
 {
 	int result = rand() % 101;
-	if (result < 20)
+	if (result < 60)
 	{
-		bonus.createPowerUp(posX, posY);
+		bonus = new PowerUp();
+		bonus->createPowerUp(posX, posY);
+		power = true;
 	}
 }
 
@@ -482,7 +535,7 @@ void Play::HandleEvents()
 {
 	jugador1->movement();
 
-		collisionMovement();
+	collisionMovement();
 
 	jugador2->movement();
 	if (timeDown < timeUp || jugador1->vidas <= 0 || jugador2->vidas <= 0)
