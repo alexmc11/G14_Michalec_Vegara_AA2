@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "HUD.h"
 #include "Map.h"
+#include "PowerUp.h"
 #include <SDL_mixer.h>
 #include <time.h>
 #include <sstream>
@@ -30,6 +31,7 @@ public:
 
 	Levels level;
 	Map mapa;
+	PowerUp bonus;
 	char buffer[50];
 
 	clock_t lastTime;
@@ -51,5 +53,13 @@ public:
 	void Update() override;
 	void Draw() override;
 	void HandleEvents() override;
+
+	bool colisiones(SDL_Rect* A, SDL_Rect* B);
+
+	bool iteradorcolisiones();
+
+	void collisionMovement();
+
+	void powerUp(int posX, int posY);
 };
 

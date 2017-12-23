@@ -13,6 +13,7 @@ Map::Map()
 	doc.parse<0>(&content[0]);
 
 	int aux = 0;
+	int aux2 = 0;
 	int valorI = 0;
 	int valorJ = 0;
 	rapidxml::xml_node<> *pRoot = doc.first_node();
@@ -22,6 +23,29 @@ Map::Map()
 	for (rapidxml::xml_node<> *pNode = pRoot->first_node("Level"); pNode; pNode = pNode->next_sibling())
 	{
 		std::cout << pNode->name() << ':' << '\n';
+		for (rapidxml::xml_attribute<> *iAttr1 = pNode->first_attribute(); iAttr1; iAttr1 = iAttr1->next_attribute())
+		{
+			aux2++;
+			if (aux2 == 1)
+			{
+				levelID = atoi(iAttr1->value());
+				std::cout << "Level ID: " << levelID << "\n";
+			}
+			else if (aux2 == 2)
+			{
+				tiempo = atoi(iAttr1->value());
+				std::cout << "Tiempo: " << tiempo << "\n";
+			}
+			else if (aux2 == 3)
+			{
+				cantidadVidas = atoi(iAttr1->value());
+				std::cout << "Vidas: " << cantidadVidas << "\n";
+			}
+			else if (aux2 == 4)
+			{
+				std::cout << "Paco: " << iAttr1->value() << "\n";
+			}
+		}
 		for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed"); pNode1; pNode1 = pNode1->next_sibling())
 		{
 			
@@ -39,7 +63,7 @@ Map::Map()
 					{
 						valorJ = atoi(iAttr->value());
 						
-						if (MurosFijos.size() < 30)
+						if(MurosFijos.size() < 30)
 						{
 							FixBrick muriyo;
 							muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
@@ -48,6 +72,16 @@ Map::Map()
 							muriyo.fixBrickRect.y = (valorI * 48) + 80 + 48;
 							muriyo.fixBrickRect.x = (valorJ * 48) + 48; //
 							MurosFijos.push_back(muriyo);
+						}
+						else if(MurosFijos2.size() < 16)
+						{
+							FixBrick muriyo2;
+							muriyo2.fixBrickTarget.x = muriyo2.fixBrickTarget.y = 0;
+							muriyo2.fixBrickRect.w = muriyo2.fixBrickRect.h = 48;
+							muriyo2.fixBrickTarget.w = muriyo2.fixBrickTarget.h = 48;
+							muriyo2.fixBrickRect.y = (valorI * 48) + 80 + 48;
+							muriyo2.fixBrickRect.x = (valorJ * 48) + 48; //
+							MurosFijos2.push_back(muriyo2);
 						}
 						aux = 0;
 					}
@@ -91,7 +125,7 @@ Map::Map()
 	}
 }
 
-void Map::DrawMap()
+void Map::DrawMap1()
 {
 	for (int i = 0; i < MurosFijos.size(); i++)
 	{
@@ -99,11 +133,27 @@ void Map::DrawMap()
 	}
 }
 
-void Map::DrawBricks()
+void Map::DrawMap2()
+{
+	for (int i = 0; i < MurosFijos2.size(); i++)
+	{
+		Renderer::Instance()->PushSprite(ITEMS_SPRITE, MurosFijos2[i].fixBrickTarget, MurosFijos2[i].fixBrickRect);
+	}
+}
+
+void Map::DrawBricks1()
 {
 	for (int i = 0; i < MurosDestruibles.size(); i++)
 	{
 		Renderer::Instance()->PushSprite(ITEMS_SPRITE, MurosDestruibles[i].destructibleBrickTarget, MurosDestruibles[i].destructibleBrickRect);
+	}
+}
+
+void Map::DrawBricks2()
+{
+	for (int i = 0; i < MurosDestruibles2.size(); i++)
+	{
+		Renderer::Instance()->PushSprite(ITEMS_SPRITE, MurosDestruibles2[i].destructibleBrickTarget, MurosDestruibles2[i].destructibleBrickRect);
 	}
 }
 

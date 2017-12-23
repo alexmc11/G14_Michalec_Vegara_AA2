@@ -1,47 +1,47 @@
 #include "Character.h"
 
 
-bool Character::colisiones(SDL_Rect* A, SDL_Rect* B)
-{
-	if (A->y >= (B->y + B->h))
-	{
-		return 0;
-	}
-	if (A->x >= (B->x + B->w))
-	{
-		return 0;
-	}
-	if ((A->y + A->h) <= B->y)
-	{
-		return 0;
-	}
-	if ((A->x + A->w) <= B->x)
-	{
-		return 0;
-	}
-
-	return 1;
-	
-}
-
-bool Character::iteradorcolisiones()
-{
-	for (int i = 0; i < mapa.MurosFijos.size(); i++)
-	{
-		if (colisiones(&mapa.MurosFijos[i].fixBrickRect, &playerRect) == 1)
-		{
-			return true;
-		}
-	}
-	for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
-	{
-		if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &playerRect) == 1)
-		{
-			return true;
-		}
-	}
-	return false;
-}
+//bool Character::colisiones(SDL_Rect* A, SDL_Rect* B)
+//{
+//	if (A->y >= (B->y + B->h))
+//	{
+//		return 0;
+//	}
+//	if (A->x >= (B->x + B->w))
+//	{
+//		return 0;
+//	}
+//	if ((A->y + A->h) <= B->y)
+//	{
+//		return 0;
+//	}
+//	if ((A->x + A->w) <= B->x)
+//	{
+//		return 0;
+//	}
+//
+//	return 1;
+//	
+//}
+//
+//bool Character::iteradorcolisiones()
+//{
+//	for (int i = 0; i < mapa.MurosFijos.size(); i++)
+//	{
+//		if (colisiones(&mapa.MurosFijos[i].fixBrickRect, &playerRect) == 1)
+//		{
+//			return true;
+//		}
+//	}
+//	for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
+//	{
+//		if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &playerRect) == 1)
+//		{
+//			return true;
+//		}
+//	}
+//	return false;
+//}
 
 
 Character::Character(playerTag jugador)
@@ -80,42 +80,41 @@ Character::~Character()
 {
 }
 
-void Character::collisionMovement()
-{
-	if (lastkey == UP)
-	{
-		if (iteradorcolisiones() == true)
-		{
-			posicion.y += 2;
-			lastkey = DEFAULT;
-		}
-
-	}
-	if (lastkey == DOWN)
-	{
-		if (iteradorcolisiones() == true)
-		{
-			posicion.y -= 2;
-			lastkey = DEFAULT;
-		}
-	}
-	if (lastkey == LEFT)
-	{
-		if (iteradorcolisiones() == true)
-		{
-			posicion.x += 2;
-			lastkey = DEFAULT;
-		}
-	}
-	if (lastkey == RIGHT)
-	{
-		if (iteradorcolisiones() == true)
-		{
-			posicion.x -= 2;
-			lastkey = DEFAULT;
-		}
-	}
-}
+//void Character::collisionMovement()
+//{
+//	if (lastkey == UP)
+//	{
+//		if (iteradorcolisiones() == true)
+//		{
+//			posicion.y += 2;
+//			lastkey = DEFAULT;
+//		}
+//	}
+//	if (lastkey == DOWN)
+//	{
+//		if (iteradorcolisiones() == true)
+//		{
+//			posicion.y -= 2;
+//			lastkey = DEFAULT;
+//		}
+//	}
+//	if (lastkey == LEFT)
+//	{
+//		if (iteradorcolisiones() == true)
+//		{
+//			posicion.x += 2;
+//			lastkey = DEFAULT;
+//		}
+//	}
+//	if (lastkey == RIGHT)
+//	{
+//		if (iteradorcolisiones() == true)
+//		{
+//			posicion.x -= 2;
+//			lastkey = DEFAULT;
+//		}
+//	}
+//}
 void Character::movement()
 {
 	while (SDL_PollEvent(&event) != 0)

@@ -11,7 +11,8 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-
+
+
 
 struct posicionLadrillo
 {
@@ -34,11 +35,20 @@ class Map
 public:
 	Map();
 
-	void DrawMap();
 
-	void DrawBricks();
+	void DrawMap1();
+
+	void DrawMap2();
+
+	void DrawBricks1();
+
+	void DrawBricks2();
 
 	~Map();
+
+	int levelID = 0;
+	int tiempo = 0;
+	int cantidadVidas = 0;
 
 	int craps[155] = { 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0,
 					   0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,

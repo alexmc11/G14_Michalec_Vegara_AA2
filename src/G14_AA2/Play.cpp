@@ -14,7 +14,6 @@ Play::Play(Levels lvl)
 	int texW = 0;
 	int textH = 0;
 
-	
 
 
 }
@@ -78,12 +77,13 @@ void Play::Draw()
 
 	if (level == lvl1)
 	{
-		mapa.DrawMap();
-		mapa.DrawBricks();
+		mapa.DrawMap1();
+		mapa.DrawBricks1();
 	}
 	else
 	{
-
+		mapa.DrawMap2();
+		mapa.DrawBricks2();
 	}
 	if (jugador1->hasbomb == true)
 	{
@@ -99,6 +99,49 @@ void Play::Draw()
 	if (jugador1->explode == true)
 	{
 		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
+		for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
+		{
+			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeUp1) == 1)
+			{
+				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
+				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+			}
+			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeUp2) == 1)
+			{
+				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
+				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+			}
+			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeDown1) == 1)
+			{
+				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
+				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+			}
+			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeDown2) == 1)
+			{
+				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
+				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+			}
+			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeLeft1) == 1)
+			{
+				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
+				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+			}
+			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeLeft2) == 1)
+			{
+				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
+				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+			}
+			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeRight1) == 1)
+			{
+				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
+				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+			}
+			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeRight2) == 1)
+			{
+				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
+				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+			}
+		}
 		frameTime++;
 		if (SCREEN_FPS / frameTime <= 9)
 		{
@@ -201,12 +244,99 @@ void Play::Draw()
 
 }
 
+bool Play::colisiones(SDL_Rect* A, SDL_Rect* B)
+{
+	if (A->y >= (B->y + B->h))
+	{
+		return 0;
+	}
+	if (A->x >= (B->x + B->w))
+	{
+		return 0;
+	}
+	if ((A->y + A->h) <= B->y)
+	{
+		return 0;
+	}
+	if ((A->x + A->w) <= B->x)
+	{
+		return 0;
+	}
+
+	return 1;
+
+}
+
+bool Play::iteradorcolisiones()
+{
+	for (int i = 0; i < mapa.MurosFijos.size(); i++)
+	{
+		if (colisiones(&mapa.MurosFijos[i].fixBrickRect, &jugador1->playerRect) == 1)
+		{
+			return true;
+		}
+	}
+	for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
+	{
+		if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->playerRect) == 1)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void Play::collisionMovement()
+{
+	if (jugador1->lastkey == UP)
+	{
+		if (iteradorcolisiones() == true)
+		{
+			jugador1->posicion.y += 2;
+			jugador1->lastkey = DEFAULT;
+		}
+	}
+	if (jugador1->lastkey == DOWN)
+	{
+		if (iteradorcolisiones() == true)
+		{
+			jugador1->posicion.y -= 2;
+			jugador1->lastkey = DEFAULT;
+		}
+	}
+	if (jugador1->lastkey == LEFT)
+	{
+		if (iteradorcolisiones() == true)
+		{
+			jugador1->posicion.x += 2;
+			jugador1->lastkey = DEFAULT;
+		}
+	}
+	if (jugador1->lastkey == RIGHT)
+	{
+		if (iteradorcolisiones() == true)
+		{
+			jugador1->posicion.x -= 2;
+			jugador1->lastkey = DEFAULT;
+		}
+	}
+}
+
+void Play::powerUp(int posX, int posY)
+{
+	int result = rand() % 101;
+	if (result < 20)
+	{
+		bonus.createPowerUp(posX, posY);
+	}
+}
+
 void Play::HandleEvents()
 {
 	jugador1->movement();
 	if (level == lvl1)
 	{
-		jugador1->collisionMovement();
+		collisionMovement();
 	}
 	jugador2->movement();
 	if (timeDown < timeUp || jugador1->vidas == 0 || jugador2->vidas == 0)

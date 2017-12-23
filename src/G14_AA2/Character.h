@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "Bomb.h"
 #include "Map.h"
+#include <math.h>
 #include <iostream>
 
 enum playerTag { player1, player2 };
@@ -37,9 +38,9 @@ public:
 
 	int textWidth, textHeight, frameWidth, frameHeight;
 
-	bool colisiones(SDL_Rect* A, SDL_Rect* B);
+	/*bool colisiones(SDL_Rect* A, SDL_Rect* B);
 
-	bool iteradorcolisiones();
+	bool iteradorcolisiones();*/
 
 	//int text2Width, text2Height, frame2Width, frame2Height;
 
