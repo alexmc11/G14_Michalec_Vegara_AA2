@@ -20,6 +20,7 @@ const std::string TEXT_TITLE = "TEXT_TITLE";
 const std::string TEXT_AUDIO = "TEXT_AUDIO";
 const std::string TEXT_VIDAS = "TEXT_VIDAS";
 const std::string TEXT_VIDAS2 = "TEXT_VIDAS2";
+const std::string TEXT_RETURNMENU = "TEXT_RETURNMENU";
 const std::string TEXT_VIDAS1NUM = "TEXT_VIDAS1NUM";
 const std::string TEXT_VIDAS2NUM = "TEXT_VIDAS2NUM";
 const std::string TEXT_POINTS1NUM = "TEXT_POINTS1NUM";

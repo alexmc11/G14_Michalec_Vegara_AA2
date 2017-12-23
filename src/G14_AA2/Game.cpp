@@ -15,6 +15,7 @@ Game::Game()
 	Text audio{ TEXT_AUDIO, "AUDIO ON/OFF", {255, 255, 255, 255}, 0, 0 };
 	Text vidas{ TEXT_VIDAS, "VIDAS P1: ",{ 0, 0, 255, 255 }, 0, 0 };
 	Text vidas2{ TEXT_VIDAS2, "VIDAS P2: ",{ 255, 0, 0, 255 }, 0, 0 };
+	Text returnmenu{ TEXT_RETURNMENU, "RETURN TO MENU", {255, 255, 255, 255}, 0, 0 };
 	
 
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
@@ -30,6 +31,7 @@ Game::Game()
 	Renderer::Instance()->LoadTextureText(GAME_OVERAUDIO, audio);
 	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS, vidas);
 	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, vidas2);
+	Renderer::Instance()->LoadTextureText(GAME_OVERAUDIO, returnmenu);
 	
 
 	//CREATE TEXTURES
@@ -115,6 +117,11 @@ void Game::GameLoop()
 					}
 					break;
 				case CurrentScene::PLEI:
+					delete scene;
+					scene = new Menu();
+					scene->state = GameState::MENU;
+					break;
+				case CurrentScene::RANQUINC:
 					delete scene;
 					scene = new Menu();
 					scene->state = GameState::MENU;
