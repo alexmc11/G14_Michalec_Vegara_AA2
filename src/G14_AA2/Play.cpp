@@ -48,6 +48,16 @@ void Play::Update()
 	medidaTextoVidasP2 = Renderer::Instance()->GetTextureSize(TEXT_VIDAS2NUM);
 	vidasP2Rect = { 640, 15, medidaTextoVidasP2.x, medidaTextoVidasP2.y };
 
+	Text pointsP1{ TEXT_POINTS1NUM, std::to_string(jugador1->points),{ 255, 255, 255, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, pointsP1);
+	medidaTextoPointsP1 = Renderer::Instance()->GetTextureSize(TEXT_POINTS1NUM);
+	pointsP1Rect = { 280, 15, medidaTextoPointsP1.x, medidaTextoPointsP1.y };
+
+	Text pointsP2{ TEXT_POINTS2NUM, std::to_string(jugador2->points),{ 255, 255, 255, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, pointsP2);
+	medidaTextoPointsP2 = Renderer::Instance()->GetTextureSize(TEXT_POINTS2NUM);
+	pointsP2Rect = { 420, 15, medidaTextoPointsP2.x, medidaTextoPointsP2.y };
+
 	if (audioStarted == false)
 	{
 		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
@@ -91,6 +101,8 @@ void Play::Draw()
 	Renderer::Instance()->PushImage(TEXT_TIME, TimeRect);
 	Renderer::Instance()->PushImage(TEXT_VIDAS1NUM, vidasP1Rect);
 	Renderer::Instance()->PushImage(TEXT_VIDAS2NUM, vidasP2Rect);
+	Renderer::Instance()->PushImage(TEXT_POINTS1NUM, pointsP1Rect);
+	Renderer::Instance()->PushImage(TEXT_POINTS2NUM, pointsP2Rect);
 	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
 	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
 	Renderer::Instance()->PushSprite(ITEMS_SPRITE, bonus.powerupTarget, bonus.powerupRect);
@@ -105,42 +117,42 @@ void Play::Draw()
 				jugador1->vidas--;
 				damage = true;
 			}
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeUp1) == 1)
+			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeUp1) == 1)
 			{
 				jugador1->vidas--;
 				damage = true;
 			}
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeUp2) == 1)
+			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeUp2) == 1)
 			{
 				jugador1->vidas--;
 				damage = true;
 			}
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeDown1) == 1)
+			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeDown1) == 1)
 			{
 				jugador1->vidas--;
 				damage = true;
 			}
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeDown2) == 1)
+			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeDown2) == 1)
 			{
 				jugador1->vidas--;
 				damage = true;
 			}
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeLeft1) == 1)
+			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeLeft1) == 1)
 			{
 				jugador1->vidas--;
 				damage = true;
 			}
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeLeft2) == 1)
+			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeLeft2) == 1)
 			{
 				jugador1->vidas--;
 				damage = true;
 			}
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeRight1) == 1)
+			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeRight1) == 1)
 			{
 				jugador1->vidas--;
 				damage = true;
 			}
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeRight2) == 1)
+			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeRight2) == 1)
 			{
 				jugador1->vidas--;
 				damage = true;
@@ -153,49 +165,49 @@ void Play::Draw()
 				jugador1->points += 100;
 				damage = true;
 			}
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeUp1) == 1)
+			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeUp1) == 1)
 			{
 				jugador2->vidas--;
 				jugador1->points += 100;
 				damage = true;
 			}
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeUp2) == 1)
+			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeUp2) == 1)
 			{
 				jugador2->vidas--;
 				jugador1->points += 100;
 				damage = true;
 			}
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeDown1) == 1)
+			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeDown1) == 1)
 			{
 				jugador2->vidas--;
 				jugador1->points += 100;
 				damage = true;
 			}
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeDown2) == 1)
+			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeDown2) == 1)
 			{
 				jugador2->vidas--;
 				jugador1->points += 100;
 				damage = true;
 			}
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeLeft1) == 1)
+			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeLeft1) == 1)
 			{
 				jugador2->vidas--;
 				jugador1->points += 100;
 				damage = true;
 			}
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeLeft2) == 1)
+			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeLeft2) == 1)
 			{
 				jugador2->vidas--;
 				jugador1->points += 100;
 				damage = true;
 			}
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeRight1) == 1)
+			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeRight1) == 1)
 			{
 				jugador2->vidas--;
 				jugador1->points += 100;
 				damage = true;
 			}
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeRight2) == 1)
+			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeRight2) == 1)
 			{
 				jugador2->vidas--;
 				jugador1->points += 100;
@@ -460,7 +472,7 @@ void Play::HandleEvents()
 		collisionMovement();
 	}
 	jugador2->movement();
-	if (timeDown < timeUp || jugador1->vidas == 0 || jugador2->vidas == 0)
+	if (timeDown < timeUp || jugador1->vidas <= 0 || jugador2->vidas <= 0)
 	{
 		std::cout << "Se acabó el tiempo";
 		Mix_CloseAudio();

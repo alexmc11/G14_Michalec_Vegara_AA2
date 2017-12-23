@@ -25,9 +25,9 @@ public:
 
 	HUD interfaz;
 
-	Text tiempo, vidasP1, vidasP2;
-	SDL_Rect TimeRect, vidasP1Rect, vidasP2Rect;
-	Vector2 medidaTextoTime, medidaTextoVidasP1, medidaTextoVidasP2;
+	Text tiempo, vidasP1, vidasP2, pointsP1, pointsP2;
+	SDL_Rect TimeRect, vidasP1Rect, vidasP2Rect, pointsP1Rect, pointsP2Rect;
+	Vector2 medidaTextoTime, medidaTextoVidasP1, medidaTextoVidasP2, medidaTextoPointsP1, medidaTextoPointsP2;
 
 	Levels level;
 	Map mapa;
