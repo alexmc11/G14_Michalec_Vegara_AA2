@@ -120,13 +120,13 @@ Map::Map()
 			//					muriyo.fixBrickRect.x = (coordenadas.second * 48) + 48; //
 			//					MurosFijos.push_back(muriyo);
 			//				}
-
+			//
 			//			}
 			//		}
 			//	}
 			//	for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Destructible"); pNode1; pNode1 = pNode1->next_sibling())
 			//	{
-
+			//
 			//		for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
 			//		{
 			//			aux = 0;
@@ -140,7 +140,7 @@ Map::Map()
 			//				else if (aux == 2)
 			//				{
 			//					valorJ = atoi(iAttr->value());
-
+			//
 			//					if (MurosDestruibles.size() < 33)
 			//					{
 			//						DestructibleBrick muriyo;
