@@ -16,10 +16,16 @@ Play::Play(Levels lvl)
 	if (level == lvl1)
 	{
 		mapa.ReadXML1();
+		jugador1->vidas = mapa.cantidadVidas;
+		jugador2->vidas = mapa.cantidadVidas;
+		timeDown = mapa.tiempo;
 	}
 	else
 	{
 		mapa.ReadXML2();
+		jugador1->vidas = mapa.cantidadVidas;
+		jugador2->vidas = mapa.cantidadVidas;
+		timeDown = mapa.tiempo;
 	}
 }
 
