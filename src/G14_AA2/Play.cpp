@@ -13,9 +13,6 @@ Play::Play(Levels lvl)
 	char buffer[50];
 	int texW = 0;
 	int textH = 0;
-
-
-
 }
 
 
@@ -102,6 +99,7 @@ void Play::Draw()
 		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
 		if (jugador1->hasimmunity == false && damage == false)
 		{
+#pragma region 1suicidio
 			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeCenter) == 1)
 			{
 				jugador1->vidas--;
@@ -147,6 +145,63 @@ void Play::Draw()
 				jugador1->vidas--;
 				damage = true;
 			}
+#pragma endregion
+#pragma region 1daña2
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeCenter) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeUp1) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeUp2) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeDown1) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeDown2) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeLeft1) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeLeft2) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeRight1) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeRight2) == 1)
+			{
+				jugador2->vidas--;
+				jugador1->points += 100;
+				damage = true;
+			}
+#pragma endregion
 		}
 		for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
 		{
@@ -154,41 +209,49 @@ void Play::Draw()
 			{
 				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
 				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+				jugador1->points += 15;
 			}
-			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeUp2) == 1)
+			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeUp2) == 1)
 			{
 				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
 				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+				jugador1->points += 15;
 			}
-			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeDown1) == 1)
+			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeDown1) == 1)
 			{
 				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
 				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+				jugador1->points += 15;
 			}
-			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeDown2) == 1)
+			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeDown2) == 1)
 			{
 				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
 				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+				jugador1->points += 15;
 			}
-			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeLeft1) == 1)
+			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeLeft1) == 1)
 			{
 				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
 				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+				jugador1->points += 15;
 			}
-			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeLeft2) == 1)
+			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeLeft2) == 1)
 			{
 				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
 				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+				jugador1->points += 15;
 			}
-			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeRight1) == 1)
+			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeRight1) == 1)
 			{
 				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
 				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+				jugador1->points += 15;
 			}
-			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeRight2) == 1)
+			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeRight2) == 1)
 			{
 				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
 				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
+				jugador1->points += 15;
 			}
 		}
 		frameTime++;

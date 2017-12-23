@@ -16,6 +16,9 @@ Map::Map()
 	int aux2 = 0;
 	int valorI = 0;
 	int valorJ = 0;
+	std::pair<int, int> coordenadas;
+	std::string nombreAttr;
+	std::string nombreCoord;
 	rapidxml::xml_node<> *pRoot = doc.first_node();
 	rapidxml::xml_attribute<> *iAttr;
 	rapidxml::xml_attribute<> *jAttr;
@@ -23,104 +26,141 @@ Map::Map()
 	for (rapidxml::xml_node<> *pNode = pRoot->first_node("Level"); pNode; pNode = pNode->next_sibling())
 	{
 		std::cout << pNode->name() << ':' << '\n';
+		
 		for (rapidxml::xml_attribute<> *iAttr1 = pNode->first_attribute(); iAttr1; iAttr1 = iAttr1->next_attribute())
 		{
-			aux2++;
-			if (aux2 == 1)
+			nombreAttr = iAttr1->name();
+			if (nombreAttr == "id")
 			{
 				levelID = atoi(iAttr1->value());
-				std::cout << "Level ID: " << levelID << "\n";
 			}
-			else if (aux2 == 2)
+			if (levelID == 1)
 			{
-				tiempo = atoi(iAttr1->value());
-				std::cout << "Tiempo: " << tiempo << "\n";
-			}
-			else if (aux2 == 3)
-			{
-				cantidadVidas = atoi(iAttr1->value());
-				std::cout << "Vidas: " << cantidadVidas << "\n";
-			}
-			else if (aux2 == 4)
-			{
-				std::cout << "Paco: " << iAttr1->value() << "\n";
-			}
-		}
-		for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed"); pNode1; pNode1 = pNode1->next_sibling())
-		{
-			
-			for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
-			{
-				aux = 0;
-				for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+				for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed"); pNode1; pNode1 = pNode1->next_sibling())
 				{
-					aux++;
-					if (aux == 1)
+					for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
 					{
-						valorI = atoi(iAttr->value());
+						for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+						{
+							nombreCoord = iAttr->name();
+							if (nombreCoord == "i")
+							{
+								coordenadas.first = atoi(iAttr->value());
+							}
+							else if (nombreCoord == "j")
+							{
+								FixBrick muriyo;
+								coordenadas.second = atoi(iAttr->value());
+								muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
+								muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
+								muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
+								muriyo.fixBrickRect.y = (coordenadas.first * 48) + 80 + 48;
+								muriyo.fixBrickRect.x = (coordenadas.second * 48) + 48; //
+								MurosFijos.push_back(muriyo);
+							}
+								
+						}
 					}
-					else if (aux == 2)
+				}
+				for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Destructible"); pNode1; pNode1 = pNode1->next_sibling())
+				{
+
+					for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
 					{
-						valorJ = atoi(iAttr->value());
-						
-						if(MurosFijos.size() < 30)
-						{
-							FixBrick muriyo;
-							muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
-							muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
-							muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
-							muriyo.fixBrickRect.y = (valorI * 48) + 80 + 48;
-							muriyo.fixBrickRect.x = (valorJ * 48) + 48; //
-							MurosFijos.push_back(muriyo);
-						}
-						else if(MurosFijos2.size() < 16)
-						{
-							FixBrick muriyo2;
-							muriyo2.fixBrickTarget.x = muriyo2.fixBrickTarget.y = 0;
-							muriyo2.fixBrickRect.w = muriyo2.fixBrickRect.h = 48;
-							muriyo2.fixBrickTarget.w = muriyo2.fixBrickTarget.h = 48;
-							muriyo2.fixBrickRect.y = (valorI * 48) + 80 + 48;
-							muriyo2.fixBrickRect.x = (valorJ * 48) + 48; //
-							MurosFijos2.push_back(muriyo2);
-						}
 						aux = 0;
+						for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+						{
+							aux++;
+							if (aux == 1)
+							{
+								valorI = atoi(iAttr->value());
+							}
+							else if (aux == 2)
+							{
+								valorJ = atoi(iAttr->value());
+
+								if (MurosDestruibles.size() < 33)
+								{
+									DestructibleBrick muriyo;
+									muriyo.destructibleBrickTarget.x = 48;
+									muriyo.destructibleBrickTarget.y = 0;
+									muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
+									muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
+									muriyo.destructibleBrickRect.y = (valorI * 48) + 80 + 48;
+									muriyo.destructibleBrickRect.x = (valorJ * 48) + 48; //
+									MurosDestruibles.push_back(muriyo);
+								}
+								aux = 0;
+							}
+						}
 					}
 				}
 			}
-		}
-		for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Destructible"); pNode1; pNode1 = pNode1->next_sibling())
-		{
+			//if (levelID == 2)
+			//{
+			//	for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed"); pNode1; pNode1 = pNode1->next_sibling())
+			//	{
+			//		for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
+			//		{
+			//			for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+			//			{
+			//				nombreCoord = iAttr->name();
+			//				if (nombreCoord == "i")
+			//				{
+			//					coordenadas.first = atoi(iAttr->value());
+			//				}
+			//				else if (nombreCoord == "j")
+			//				{
+			//					FixBrick muriyo;
+			//					coordenadas.second = atoi(iAttr->value());
+			//					muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
+			//					muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
+			//					muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
+			//					muriyo.fixBrickRect.y = (coordenadas.first * 48) + 80 + 48;
+			//					muriyo.fixBrickRect.x = (coordenadas.second * 48) + 48; //
+			//					MurosFijos.push_back(muriyo);
+			//				}
 
-			for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
-			{
-				aux = 0;
-				for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
-				{
-					aux++;
-					if (aux == 1)
-					{
-						valorI = atoi(iAttr->value());
-					}
-					else if (aux == 2)
-					{
-						valorJ = atoi(iAttr->value());
+			//			}
+			//		}
+			//	}
+			//	for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Destructible"); pNode1; pNode1 = pNode1->next_sibling())
+			//	{
 
-						if (MurosDestruibles.size() < 33)
-						{
-							DestructibleBrick muriyo;
-							muriyo.destructibleBrickTarget.x = 48;
-							muriyo.destructibleBrickTarget.y = 0;
-							muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
-							muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
-							muriyo.destructibleBrickRect.y = (valorI * 48) + 80 + 48;
-							muriyo.destructibleBrickRect.x = (valorJ * 48) + 48; //
-							MurosDestruibles.push_back(muriyo);
-						}
-						aux = 0;
-					}
-				}
-			}
+			//		for (rapidxml::xml_node<> *pNode2 = pNode1->first_node("Wall"); pNode2; pNode2 = pNode2->next_sibling())
+			//		{
+			//			aux = 0;
+			//			for (rapidxml::xml_attribute<> *iAttr = pNode2->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
+			//			{
+			//				aux++;
+			//				if (aux == 1)
+			//				{
+			//					valorI = atoi(iAttr->value());
+			//				}
+			//				else if (aux == 2)
+			//				{
+			//					valorJ = atoi(iAttr->value());
+
+			//					if (MurosDestruibles.size() < 33)
+			//					{
+			//						DestructibleBrick muriyo;
+			//						muriyo.destructibleBrickTarget.x = 48;
+			//						muriyo.destructibleBrickTarget.y = 0;
+			//						muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
+			//						muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
+			//						muriyo.destructibleBrickRect.y = (valorI * 48) + 80 + 48;
+			//						muriyo.destructibleBrickRect.x = (valorJ * 48) + 48; //
+			//						MurosDestruibles.push_back(muriyo);
+			//					}
+			//					aux = 0;
+			//				}
+			//			}
+			//		}
+			//	}
+			//}
 		}
+		
+		
 		std::cout << "\n";
 	}
 }

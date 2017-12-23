@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "Brick.h"
 #include "Bomb.h"
+#include "Menu.h"
 #include "../../dep/inc/XML/rapidxml.hpp"
 #include "../../dep/inc/XML/rapidxml_utils.hpp"
 #include "../../dep/inc/XML/rapidxml_iterators.hpp"
@@ -45,6 +46,11 @@ public:
 	void DrawBricks2();
 
 	~Map();
+
+	Menu mainmenu;
+
+	bool level1 = false;
+	bool level2 = false;
 
 	int levelID = 0;
 	int tiempo = 0;
