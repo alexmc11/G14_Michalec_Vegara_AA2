@@ -1,6 +1,8 @@
 #pragma once
 #include "Scene.h"
 #include <iostream>
+#include <fstream>
+#include <algorithm>
 class Ranking : public Scene
 {
 public:
