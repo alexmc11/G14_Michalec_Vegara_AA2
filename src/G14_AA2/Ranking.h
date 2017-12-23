@@ -21,6 +21,9 @@ public:
 	static bool comparePoints(const playerData &a, const playerData &b);
 	bool returnMenu;
 	Vector2 medidaTextMenu = Renderer::Instance()->GetTextureSize(TEXT_RETURNMENU);
+	void ponerNombre(int puntos);
+	std::vector<playerData> Highscores;
+	std::vector<playerData> ReadScores;
 	void Update() override;
 	void Draw() override;
 	void HandleEvents() override;

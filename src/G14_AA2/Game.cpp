@@ -118,8 +118,8 @@ void Game::GameLoop()
 					break;
 				case CurrentScene::PLEI:
 					delete scene;
-					scene = new Menu();
-					scene->state = GameState::MENU;
+					scene = new Ranking();
+					scene->state = GameState::RANKING;
 					break;
 				case CurrentScene::RANQUINC:
 					delete scene;

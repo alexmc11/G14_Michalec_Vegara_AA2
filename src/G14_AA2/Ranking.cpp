@@ -8,8 +8,6 @@ Ranking::Ranking()
 	std::string auxname;
 	int auxscore = 0;
 	playerData aux;
-	std::vector<playerData> Highscores;
-	std::vector<playerData> ReadScores;
 	playerData Player1{ "Satan", 10 };
 	playerData Player2{ "Bulma", 20 };
 	playerData Player3{ "Roshi", 30 };
@@ -58,7 +56,6 @@ Ranking::Ranking()
 		}
 	}
 	ReadScores.erase(ReadScores.end()-1);
-
 	
 	std::sort(ReadScores.begin(), ReadScores.end(), comparePoints);
 	
@@ -76,6 +73,17 @@ bool Ranking::comparePoints(const playerData &a, const playerData &b)
 
 Ranking::~Ranking()
 {
+}
+
+void Ranking::ponerNombre(int puntos)
+{
+	std::string nombre;
+	std::cout << "Introduce tu nombre: ";
+	std::cin >> nombre;
+	playerData currentPlayer;
+	currentPlayer.name = nombre;
+	currentPlayer.score = puntos;
+	ReadScores.push_back(currentPlayer);
 }
 
 void Ranking::Update()

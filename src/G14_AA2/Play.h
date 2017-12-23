@@ -4,6 +4,7 @@
 #include "HUD.h"
 #include "Map.h"
 #include "PowerUp.h"
+#include "Ranking.h"
 #include <SDL_mixer.h>
 #include <time.h>
 #include <sstream>
@@ -34,6 +35,7 @@ public:
 	Levels level;
 	Map mapa;
 	PowerUp *bonus;
+	Ranking clasif;
 	bool power;
 	bool speedUp;
 	char buffer[50];
