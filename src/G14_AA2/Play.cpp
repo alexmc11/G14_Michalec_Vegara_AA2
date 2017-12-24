@@ -4,9 +4,11 @@
 
 Play::Play(Levels lvl)
 {
-	lives1 = { 45, 15, medidaVidas.x, medidaVidas.y };
-	lives2 = { 500, 15, medidaVidas2.x, medidaVidas2.y };
+	lives1 = { 45, 15, LivesTextSize.x, LivesTextSize.y };
+	lives2 = { 500, 15, LivesTextSize2.x, LivesTextSize2.y };
+	finalRect = { 50, 330, FinalTextSize.x, FinalTextSize.y };
 	bgPlay = { 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
+
 	Player1 = new Character(player1);
 	Player2 = new Character(player2);
 	lastTime = clock();
@@ -895,6 +897,7 @@ void Play::powerUp(int posX, int posY)
 
 void Play::HandleEvents()
 {
+
 	Player1->movement();
 
 	collisionMovement();
@@ -906,6 +909,7 @@ void Play::HandleEvents()
 	if (timeDown < timeUp || Player1->lives <= 0 || Player2->lives <= 0)
 	{
 		Renderer::Instance()->Clear();
+		Renderer::Instance()->PushImage(FINALTEXT, finalRect);
 		Renderer::Instance()->Render();
 		Mix_CloseAudio();
 		int points;

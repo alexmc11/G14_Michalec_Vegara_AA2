@@ -32,11 +32,12 @@ public:
 	Character *Player2;
 
 	Text time, livesP1, livesP2, pointsP1, pointsP2;
-	SDL_Rect bgPlay, lives1, lives2, TimeRect, livesP1Rect, livesP2Rect, pointsP1Rect, pointsP2Rect;
+	SDL_Rect bgPlay, lives1, lives2, TimeRect, livesP1Rect, livesP2Rect, pointsP1Rect, pointsP2Rect, finalRect;
 	Vector2 TimeTextSize, LivesTextSizeP1, LivesTextSizeP2, PointsTextSizeP1, PointsTextSizeP2;
 
-	Vector2 medidaVidas = Renderer::Instance()->GetTextureSize(TEXT_LIVES);
-	Vector2 medidaVidas2 = Renderer::Instance()->GetTextureSize(TEXT_LIVES2);
+	Vector2 LivesTextSize = Renderer::Instance()->GetTextureSize(TEXT_LIVES);
+	Vector2 LivesTextSize2 = Renderer::Instance()->GetTextureSize(TEXT_LIVES2);
+	Vector2 FinalTextSize = Renderer::Instance()->GetTextureSize(FINALTEXT);
 
 	Levels level;
 

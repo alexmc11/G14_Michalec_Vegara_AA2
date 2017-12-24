@@ -20,6 +20,7 @@ const std::string TEXT_TITLE = "TEXT_TITLE";
 const std::string TEXT_AUDIO = "TEXT_AUDIO";
 const std::string TEXT_LIVES = "TEXT_LIVES";
 const std::string TEXT_LIVES2 = "TEXT_LIVES2";
+const std::string FINALTEXT = "FINALTEXT";
 const std::string NAME1 = "NAME1";
 const std::string NAME2 = "NAME2";
 const std::string NAME3 = "NAME3";
@@ -61,6 +62,7 @@ const std::string PATH_AUDIOGAME = "../../res/au/game_theme.mp3";
 const std::string PATH_AUDIOMENU = "../../res/au/menu.mp3";
 
 const std::string GAME_OVER80 = "GAME_OVER80";
+const std::string GAME_OVER70 = "GAME_OVER70";
 const std::string GAME_OVERAUDIO = "GAME_OVERAUDIO";
 const std::string GAME_OVERTITLE = "GAME_OVERTITLE";
 const std::string GAME_OVERLIVES = "GAME_OVERLIVES";

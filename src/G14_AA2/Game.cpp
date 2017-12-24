@@ -17,6 +17,7 @@ Game::Game()
 	Text vidas2{ TEXT_LIVES2, "LIVES P2: ",{ 255, 0, 0, 255 }, 0, 0 };
 	Text returnmenu{ TEXT_RETURNMENU, "RETURN TO MENU", {255, 255, 255, 255}, 0, 0 };
 	Text highscores{ TEXT_RANKING2, "HIGHSCORES",{ 255, 255, 255, 255 }, 0, 0 };
+	Text final{ FINALTEXT, "WRITE YOUR NAME IN CONSOLE",{ 255, 255, 255, 255 }, 0, 0 };
 	
 
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
@@ -24,6 +25,7 @@ Game::Game()
 	Renderer::Instance()->LoadFont({ GAME_OVERAUDIO, PATH_FONT, 70 });
 	Renderer::Instance()->LoadFont({ GAME_OVERLIVES, PATH_FONT, 70 });
 	Renderer::Instance()->LoadFont({ GAME_OVERLIVES2, PATH_FONT, 70 });
+	Renderer::Instance()->LoadFont({ GAME_OVER70, PATH_FONT, 100 });
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, play1);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, play2);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, exit);
@@ -34,6 +36,7 @@ Game::Game()
 	Renderer::Instance()->LoadTextureText(GAME_OVERLIVES2, vidas2);
 	Renderer::Instance()->LoadTextureText(GAME_OVERAUDIO, returnmenu);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, highscores);
+	Renderer::Instance()->LoadTextureText(GAME_OVER70, final);
 	
 
 	//CREATE TEXTURES
