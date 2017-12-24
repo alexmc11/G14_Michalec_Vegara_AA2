@@ -62,7 +62,7 @@ Ranking::Ranking()
 	
 	for (int i = 0; i < ReadScores.size(); i++)
 	{
-		std::cout << "Player " << i+1 << " name: " << ReadScores[i].name << std::endl;
+		std::cout << std::endl << "Player " << i+1 << " name: " << ReadScores[i].name << std::endl;
 		std::cout << "Player " << i+1 << " score: " << ReadScores[i].score << std::endl;
 	}
 
