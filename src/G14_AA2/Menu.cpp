@@ -5,12 +5,12 @@
 Menu::Menu()
 {
 	bgMenu = { 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
-	Play1textRect = {20, 250, medidaTextoPlay1.x, medidaTextoPlay1.y };
-	Play2textRect = { 20, 350, medidaTextoPlay2.x, medidaTextoPlay2.y };
-	RankingTextRect = { 20, 450, medidaTextoRanking.x, medidaTextoRanking.y };
-	ExitTextRect = { 20, 550, medidaTextoExit.x, medidaTextoExit.y };
-	TitleTextRect = { 20, 100, medidaTextoTitle.x, medidaTextoTitle.y };
-	AudioTextRect = { 500, 650, medidaTextoAudio.x, medidaTextoAudio.y };
+	Play1textRect = {20, 250, PlayTextSize1.x, PlayTextSize1.y };
+	Play2textRect = { 20, 350, PlayTextSize2.x, PlayTextSize2.y };
+	RankingTextRect = { 20, 450, RankingTextSize.x, RankingTextSize.y };
+	ExitTextRect = { 20, 550, ExitTextSize.x, ExitTextSize.y };
+	TitleTextRect = { 20, 100, TitleTextSize.x, TitleTextSize.y };
+	AudioTextRect = { 500, 650, AudioTextSize.x, AudioTextSize.y };
 	audioStarted = false;
 	mute = false;
 	bool jugar1 = false;
@@ -59,45 +59,40 @@ void Menu::HandleEvents()
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 		case SDL_MOUSEMOTION:
-			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoPlay1.x) + 20 && event.motion.y >= 250 && event.motion.y <= medidaTextoPlay1.y + 250)
+			if (event.motion.x >= 20 && event.motion.x <= (PlayTextSize1.x) + 20 && event.motion.y >= 250 && event.motion.y <= PlayTextSize1.y + 250)
 			{
-				std::cout << "Plei1";
-				jugar1 = true;
+				play1 = true;
 			}
 			else
 			{
-				jugar1 = false;
+				play1 = false;
 			}
-			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoPlay1.x) + 20 && event.motion.y >= 350 && event.motion.y <= medidaTextoPlay1.y + 350)
+			if (event.motion.x >= 20 && event.motion.x <= (PlayTextSize2.x) + 20 && event.motion.y >= 350 && event.motion.y <= PlayTextSize2.y + 350)
 			{
-				std::cout << "Plei2";
-				jugar2 = true;
+				play2 = true;
 			}
 			else
 			{
-				jugar2 = false;
+				play2 = false;
 			}
-			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoRanking.x) + 20 && event.motion.y >= 450 && event.motion.y <= medidaTextoRanking.y + 450)
+			if (event.motion.x >= 20 && event.motion.x <= (RankingTextSize.x) + 20 && event.motion.y >= 450 && event.motion.y <= RankingTextSize.y + 450)
 			{
-				std::cout << "Ranquinc";
 				ranking = true;
 			}
 			else
 			{
 				ranking = false;
 			}
-			if (event.motion.x >= 20 && event.motion.x <= (medidaTextoExit.x) + 20 && event.motion.y >= 550 && event.motion.y <= medidaTextoExit.y + 550)
+			if (event.motion.x >= 20 && event.motion.x <= (ExitTextSize.x) + 20 && event.motion.y >= 550 && event.motion.y <= ExitTextSize.y + 550)
 			{
-				std::cout << "Ecsit";
-				salir = true;
+				exit = true;
 			}
 			else
 			{
-				salir = false;
+				exit = false;
 			}
-			if (event.motion.x >= 500 && event.motion.x <= (medidaTextoAudio.x) + 500 && event.motion.y >= 650 && event.motion.y <= medidaTextoAudio.y + 650)
+			if (event.motion.x >= 500 && event.motion.x <= (AudioTextSize.x) + 500 && event.motion.y >= 650 && event.motion.y <= AudioTextSize.y + 650)
 			{
-				std::cout << "Audi";
 				mute = true;
 			}
 			else
@@ -107,14 +102,14 @@ void Menu::HandleEvents()
 			
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			if (jugar1 == true)
+			if (play1 == true)
 			{
 				
 				Mix_CloseAudio();
 				lvl = Level::LVL1;
 				state = GameState::GOTO;
 			}
-			if (jugar2 == true)
+			if (play2 == true)
 			{
 				Mix_CloseAudio();
 				lvl = Level::LVL2;
@@ -125,7 +120,7 @@ void Menu::HandleEvents()
 				lvl = Level::RANK;
 				state = GameState::GOTO;
 			}
-			if (salir == true)
+			if (exit == true)
 			{
 				state = GameState::EXIT;
 			}
@@ -133,14 +128,14 @@ void Menu::HandleEvents()
 			{
 				Mix_PauseMusic();
 				muted = true;
-				std::cout << "muted";
+				std::cout << "muted" << std::endl;
 				done = true;
 			}
 			if (mute == true && muted == true &&  done == false)
 			{
 				Mix_ResumeMusic();
 				muted = false;
-				std::cout << "unmuted";
+				std::cout << "unmuted" << std::endl;
 				done = true;
 			}
 		default:;

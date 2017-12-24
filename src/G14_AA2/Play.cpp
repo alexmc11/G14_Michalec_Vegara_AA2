@@ -4,9 +4,11 @@
 
 Play::Play(Levels lvl)
 {
+	lives1 = { 45, 15, medidaVidas.x, medidaVidas.y };
+	lives2 = { 500, 15, medidaVidas2.x, medidaVidas2.y };
 	bgPlay = { 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
-	jugador1 = new Character(player1);
-	jugador2 = new Character(player2);
+	Player1 = new Character(player1);
+	Player2 = new Character(player2);
 	lastTime = clock();
 	audioStarted = false;
 	level = lvl;
@@ -16,17 +18,17 @@ Play::Play(Levels lvl)
 	int textH = 0;
 	if (level == lvl1)
 	{
-		mapa.ReadXML1();
-		jugador1->vidas = mapa.cantidadVidas;
-		jugador2->vidas = mapa.cantidadVidas;
-		timeDown = mapa.tiempo;
+		map.ReadXML1();
+		Player1->lives = map.livesNum;
+		Player2->lives = map.livesNum;
+		timeDown = map.time;
 	}
 	else
 	{
-		mapa.ReadXML2();//
-		jugador1->vidas = mapa.cantidadVidas;
-		jugador2->vidas = mapa.cantidadVidas;
-		timeDown = mapa.tiempo;
+		map.ReadXML2();
+		Player1->lives = map.livesNum;
+		Player2->lives = map.livesNum;
+		timeDown = map.time;
 	}
 }
 
@@ -49,29 +51,29 @@ void Play::Update()
 	//std::cout << timeDown << std::endl;
 
 	Text tiempo{ TEXT_TIME, std::to_string((int)timeDown),{ 127, 0, 255, 255 }, 0, 0 };
-	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, tiempo);
-	medidaTextoTime = Renderer::Instance()->GetTextureSize(TEXT_TIME);
-	TimeRect = { 345, 15, medidaTextoTime.x, medidaTextoTime.y };
+	Renderer::Instance()->LoadTextureText(GAME_OVERLIVES2, tiempo);
+	TimeTextSize = Renderer::Instance()->GetTextureSize(TEXT_TIME);
+	TimeRect = { 345, 15, TimeTextSize.x, TimeTextSize.y };
 
-	Text vidasP1{ TEXT_VIDAS1NUM, std::to_string(jugador1->vidas),{ 0, 0, 255, 255 }, 0, 0 };
-	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, vidasP1);
-	medidaTextoVidasP1 = Renderer::Instance()->GetTextureSize(TEXT_VIDAS1NUM);
-	vidasP1Rect = { 180, 15, medidaTextoVidasP1.x, medidaTextoVidasP1.y };
+	Text vidasP1{ TEXT_LIVES1NUM, std::to_string(Player1->lives),{ 0, 0, 255, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERLIVES2, vidasP1);
+	LivesTextSizeP1 = Renderer::Instance()->GetTextureSize(TEXT_LIVES1NUM);
+	livesP1Rect = { 180, 15, LivesTextSizeP1.x, LivesTextSizeP1.y };
 
-	Text vidasP2{ TEXT_VIDAS2NUM, std::to_string(jugador2->vidas),{ 255, 0, 0, 255 }, 0, 0 };
-	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, vidasP2);
-	medidaTextoVidasP2 = Renderer::Instance()->GetTextureSize(TEXT_VIDAS2NUM);
-	vidasP2Rect = { 640, 15, medidaTextoVidasP2.x, medidaTextoVidasP2.y };
+	Text vidasP2{ TEXT_LIVES2NUM, std::to_string(Player2->lives),{ 255, 0, 0, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERLIVES2, vidasP2);
+	LivesTextSizeP2 = Renderer::Instance()->GetTextureSize(TEXT_LIVES2NUM);
+	livesP2Rect = { 640, 15, LivesTextSizeP2.x, LivesTextSizeP2.y };
 
-	Text pointsP1{ TEXT_POINTS1NUM, std::to_string(jugador1->points),{ 255, 255, 255, 255 }, 0, 0 };
-	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, pointsP1);
-	medidaTextoPointsP1 = Renderer::Instance()->GetTextureSize(TEXT_POINTS1NUM);
-	pointsP1Rect = { 280, 15, medidaTextoPointsP1.x, medidaTextoPointsP1.y };
+	Text pointsP1{ TEXT_POINTS1NUM, std::to_string(Player1->points),{ 255, 255, 255, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERLIVES2, pointsP1);
+	PointsTextSizeP1 = Renderer::Instance()->GetTextureSize(TEXT_POINTS1NUM);
+	pointsP1Rect = { 280, 15, PointsTextSizeP1.x, PointsTextSizeP1.y };
 
-	Text pointsP2{ TEXT_POINTS2NUM, std::to_string(jugador2->points),{ 255, 255, 255, 255 }, 0, 0 };
-	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, pointsP2);
-	medidaTextoPointsP2 = Renderer::Instance()->GetTextureSize(TEXT_POINTS2NUM);
-	pointsP2Rect = { 420, 15, medidaTextoPointsP2.x, medidaTextoPointsP2.y };
+	Text pointsP2{ TEXT_POINTS2NUM, std::to_string(Player2->points),{ 255, 255, 255, 255 }, 0, 0 };
+	Renderer::Instance()->LoadTextureText(GAME_OVERLIVES2, pointsP2);
+	PointsTextSizeP2 = Renderer::Instance()->GetTextureSize(TEXT_POINTS2NUM);
+	pointsP2Rect = { 420, 15, PointsTextSizeP2.x, PointsTextSizeP2.y };
 
 	if (audioStarted == false)
 	{
@@ -81,23 +83,23 @@ void Play::Update()
 		Mix_PlayMusic(soundtrack, -1);
 		audioStarted = true;
 	}
-	if (jugador1->hasbomb == true)
+	if (Player1->hasbomb == true)
 	{
 		timer += 0.05;
 		if (timer > 12)
 		{
-			jugador1->explode = true;
+			Player1->explode = true;
 			timer = 0;
 		}
 	}
 
-	if (jugador1->hasimmunity == true)
+	if (Player1->hasimmunity == true)
 	{
 		timer2 += 0.05;
 		if (timer2 > 30)
 		{
 			std::cout << "immunity reset" << std::endl;
-			jugador1->hasimmunity = false;
+			Player1->hasimmunity = false;
 			timer2 = 0;
 		}
 	}
@@ -108,7 +110,7 @@ void Play::Update()
 		if (timer3 > 30)
 		{
 			std::cout << "speed reset" << std::endl;
-			jugador1->speed = 2;
+			Player1->speed = 2;
 			speedUp = false;
 			timer3 = 0;
 		}
@@ -120,47 +122,41 @@ void Play::Draw()
 	Renderer::Instance()->Clear();
 	Renderer::Instance()->PushImage(PLAY_BG, bgPlay);
 
-	if (level == lvl1)
+	map.DrawFixBricks();
+	map.DrawDesBricks();
+
+	if (Player1->hasbomb == true)
 	{
-		mapa.DrawMap1();
-		mapa.DrawBricks1();
-	}
-	else
-	{
-		mapa.DrawMap1();
-		mapa.DrawBricks1();
-	}
-	if (jugador1->hasbomb == true)
-	{
-		jugador1->bomba->placeBomb();
+		Player1->bomb->placeBomb();
 	}
 
-	interfaz.DrawHud();
 	Renderer::Instance()->PushImage(TEXT_TIME, TimeRect);
-	Renderer::Instance()->PushImage(TEXT_VIDAS1NUM, vidasP1Rect);
-	Renderer::Instance()->PushImage(TEXT_VIDAS2NUM, vidasP2Rect);
+	Renderer::Instance()->PushImage(TEXT_LIVES1NUM, livesP1Rect);
+	Renderer::Instance()->PushImage(TEXT_LIVES2NUM, livesP2Rect);
 	Renderer::Instance()->PushImage(TEXT_POINTS1NUM, pointsP1Rect);
 	Renderer::Instance()->PushImage(TEXT_POINTS2NUM, pointsP2Rect);
-	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, jugador1->playerTarget, jugador1->playerRect);
-	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, jugador2->playerTarget, jugador2->playerRect);
+	Renderer::Instance()->PushImage(TEXT_LIVES, lives1);
+	Renderer::Instance()->PushImage(TEXT_LIVES2, lives2);
+	Renderer::Instance()->PushSprite(PLAYER1_SPRITE, Player1->playerTarget, Player1->playerRect);
+	Renderer::Instance()->PushSprite(PLAYER2_SPRITE, Player2->playerTarget, Player2->playerRect);
 	if (power == true)
 	{
 		if (bonus->active == true)
 		{
 			bonus->drawPowerUp();
-			if (colisiones(&jugador1->playerRect, &bonus->powerupRect) == 1)
+			if (collision(&Player1->playerRect, &bonus->powerupRect) == 1)
 			{
 				if (bonus->powerUpType == 1 && speedUp != true)
 				{
 					std::cout << "speed active" << std::endl;
-					jugador1->speed*=2;
+					Player1->speed*=2;
 					speedUp = true;
 				}
 				if (bonus->powerUpType == 2)
 				{
 					std::cout << "immunity active" << std::endl;
 					timer2 = 0;
-					jugador1->hasimmunity = true;
+					Player1->hasimmunity = true;
 				}
 				bonus->active = false;
 				delete bonus;
@@ -168,164 +164,164 @@ void Play::Draw()
 		}
 		
 	}
-	if (jugador1->explode == true)
+	if (Player1->explode == true)
 	{
-		jugador1->bomba->bombExplode(jugador1->bomba->posicionX, jugador1->bomba->posicionY);
-		if (jugador1->hasimmunity == false && damage == false)
+		Player1->bomb->bombExplode(Player1->bomb->PosX, Player1->bomb->PosY);
+		if (Player1->hasimmunity == false && damage == false)
 		{
 #pragma region 1suicidio
-			if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeCenter) == 1)
+			if (collision(&Player1->playerRect, &Player1->bomb->explodeCenter) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
-			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeUp1) == 1)
+			else if (collision(&Player1->playerRect, &Player1->bomb->explodeUp1) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
-			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeUp2) == 1)
+			else if (collision(&Player1->playerRect, &Player1->bomb->explodeUp2) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
-			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeDown1) == 1)
+			else if (collision(&Player1->playerRect, &Player1->bomb->explodeDown1) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
-			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeDown2) == 1)
+			else if (collision(&Player1->playerRect, &Player1->bomb->explodeDown2) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
-			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeLeft1) == 1)
+			else if (collision(&Player1->playerRect, &Player1->bomb->explodeLeft1) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
-			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeLeft2) == 1)
+			else if (collision(&Player1->playerRect, &Player1->bomb->explodeLeft2) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
-			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeRight1) == 1)
+			else if (collision(&Player1->playerRect, &Player1->bomb->explodeRight1) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
-			else if (colisiones(&jugador1->playerRect, &jugador1->bomba->explodeRight2) == 1)
+			else if (collision(&Player1->playerRect, &Player1->bomb->explodeRight2) == 1)
 			{
-				jugador1->vidas--;
+				Player1->lives--;
 				damage = true;
 			}
 #pragma endregion
 #pragma region 1daña2
-			if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeCenter) == 1)
+			if (collision(&Player2->playerRect, &Player1->bomb->explodeCenter) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
-			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeUp1) == 1)
+			else if (collision(&Player2->playerRect, &Player1->bomb->explodeUp1) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
-			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeUp2) == 1)
+			else if (collision(&Player2->playerRect, &Player1->bomb->explodeUp2) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
-			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeDown1) == 1)
+			else if (collision(&Player2->playerRect, &Player1->bomb->explodeDown1) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
-			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeDown2) == 1)
+			else if (collision(&Player2->playerRect, &Player1->bomb->explodeDown2) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
-			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeLeft1) == 1)
+			else if (collision(&Player2->playerRect, &Player1->bomb->explodeLeft1) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
-			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeLeft2) == 1)
+			else if (collision(&Player2->playerRect, &Player1->bomb->explodeLeft2) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
-			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeRight1) == 1)
+			else if (collision(&Player2->playerRect, &Player1->bomb->explodeRight1) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
-			else if (colisiones(&jugador2->playerRect, &jugador1->bomba->explodeRight2) == 1)
+			else if (collision(&Player2->playerRect, &Player1->bomb->explodeRight2) == 1)
 			{
-				jugador2->vidas--;
-				jugador1->points += 100;
+				Player2->lives--;
+				Player1->points += 100;
 				damage = true;
 			}
 #pragma endregion
 		}
-		for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
+		for (int i = 0; i < map.DesBricks.size(); i++)
 		{
-			if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeUp1) == 1)
+			if (collision(&map.DesBricks[i].desBrickRect, &Player1->bomb->explodeUp1) == 1)
 			{
-				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
-				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
-				jugador1->points += 15;
+				powerUp(map.DesBricks[i].desBrickRect.x, map.DesBricks[i].desBrickRect.y);
+				map.DesBricks.erase(map.DesBricks.begin() + i);
+				Player1->points += 15;
 			}
-			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeUp2) == 1)
+			else if (collision(&map.DesBricks[i].desBrickRect, &Player1->bomb->explodeUp2) == 1)
 			{
-				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
-				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
-				jugador1->points += 15;
+				powerUp(map.DesBricks[i].desBrickRect.x, map.DesBricks[i].desBrickRect.y);
+				map.DesBricks.erase(map.DesBricks.begin() + i);
+				Player1->points += 15;
 			}
-			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeDown1) == 1)
+			else if (collision(&map.DesBricks[i].desBrickRect, &Player1->bomb->explodeDown1) == 1)
 			{
-				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
-				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
-				jugador1->points += 15;
+				powerUp(map.DesBricks[i].desBrickRect.x, map.DesBricks[i].desBrickRect.y);
+				map.DesBricks.erase(map.DesBricks.begin() + i);
+				Player1->points += 15;
 			}
-			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeDown2) == 1)
+			else if (collision(&map.DesBricks[i].desBrickRect, &Player1->bomb->explodeDown2) == 1)
 			{
-				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
-				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
-				jugador1->points += 15;
+				powerUp(map.DesBricks[i].desBrickRect.x, map.DesBricks[i].desBrickRect.y);
+				map.DesBricks.erase(map.DesBricks.begin() + i);
+				Player1->points += 15;
 			}
-			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeLeft1) == 1)
+			else if (collision(&map.DesBricks[i].desBrickRect, &Player1->bomb->explodeLeft1) == 1)
 			{
-				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
-				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
-				jugador1->points += 15;
+				powerUp(map.DesBricks[i].desBrickRect.x, map.DesBricks[i].desBrickRect.y);
+				map.DesBricks.erase(map.DesBricks.begin() + i);
+				Player1->points += 15;
 			}
-			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeLeft2) == 1)
+			else if (collision(&map.DesBricks[i].desBrickRect, &Player1->bomb->explodeLeft2) == 1)
 			{
-				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
-				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
-				jugador1->points += 15;
+				powerUp(map.DesBricks[i].desBrickRect.x, map.DesBricks[i].desBrickRect.y);
+				map.DesBricks.erase(map.DesBricks.begin() + i);
+				Player1->points += 15;
 			}
-			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeRight1) == 1)
+			else if (collision(&map.DesBricks[i].desBrickRect, &Player1->bomb->explodeRight1) == 1)
 			{
-				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
-				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
-				jugador1->points += 15;
+				powerUp(map.DesBricks[i].desBrickRect.x, map.DesBricks[i].desBrickRect.y);
+				map.DesBricks.erase(map.DesBricks.begin() + i);
+				Player1->points += 15;
 			}
-			else if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->bomba->explodeRight2) == 1)
+			else if (collision(&map.DesBricks[i].desBrickRect, &Player1->bomb->explodeRight2) == 1)
 			{
-				powerUp(mapa.MurosDestruibles[i].destructibleBrickRect.x, mapa.MurosDestruibles[i].destructibleBrickRect.y);
-				mapa.MurosDestruibles.erase(mapa.MurosDestruibles.begin() + i);
-				jugador1->points += 15;
+				powerUp(map.DesBricks[i].desBrickRect.x, map.DesBricks[i].desBrickRect.y);
+				map.DesBricks.erase(map.DesBricks.begin() + i);
+				Player1->points += 15;
 			}
 		}
 		frameTime++;
@@ -333,102 +329,102 @@ void Play::Draw()
 		{
 			frameTime = 0;
 			//Center
-			if (jugador1->bomba->centerTarget.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->centerTarget.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->centerTarget.x += 48;
+				Player1->bomb->centerTarget.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 			//Up1
-			if (jugador1->bomba->up1Target.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->up1Target.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->up1Target.x += 48;
+				Player1->bomb->up1Target.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 			//Up2
-			if (jugador1->bomba->up2Target.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->up2Target.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->up2Target.x += 48;
+				Player1->bomb->up2Target.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 			//Down1
-			if (jugador1->bomba->down1Target.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->down1Target.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->down1Target.x += 48;
+				Player1->bomb->down1Target.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 			//Down2
-			if (jugador1->bomba->down2Target.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->down2Target.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->down2Target.x += 48;
+				Player1->bomb->down2Target.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 			//Right1
-			if (jugador1->bomba->right1Target.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->right1Target.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->right1Target.x += 48;
+				Player1->bomb->right1Target.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 			//Right2
-			if (jugador1->bomba->right2Target.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->right2Target.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->right2Target.x += 48;
+				Player1->bomb->right2Target.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 			//Left
-			if (jugador1->bomba->left1Target.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->left1Target.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->left1Target.x += 48;
+				Player1->bomb->left1Target.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 			//Left
-			if (jugador1->bomba->left2Taget.x <= jugador1->bomba->explodeImageSize.x)
+			if (Player1->bomb->left2Taget.x <= Player1->bomb->explodeImageSize.x)
 			{
-				jugador1->bomba->left2Taget.x += 48;
+				Player1->bomb->left2Taget.x += 48;
 			}
 			else
 			{
-				jugador1->explode = false;
-				jugador1->hasbomb = false;
+				Player1->explode = false;
+				Player1->hasbomb = false;
 				damage = false;
 			}
 		}
@@ -439,7 +435,7 @@ void Play::Draw()
 
 }
 
-bool Play::colisiones(SDL_Rect* A, SDL_Rect* B)
+bool Play::collision(SDL_Rect* A, SDL_Rect* B)
 {
 	if (A->y >= (B->y + B->h))
 	{
@@ -462,18 +458,18 @@ bool Play::colisiones(SDL_Rect* A, SDL_Rect* B)
 
 }
 
-bool Play::iteradorcolisiones()
+bool Play::collisionIterator()
 {
-	for (int i = 0; i < mapa.MurosFijos.size(); i++)
+	for (int i = 0; i < map.FixBricks.size(); i++)
 	{
-		if (colisiones(&mapa.MurosFijos[i].fixBrickRect, &jugador1->playerRect) == 1)
+		if (collision(&map.FixBricks[i].fixBrickRect, &Player1->playerRect) == 1)
 		{
 			return true;
 		}
 	}
-	for (int i = 0; i < mapa.MurosDestruibles.size(); i++)
+	for (int i = 0; i < map.DesBricks.size(); i++)
 	{
-		if (colisiones(&mapa.MurosDestruibles[i].destructibleBrickRect, &jugador1->playerRect) == 1)
+		if (collision(&map.DesBricks[i].desBrickRect, &Player1->playerRect) == 1)
 		{
 			return true;
 		}
@@ -483,36 +479,36 @@ bool Play::iteradorcolisiones()
 
 void Play::collisionMovement()
 {
-	if (jugador1->lastkey == UP)
+	if (Player1->lastkey == UP)
 	{
-		if (iteradorcolisiones() == true)
+		if (collisionIterator() == true)
 		{
-			jugador1->posicion.y += jugador1->speed;
-			jugador1->lastkey = DEFAULT;
+			Player1->position.y += Player1->speed;
+			Player1->lastkey = DEFAULT;
 		}
 	}
-	if (jugador1->lastkey == DOWN)
+	if (Player1->lastkey == DOWN)
 	{
-		if (iteradorcolisiones() == true)
+		if (collisionIterator() == true)
 		{
-			jugador1->posicion.y -= jugador1->speed;
-			jugador1->lastkey = DEFAULT;
+			Player1->position.y -= Player1->speed;
+			Player1->lastkey = DEFAULT;
 		}
 	}
-	if (jugador1->lastkey == LEFT)
+	if (Player1->lastkey == LEFT)
 	{
-		if (iteradorcolisiones() == true)
+		if (collisionIterator() == true)
 		{
-			jugador1->posicion.x += jugador1->speed;
-			jugador1->lastkey = DEFAULT;
+			Player1->position.x += Player1->speed;
+			Player1->lastkey = DEFAULT;
 		}
 	}
-	if (jugador1->lastkey == RIGHT)
+	if (Player1->lastkey == RIGHT)
 	{
-		if (iteradorcolisiones() == true)
+		if (collisionIterator() == true)
 		{
-			jugador1->posicion.x -= jugador1->speed;
-			jugador1->lastkey = DEFAULT;
+			Player1->position.x -= Player1->speed;
+			Player1->lastkey = DEFAULT;
 		}
 	}
 }
@@ -520,7 +516,7 @@ void Play::collisionMovement()
 void Play::powerUp(int posX, int posY)
 {
 	int result = rand() % 101;
-	if (result < 60)
+	if (result < 21)
 	{
 		bonus = new PowerUp();
 		bonus->createPowerUp(posX, posY);
@@ -530,20 +526,23 @@ void Play::powerUp(int posX, int posY)
 
 void Play::HandleEvents()
 {
-	jugador1->movement();
+	Player1->movement();
 
 	collisionMovement();
 
-	jugador2->movement();
-	if (timeDown < timeUp || jugador1->vidas <= 0 || jugador2->vidas <= 0)
+	Player2->movement();
+	if (timeDown < timeUp || Player1->lives <= 0 || Player2->lives <= 0)
 	{
 		Mix_CloseAudio();
 
 		std::ofstream fsalida("../../res/files/ranking.bin", std::ios::app|std::ios_base::binary);
 		std::string name;
-		std::cout << std::endl << "escribe tu nombre: ";
+		std::cout << std::endl << "Write your name: ";
 		std::cin >> name;
-		int points = jugador1->points;
+		std::cout << std::endl;
+		std::cout << "Name registered succesfully!" << std::endl;
+		std::cout << std::endl;
+		int points = Player1->points;
 
 		if (fsalida.good())
 		{

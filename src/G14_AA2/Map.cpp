@@ -17,8 +17,8 @@ void Map::ReadXML1()
 	doc.parse<0>(&content[0]);
 
 	std::pair<int, int> coords;
-	std::string nombreAttr;
-	std::string nombreCoord;
+	std::string nameAttr;
+	std::string nameCoord;
 	rapidxml::xml_node<> *pRoot = doc.first_node();
 	rapidxml::xml_attribute<> *iAttr;
 	rapidxml::xml_attribute<> *jAttr;
@@ -26,35 +26,35 @@ void Map::ReadXML1()
 
 	for (rapidxml::xml_attribute<> *iAttr1 = pNode->first_attribute(); iAttr1; iAttr1 = iAttr1->next_attribute())
 	{
-		nombreAttr = iAttr1->name();
-		if (nombreAttr == "time")
+		nameAttr = iAttr1->name();
+		if (nameAttr == "time")
 		{
-			tiempo = atoi(iAttr1->value());
+			time = atoi(iAttr1->value());
 		}
-		if (nombreAttr == "lives")
+		if (nameAttr == "lives")
 		{
-			cantidadVidas = atoi(iAttr1->value());
+			livesNum = atoi(iAttr1->value());
 		}
 	}
 	for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed")->first_node("Wall"); pNode1; pNode1 = pNode1->next_sibling())
 	{			
 		for (rapidxml::xml_attribute<> *iAttr = pNode1->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
 		{
-			nombreCoord = iAttr->name();
-			if (nombreCoord == "i")
+			nameCoord = iAttr->name();
+			if (nameCoord == "i")
 			{
 				coords.first = atoi(iAttr->value());
 			}
-			else if (nombreCoord == "j")
+			else if (nameCoord == "j")
 			{
-				FixBrick muriyo;
+				FixBrick brickVec;
 				coords.second = atoi(iAttr->value());
-				muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
-				muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
-				muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
-				muriyo.fixBrickRect.y = (coords.first * 48) + 80 + 48;
-				muriyo.fixBrickRect.x = (coords.second * 48) + 48; 
-				MurosFijos.push_back(muriyo);
+				brickVec.fixBrickTarget.x = brickVec.fixBrickTarget.y = 0;
+				brickVec.fixBrickRect.w = brickVec.fixBrickRect.h = 48;
+				brickVec.fixBrickTarget.w = brickVec.fixBrickTarget.h = 48;
+				brickVec.fixBrickRect.y = (coords.first * 48) + 80 + 48;
+				brickVec.fixBrickRect.x = (coords.second * 48) + 48;
+				FixBricks.push_back(brickVec);
 			}
 
 		}
@@ -63,22 +63,22 @@ void Map::ReadXML1()
 	{
 		for (rapidxml::xml_attribute<> *iAttr = pNode1->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
 		{
-			nombreCoord = iAttr->name();
-			if (nombreCoord == "i")
+			nameCoord = iAttr->name();
+			if (nameCoord == "i")
 			{
 				coords.first = atoi(iAttr->value());
 			}
-			else if (nombreCoord == "j")
+			else if (nameCoord == "j")
 			{
-				DestructibleBrick muriyo;
+				DestructibleBrick brickVec;
 				coords.second = atoi(iAttr->value());
-				muriyo.destructibleBrickTarget.x = 48;
-				muriyo.destructibleBrickTarget.y = 0;
-				muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
-				muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
-				muriyo.destructibleBrickRect.y = (coords.first * 48) + 80 + 48;
-				muriyo.destructibleBrickRect.x = (coords.second * 48) + 48; 
-				MurosDestruibles.push_back(muriyo);
+				brickVec.desBrickTarget.x = 48;
+				brickVec.desBrickTarget.y = 0;
+				brickVec.desBrickRect.w = brickVec.desBrickRect.h = 48;
+				brickVec.desBrickTarget.w = brickVec.desBrickTarget.h = 48;
+				brickVec.desBrickRect.y = (coords.first * 48) + 80 + 48;
+				brickVec.desBrickRect.x = (coords.second * 48) + 48;
+				DesBricks.push_back(brickVec);
 			}
 
 		}
@@ -99,8 +99,8 @@ void Map::ReadXML2()
 	doc.parse<0>(&content[0]);
 
 	std::pair<int, int> coords;
-	std::string nombreAttr;
-	std::string nombreCoord;
+	std::string nameAttr;
+	std::string nameCoord;
 	rapidxml::xml_node<> *pRoot = doc.first_node();
 	rapidxml::xml_attribute<> *iAttr;
 	rapidxml::xml_attribute<> *jAttr;
@@ -108,36 +108,36 @@ void Map::ReadXML2()
 
 	for (rapidxml::xml_attribute<> *iAttr1 = pNode->first_attribute(); iAttr1; iAttr1 = iAttr1->next_attribute())
 	{
-		nombreAttr = iAttr1->name();
+		nameAttr = iAttr1->name();
 
-		if (nombreAttr == "time")
+		if (nameAttr == "time")
 		{
-			tiempo = atoi(iAttr1->value());
+			time = atoi(iAttr1->value());
 		}
-		if (nombreAttr == "lives")
+		if (nameAttr == "lives")
 		{
-			cantidadVidas = atoi(iAttr1->value());
+			livesNum = atoi(iAttr1->value());
 		}
 	}
 	for (rapidxml::xml_node<> *pNode1 = pNode->first_node("Fixed")->first_node("Wall"); pNode1; pNode1 = pNode1->next_sibling())
 	{
 		for (rapidxml::xml_attribute<> *iAttr = pNode1->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
 		{
-			nombreCoord = iAttr->name();
-			if (nombreCoord == "i")
+			nameCoord = iAttr->name();
+			if (nameCoord == "i")
 			{
 				coords.first = atoi(iAttr->value());
 			}
-			else if (nombreCoord == "j")
+			else if (nameCoord == "j")
 			{
-				FixBrick muriyo;
+				FixBrick brickVec;
 				coords.second = atoi(iAttr->value());
-				muriyo.fixBrickTarget.x = muriyo.fixBrickTarget.y = 0;
-				muriyo.fixBrickRect.w = muriyo.fixBrickRect.h = 48;
-				muriyo.fixBrickTarget.w = muriyo.fixBrickTarget.h = 48;
-				muriyo.fixBrickRect.y = (coords.first * 48) + 80;
-				muriyo.fixBrickRect.x = (coords.second * 48) + 48;
-				MurosFijos.push_back(muriyo);
+				brickVec.fixBrickTarget.x = brickVec.fixBrickTarget.y = 0;
+				brickVec.fixBrickRect.w = brickVec.fixBrickRect.h = 48;
+				brickVec.fixBrickTarget.w = brickVec.fixBrickTarget.h = 48;
+				brickVec.fixBrickRect.y = (coords.first * 48) + 80;
+				brickVec.fixBrickRect.x = (coords.second * 48) + 48;
+				FixBricks.push_back(brickVec);
 			}
 
 		}
@@ -146,22 +146,22 @@ void Map::ReadXML2()
 	{
 		for (rapidxml::xml_attribute<> *iAttr = pNode1->first_attribute(); iAttr; iAttr = iAttr->next_attribute())
 		{
-			nombreCoord = iAttr->name();
-			if (nombreCoord == "i")
+			nameCoord = iAttr->name();
+			if (nameCoord == "i")
 			{
 				coords.first = atoi(iAttr->value());
 			}
-			else if (nombreCoord == "j")
+			else if (nameCoord == "j")
 			{
-				DestructibleBrick muriyo;
+				DestructibleBrick brickVec;
 				coords.second = atoi(iAttr->value());
-				muriyo.destructibleBrickTarget.x = 48;
-				muriyo.destructibleBrickTarget.y = 0;
-				muriyo.destructibleBrickRect.w = muriyo.destructibleBrickRect.h = 48;
-				muriyo.destructibleBrickTarget.w = muriyo.destructibleBrickTarget.h = 48;
-				muriyo.destructibleBrickRect.y = (coords.first * 48) + 80;
-				muriyo.destructibleBrickRect.x = (coords.second * 48) + 48;
-				MurosDestruibles.push_back(muriyo);
+				brickVec.desBrickTarget.x = 48;
+				brickVec.desBrickTarget.y = 0;
+				brickVec.desBrickRect.w = brickVec.desBrickRect.h = 48;
+				brickVec.desBrickTarget.w = brickVec.desBrickTarget.h = 48;
+				brickVec.desBrickRect.y = (coords.first * 48) + 80;
+				brickVec.desBrickRect.x = (coords.second * 48) + 48;
+				DesBricks.push_back(brickVec);
 			}
 
 		}
@@ -171,35 +171,19 @@ void Map::ReadXML2()
 		
 
 
-void Map::DrawMap1()
+void Map::DrawFixBricks()
 {					
-	for (int i = 0; i < MurosFijos.size(); i++)
+	for (int i = 0; i < FixBricks.size(); i++)
 	{
-		Renderer::Instance()->PushSprite(ITEMS_SPRITE, MurosFijos[i].fixBrickTarget, MurosFijos[i].fixBrickRect);
+		Renderer::Instance()->PushSprite(ITEMS_SPRITE, FixBricks[i].fixBrickTarget, FixBricks[i].fixBrickRect);
 	}
 }
 
-void Map::DrawMap2()
+void Map::DrawDesBricks()
 {
-	for (int i = 0; i < MurosFijos2.size(); i++)
+	for (int i = 0; i < DesBricks.size(); i++)
 	{
-		Renderer::Instance()->PushSprite(ITEMS_SPRITE, MurosFijos2[i].fixBrickTarget, MurosFijos2[i].fixBrickRect);
-	}
-}
-
-void Map::DrawBricks1()
-{
-	for (int i = 0; i < MurosDestruibles.size(); i++)
-	{
-		Renderer::Instance()->PushSprite(ITEMS_SPRITE, MurosDestruibles[i].destructibleBrickTarget, MurosDestruibles[i].destructibleBrickRect);
-	}
-}
-
-void Map::DrawBricks2()
-{
-	for (int i = 0; i < MurosDestruibles2.size(); i++)
-	{
-		Renderer::Instance()->PushSprite(ITEMS_SPRITE, MurosDestruibles2[i].destructibleBrickTarget, MurosDestruibles2[i].destructibleBrickRect);
+		Renderer::Instance()->PushSprite(ITEMS_SPRITE, DesBricks[i].desBrickTarget, DesBricks[i].desBrickRect);
 	}
 }
 

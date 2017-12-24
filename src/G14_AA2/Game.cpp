@@ -13,8 +13,8 @@ Game::Game()
 	Text exit{ TEXT_EXIT, "EXIT",{ 255, 255, 255, 255 }, 0, 0 };
 	Text bomberman{ TEXT_TITLE, "BOMBERMAN", {255, 255, 255, 255}, 0, 0 };
 	Text audio{ TEXT_AUDIO, "AUDIO ON/OFF", {255, 255, 255, 255}, 0, 0 };
-	Text vidas{ TEXT_VIDAS, "VIDAS P1: ",{ 0, 0, 255, 255 }, 0, 0 };
-	Text vidas2{ TEXT_VIDAS2, "VIDAS P2: ",{ 255, 0, 0, 255 }, 0, 0 };
+	Text vidas{ TEXT_LIVES, "LIVES P1: ",{ 0, 0, 255, 255 }, 0, 0 };
+	Text vidas2{ TEXT_LIVES2, "LIVES P2: ",{ 255, 0, 0, 255 }, 0, 0 };
 	Text returnmenu{ TEXT_RETURNMENU, "RETURN TO MENU", {255, 255, 255, 255}, 0, 0 };
 	Text highscores{ TEXT_RANKING2, "HIGHSCORES",{ 255, 255, 255, 255 }, 0, 0 };
 	
@@ -22,16 +22,16 @@ Game::Game()
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
 	Renderer::Instance()->LoadFont({ GAME_OVERTITLE, PATH_FONT, 200 });
 	Renderer::Instance()->LoadFont({ GAME_OVERAUDIO, PATH_FONT, 70 });
-	Renderer::Instance()->LoadFont({ GAME_OVERVIDAS, PATH_FONT, 70 });
-	Renderer::Instance()->LoadFont({ GAME_OVERVIDAS2, PATH_FONT, 70 });
+	Renderer::Instance()->LoadFont({ GAME_OVERLIVES, PATH_FONT, 70 });
+	Renderer::Instance()->LoadFont({ GAME_OVERLIVES2, PATH_FONT, 70 });
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, play1);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, play2);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, exit);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, ranking);
 	Renderer::Instance()->LoadTextureText(GAME_OVERTITLE, bomberman);
 	Renderer::Instance()->LoadTextureText(GAME_OVERAUDIO, audio);
-	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS, vidas);
-	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, vidas2);
+	Renderer::Instance()->LoadTextureText(GAME_OVERLIVES, vidas);
+	Renderer::Instance()->LoadTextureText(GAME_OVERLIVES2, vidas2);
 	Renderer::Instance()->LoadTextureText(GAME_OVERAUDIO, returnmenu);
 	Renderer::Instance()->LoadTextureText(GAME_OVER80, highscores);
 	
@@ -51,28 +51,28 @@ Game::~Game()
 void Game::GameLoop()
 {
 	scene->state = GameState::MENU;
-	scene->escenActual = CurrentScene::MENIU;
+	scene->escenActual = CurrentScene::CURR_MENU;
 	while (scene->state != GameState::EXIT) 
 	{
 	
 			switch (scene->state)
 			{
 			case GameState::MENU:
-				scene->escenActual = CurrentScene::MENIU;
+				scene->escenActual = CurrentScene::CURR_MENU;
 				scene->HandleEvents();
 				scene->Update();
 				scene->Draw();
 				break;
 
 			case GameState::PLAY:
-				scene->escenActual = CurrentScene::PLEI;
+				scene->escenActual = CurrentScene::CURR_PLAY;
 				scene->HandleEvents();
 				scene->Update();
 				scene->Draw();
 				break;
 
 			case GameState::RANKING:
-				scene->escenActual = CurrentScene::RANQUINC;
+				scene->escenActual = CurrentScene::CURR_RANKING;
 				scene->HandleEvents();
 				scene->Update();
 				scene->Draw();
@@ -98,7 +98,7 @@ void Game::GameLoop()
 			case GameState::GOTO:
 				switch (scene->escenActual)
 				{
-				case CurrentScene::MENIU:
+				case CurrentScene::CURR_MENU:
 					if (scene->lvl == Level::LVL1)
 					{
 						delete scene;
@@ -118,12 +118,12 @@ void Game::GameLoop()
 						scene->state = GameState::RANKING;
 					}
 					break;
-				case CurrentScene::PLEI:
+				case CurrentScene::CURR_PLAY:
 					delete scene;
 					scene = new Ranking();
 					scene->state = GameState::RANKING;
 					break;
-				case CurrentScene::RANQUINC:
+				case CurrentScene::CURR_RANKING:
 					delete scene;
 					scene = new Menu();
 					scene->state = GameState::MENU;

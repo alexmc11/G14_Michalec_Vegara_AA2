@@ -10,6 +10,7 @@ class Game
 private:
 
 public:
+
 	Scene * scene;
 	void GameLoop();
 	Game();
