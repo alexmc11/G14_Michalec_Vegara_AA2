@@ -22,6 +22,10 @@ public:
 	float timer2 = 0.f;
 	float timer3 = 0.f;
 
+	float timerP2 = 0.f;
+	float timer2P2 = 0.f;
+	float timer3P2 = 0.f;
+
 	bool audioStarted;
 
 	Character *Player1;
@@ -41,7 +45,7 @@ public:
 	PowerUp *bonus;
 
 	bool power;
-	bool speedUp;
+	bool speedUp, speedUp2;
 
 	char buffer[50];
 
@@ -57,7 +61,9 @@ public:
 
 	bool collision(SDL_Rect* A, SDL_Rect* B);
 	bool collisionIterator();
+	bool collisionIterator2();
 	void collisionMovement();
+	void collisionMovement2();
 
 	void powerUp(int posX, int posY);
 

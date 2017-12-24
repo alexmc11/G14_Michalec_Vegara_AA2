@@ -46,86 +46,87 @@ void Character::movement()
 		{
 			if (player == player1)
 			{
-				if (event.key.keysym.sym == SDLK_w && position.y > 128)
+				switch (event.key.keysym.sym)
 				{
-					position.y -= speed;
-
-					objective.y = 0;
-					//objetivo.x = 0;
-					frameTime++;
-					if (FPS / frameTime <= 9)
+				case SDLK_w:
+					if (position.y > 128)
 					{
-						frameTime = 0;
-						objective.x += 48;
-						if (objective.x >= 144)
+						position.y -= speed;
+						objective.y = 0;
+						frameTime++;
+						if (FPS / frameTime <= 9)
 						{
-							objective.x = 0;
+							frameTime = 0;
+							objective.x += 48;
+							if (objective.x >= 144)
+							{
+								objective.x = 0;
+							}
 						}
+						lastkey = UP;
 					}
-					lastkey = UP;
-				}
-				if (event.key.keysym.sym == SDLK_a && position.x > 48)
-				{
-					position.x -= speed;
-
-					//objetivo.x = 0;
-					objective.y = 48;
-					frameTime++;
-					if (FPS / frameTime <= 9)
+					break;
+				case SDLK_a:
+					if (position.x > 48)
 					{
-						frameTime = 0;
-						objective.x += 48;
-						if (objective.x >= 144)
+						position.x -= speed;
+						objective.y = 48;
+						frameTime++;
+						if (FPS / frameTime <= 9)
 						{
-							objective.x = 0;
+							frameTime = 0;
+							objective.x += 48;
+							if (objective.x >= 144)
+							{
+								objective.x = 0;
+							}
 						}
+						lastkey = LEFT;
 					}
-					lastkey = LEFT;
-				}
-				if (event.key.keysym.sym == SDLK_s && position.y < 608)
-				{
-					position.y += speed;
-
-					//objetivo.x = 0;
-					objective.y = 96;
-					frameTime++;
-					if (FPS / frameTime <= 9)
+					break;
+				case SDLK_s:
+					if (position.y < 608)
 					{
-						frameTime = 0;
-						objective.x += 48;
-						if (objective.x >= 144)
+						position.y += speed;
+						objective.y = 96;
+						frameTime++;
+						if (FPS / frameTime <= 9)
 						{
-							objective.x = 0;
+							frameTime = 0;
+							objective.x += 48;
+							if (objective.x >= 144)
+							{
+								objective.x = 0;
+							}
 						}
+						lastkey = DOWN;
 					}
-					lastkey = DOWN;
-				}
-				if (event.key.keysym.sym == SDLK_d && position.x < 624)
-				{
-					position.x += speed;
-
-					//objetivo.x = 0;
-					objective.y = 144;
-					frameTime++;
-					if (FPS / frameTime <= 9)
+					break;
+				case SDLK_d:
+					if (position.x < 624)
 					{
-						frameTime = 0;
-						objective.x += 48;
-						if (objective.x >= 144)
+						position.x += speed;
+						objective.y = 144;
+						frameTime++;
+						if (FPS / frameTime <= 9)
 						{
-							objective.x = 0;
+							frameTime = 0;
+							objective.x += 48;
+							if (objective.x >= 144)
+							{
+								objective.x = 0;
+							}
 						}
+						lastkey = RIGHT;
 					}
-					lastkey = RIGHT;
-				}
-				if (event.key.keysym.sym == SDLK_SPACE)
-				{
+					break;
+				case SDLK_SPACE:
 					if (hasbomb == false)
 					{
 						bomb = new Bomb(position.x, position.y);
 						hasbomb = true;
 					}
-
+					break;
 				}
 
 				playerRect = { position.x, position.y, 48, 48 };
@@ -134,73 +135,95 @@ void Character::movement()
 			}
 			if (player == player2)
 			{
-				if (event.key.keysym.sym == SDLK_UP && position.y > 128)
+				switch (event.key.keysym.sym)
 				{
-					position.y -= speed;
-					objective.y = 0;
-					frameTime++;
-					if (SCREEN_FPS / frameTime <= 9)
+				case SDLK_UP:
+					if (position.y > 128)
 					{
-						frameTime = 0;
-						objective.x += 48;
-						if (objective.x >= 144)
+						position.y -= speed;
+						objective.y = 0;
+						frameTime++;
+						if (FPS / frameTime <= 9)
 						{
-							objective.x = 0;
+							frameTime = 0;
+							objective.x += 48;
+							if (objective.x >= 144)
+							{
+								objective.x = 0;
+							}
 						}
+						lastkey = UP;
 					}
-				}
-				if (event.key.keysym.sym == SDLK_LEFT && position.x > 48)
-				{
-					position.x -= speed;
-					objective.y = 48;
-					frameTime++;
-					if (SCREEN_FPS / frameTime <= 9)
+					break;
+				case SDLK_LEFT:
+					if (position.x > 48)
 					{
-						frameTime = 0;
-						objective.x += 48;
-						if (objective.x >= 144)
+						position.x -= speed;
+						objective.y = 48;
+						frameTime++;
+						if (FPS / frameTime <= 9)
 						{
-							objective.x = 0;
+							frameTime = 0;
+							objective.x += 48;
+							if (objective.x >= 144)
+							{
+								objective.x = 0;
+							}
 						}
+						lastkey = LEFT;
 					}
-				}
-				if (event.key.keysym.sym == SDLK_DOWN && position.y < 608)
-				{
-					position.y += speed;
-					objective.y = 96;
-					frameTime++;
-					if (SCREEN_FPS / frameTime <= 9)
+					break;
+				case SDLK_DOWN:
+					if (position.y < 608)
 					{
-						frameTime = 0;
-						objective.x += 48;
-						if (objective.x >= 144)
+						position.y += speed;
+						objective.y = 96;
+						frameTime++;
+						if (FPS / frameTime <= 9)
 						{
-							objective.x = 0;
+							frameTime = 0;
+							objective.x += 48;
+							if (objective.x >= 144)
+							{
+								objective.x = 0;
+							}
 						}
+						lastkey = DOWN;
 					}
-				}
-				if (event.key.keysym.sym == SDLK_RIGHT && position.x < 624)
-				{
-					position.x += speed;
-					objective.y = 144;
-					frameTime++;
-					if (SCREEN_FPS / frameTime <= 9)
+					break;
+				case SDLK_RIGHT:
+					if (position.x < 624)
 					{
-						frameTime = 0;
-						objective.x += 48;
-						if (objective.x >= 144)
+						position.x += speed;
+						objective.y = 144;
+						frameTime++;
+						if (FPS / frameTime <= 9)
 						{
-							objective.x = 0;
+							frameTime = 0;
+							objective.x += 48;
+							if (objective.x >= 144)
+							{
+								objective.x = 0;
+							}
 						}
+						lastkey = RIGHT;
 					}
+					break;
+				case SDLK_RCTRL:
+					if (hasbomb == false)
+					{
+						bomb = new Bomb(position.x, position.y);
+						hasbomb = true;
+					}
+					break;
 				}
-				if (event.key.keysym.sym == SDLK_RCTRL)
-				{
-					bomb = new Bomb(position.x, position.y);
-				}
+				playerRect = { position.x, position.y, 48, 48 };
+				playerTarget = { objective.x, objective.y, 48, 48 };
+				colision = false;
+			}
 
 				playerRect = { position.x, position.y, 48, 48 };
 			}
 		}
 	}
-}
+
