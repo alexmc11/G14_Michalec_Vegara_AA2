@@ -35,7 +35,6 @@ public:
 	Levels level;
 	Map mapa;
 	PowerUp *bonus;
-	Ranking clasif;
 	bool power;
 	bool speedUp;
 	char buffer[50];

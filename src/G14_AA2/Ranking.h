@@ -31,7 +31,6 @@ public:
 	bool returnMenu;
 	Vector2 medidaTextMenu = Renderer::Instance()->GetTextureSize(TEXT_RETURNMENU);
 	Vector2 medidaTextHigh = Renderer::Instance()->GetTextureSize(TEXT_RANKING2);
-	void ponerNombre(int puntos);
 	std::vector<playerData> Highscores;
 	std::vector<playerData> ReadScores;
 	void Update() override;

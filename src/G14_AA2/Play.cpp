@@ -537,8 +537,23 @@ void Play::HandleEvents()
 	jugador2->movement();
 	if (timeDown < timeUp || jugador1->vidas <= 0 || jugador2->vidas <= 0)
 	{
-		std::cout << "Se acabó el tiempo";
 		Mix_CloseAudio();
+
+		std::ofstream fsalida("../../res/files/ranking.bin", std::ios::app|std::ios_base::binary);
+		std::string name;
+		std::cout << std::endl << "escribe tu nombre: ";
+		std::cin >> name;
+		int points = jugador1->points;
+
+		if (fsalida.good())
+		{
+				fsalida.write(name.c_str(), name.size()); // write string to binary file
+				fsalida.write("\0", sizeof(char)); // null end string for easier reading
+				fsalida.write(reinterpret_cast<char*>(&points), sizeof(points)); // write int to binary file
+				fsalida.close();
+		}
+
+
 		state = GameState::GOTO;
 	}
 }
