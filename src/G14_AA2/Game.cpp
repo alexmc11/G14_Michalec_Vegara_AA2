@@ -16,6 +16,7 @@ Game::Game()
 	Text vidas{ TEXT_VIDAS, "VIDAS P1: ",{ 0, 0, 255, 255 }, 0, 0 };
 	Text vidas2{ TEXT_VIDAS2, "VIDAS P2: ",{ 255, 0, 0, 255 }, 0, 0 };
 	Text returnmenu{ TEXT_RETURNMENU, "RETURN TO MENU", {255, 255, 255, 255}, 0, 0 };
+	Text highscores{ TEXT_RANKING2, "HIGHSCORES",{ 255, 255, 255, 255 }, 0, 0 };
 	
 
 	Renderer::Instance()->LoadFont({ GAME_OVER80, PATH_FONT, 130 });
@@ -32,6 +33,7 @@ Game::Game()
 	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS, vidas);
 	Renderer::Instance()->LoadTextureText(GAME_OVERVIDAS2, vidas2);
 	Renderer::Instance()->LoadTextureText(GAME_OVERAUDIO, returnmenu);
+	Renderer::Instance()->LoadTextureText(GAME_OVER80, highscores);
 	
 
 	//CREATE TEXTURES
