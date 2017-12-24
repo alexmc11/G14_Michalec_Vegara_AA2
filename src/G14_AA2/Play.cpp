@@ -23,7 +23,7 @@ Play::Play(Levels lvl)
 	}
 	else
 	{
-		mapa.ReadXML2();
+		mapa.ReadXML2();//
 		jugador1->vidas = mapa.cantidadVidas;
 		jugador2->vidas = mapa.cantidadVidas;
 		timeDown = mapa.tiempo;
